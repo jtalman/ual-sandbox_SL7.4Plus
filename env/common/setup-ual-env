@@ -60,6 +60,10 @@ setenv LD_LIBRARY_PATH  $UAL_SIMBAD/lib/$UAL_ARCH/:$LD_LIBRARY_PATH
 # DA Runge-Kutta and Lie Integrators 
 setenv UAL_DA              $UAL/codes/DA
 
+# EMTEAPOT - simulation of combined E and B fields 
+setenv UAL_EMTEAPOT       $UAL/codes/EMTEAPOT
+setenv LD_LIBRARY_PATH  $UAL_EMTEAPOT/lib/$UAL_ARCH/:$LD_LIBRARY_PATH
+
 ###########################################################
 # Extensions
 ###########################################################

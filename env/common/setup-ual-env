@@ -131,6 +131,7 @@ setenv LD_LIBRARY_PATH $SXF/lib/$SXF_ARCH/:$LD_LIBRARY_PATH
 ###########################################################
 
 # EMTEAPOT
+# klE, klM, debug parsing output
 
  setenv SXFV $UAL/tools/sxfVerbose
  setenv LD_LIBRARY_PATH $SXFV/lib/$UAL_ARCH/:$LD_LIBRARY_PATH
@@ -139,3 +140,5 @@ setenv LD_LIBRARY_PATH $SXF/lib/$SXF_ARCH/:$LD_LIBRARY_PATH
 #setenv UAL_SXF  $UAL_EXTRA/SXF
  setenv UAL_SXFV $UAL/ext/UAL_SXFVerbose
  setenv LD_LIBRARY_PATH $UAL_SXFV/lib/$UAL_ARCH/:$LD_LIBRARY_PATH
+
+#out of phase!!? 07/16/2018

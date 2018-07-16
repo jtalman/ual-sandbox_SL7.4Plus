@@ -42,6 +42,8 @@ compile : $(LDIR)/libSXF.$(SOEXT)
 	@echo  "LDIR"
 	@echo $(LDIR)
 
+compile : $(LDIR)/libSXFVerbose.$(SOEXT)
+
 clean:
 	rm -f $(LDIR)/libSXF.$(SOEXT)
 	rm -f $(LDIR)/obj/*.o $(LDIR)/obj/hashes/*.o
@@ -77,3 +79,7 @@ $(LDIR)/libSXF.$(SOEXT) :  Perfect_Hash.hh $(OBJS) $(HASHES)
 	@echo  "compiling libSXF"
 	$(DLD) $(DLDFLAGS) -o $@ $(OBJS)  $(HASHES) $(LIBS)
 #	rm -f y.tab.h y.tab.cc lex.yy.cpp 
+
+$(LDIR)/libSXFVerbose.$(SOEXT) :  Perfect_Hash.hh $(OBJS) $(HASHES)
+	@echo  "compiling libSXFVerbose"
+	$(DLD) $(DLDFLAGS) -o $@ $(OBJS)  $(HASHES) $(LIBS)

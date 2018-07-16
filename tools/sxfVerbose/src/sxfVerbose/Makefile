@@ -58,11 +58,11 @@ Perfect_Hash.hh : elements.gperf
 #	if [ -f sxf.yy.tab.h ]; then mv -f sxf.yy.tab.h y.tab.h; fi;	
 #	if [ -f sxf.yy.tab.c ]; then mv -f sxf.yy.tab.c y.tab.cc; fi;
 
-lex.yy.cpp: sxf.ll y.tab.h
-	$(LEX) $(LFLAGS) sxf.ll > $@
-	@sed -e "s/unistd/stdio/g" -e "s@#include <@#include /**/ <@"  < $@ >> /tmp/$@
-	@cp /tmp/$@ $@
-	@-$(RM) -f /tmp/$@
+#lex.yy.cpp: sxf.ll y.tab.h
+#	$(LEX) $(LFLAGS) sxf.ll > $@
+#	@sed -e "s/unistd/stdio/g" -e "s@#include <@#include /**/ <@"  < $@ >> /tmp/$@
+#	@cp /tmp/$@ $@
+#	@-$(RM) -f /tmp/$@
 
 $(LDIR)/obj/lex.yy.o: lex.yy.cpp
 	@echo  "compiling lex.yy.o"

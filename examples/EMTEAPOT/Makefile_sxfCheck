@@ -18,7 +18,7 @@ INC += -I$(UAL_PAC)/src
 INC += -I$(UAL)/codes/UAL/include
 INC += -I$(UAL_ZLIB)/src
 INC += -I$(UAL)/tools/include
-INC += -I$(SXF)/src
+INC += -I$(SXFV)/src
 INC += -I/home/ual/tools/gsl/include
 
 LIBS += -L$(UAL)/tools/lib/linux                 -lgsl
@@ -33,7 +33,7 @@ LIBS += -L$(UAL_EMTEAPOT)/lib/$(UAL_ARCH)        -lEMTEAPOT
 LIBS += -L$(UAL_PAC)/lib/$(UAL_ARCH)  		 -lPacSMF -lPacOptics -lPac
 LIBS += -L$(UAL_ZLIB)/lib/$(UAL_ARCH) 		 -lZTps
 LIBS += -L$(UAL)/codes/UAL/lib/$(UAL_ARCH) 	 -lUal
-LIBS += -L$(SXF)/lib/$(UAL_ARCH) 		 -lSXF
+LIBS += -L$(SXFV)/lib/$(UAL_ARCH) 		 -lSXF
 LIBS += -L$(UAL)/tools/lib/$(UAL_ARCH) 		 -lpcre -lxml2 -lrfftw -lfftw
 LIBS += 					 -lm
 

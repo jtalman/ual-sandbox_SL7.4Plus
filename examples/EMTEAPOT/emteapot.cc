@@ -13,6 +13,8 @@
 #include <gsl/gsl_rng.h>
 #include <gsl/gsl_randist.h>
 
+#include "UAL/SMF/AcceleratorNode.hh"
+
 #include "UAL/APDF/APDF_Builder.hh"
 #include "PAC/Beam/Position.hh"
 #include "PAC/Beam/Bunch.hh"
@@ -80,6 +82,13 @@ int main(int argc,char * argv[]){
 
  shell.readSXF(UAL::Args() << UAL::Arg("file",  sxfFile.c_str()));
 // shell.writeSXF(UAL::Args() << UAL::Arg("file",  outputFile.c_str()));
+const string L="ring";
+//UAL::AcceleratorNode* uanA = shell.getLattice(L);
+//UAL::AcceleratorNode* uanA = shell.getLattice("ring");    <<<<----
+//UAL::AcceleratorNode* uanA = shell.getLattice(UAL::Args() << UAL::Arg("lattice", "ring"));
+//UAL::AcceleratorNode* uanA = shell.getLattice("ring");
+//UAL::AcceleratorNode* Shell::getLattice("ring");
+//UAL::AcceleratorNode* UAL::Shell::getLattice("ring");
 
  shell.addSplit(UAL::Args() << UAL::Arg("lattice", "ring") << UAL::Arg("types", "Sbend")      << UAL::Arg("ir", split-1));  // JDT 7/18/2012 new split specification
  shell.addSplit(UAL::Args() << UAL::Arg("lattice", "ring") << UAL::Arg("types", "Quadrupole") << UAL::Arg("ir", 0));

@@ -2,7 +2,7 @@
 void propagate(UAL::Probe& probe)
 {
 double* data           = m_mdata.m_mlt->data();
-std::cerr << "\nJDT2018 - File " << __FILE__ << " line " << __LINE__ << " enter method embend::propagate - sizeof(data) " << sizeof(data) << "\n";
+std::cerr << "\nJDT2018 - File " << __FILE__ << " line " << __LINE__ << " enter method quadMethods::propagate - sizeof(data) " << sizeof(data) << "\n";
 std::cerr << "                                                                                                    data[0] " << data[0] << "\n";
 std::cerr << "                                                                                                    data[1] " << data[1] << "\n";
 std::cerr << "                                                                                                    data[2] " << data[2] << "\n";
@@ -28,4 +28,5 @@ std::cerr << "                                                                  
  }
  tofDT                 +=tofD;
  sDT                   += m_l;
+std::cerr << "\nJDT2018 - File " << __FILE__ << " line " << __LINE__ << " leave method quadMethods::propagate - sizeof(data) " << sizeof(data) << "\n";
 }

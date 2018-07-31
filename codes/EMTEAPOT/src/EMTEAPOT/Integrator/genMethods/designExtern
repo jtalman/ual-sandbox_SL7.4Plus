@@ -30,4 +30,6 @@
 
  extern double sDT;
 
+ extern double bendsDT;
+
 #endif

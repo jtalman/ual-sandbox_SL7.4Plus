@@ -30,4 +30,6 @@
 
  double sDT = 0;
 
+ double bendsDT = 0;
+
 #endif

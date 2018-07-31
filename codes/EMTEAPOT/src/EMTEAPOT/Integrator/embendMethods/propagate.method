@@ -22,6 +22,19 @@ std::cerr << "m_data.m_atw01    " << m_data.m_atw01  << "\n";
 std::cerr << "m_data.m_btw00    " << m_data.m_btw00  << "\n";
 std::cerr << "m_data.m_btw01    " << m_data.m_btw01  << "\n";
 //std::cerr << "                                                                                                  m_data.kls0    " << m_data.kls0  << "\n";
+
+double mAngle = m_data.m_angle;
+double eAngle = data[1];                         //   !!!   <<<<----
+double etaM = mAngle/(mAngle+eAngle);
+double etaE = eAngle/(mAngle+eAngle);
+std::cerr << "++++++++++++++++++++++++++++++++\n";
+std::cerr << "magnetic angle is " << mAngle  << " (m_data.m_angle) for bend " << bnd << "\n";
+std::cerr << "electric angle is " << eAngle  << " (data[1] !!!)    for bend " << bnd << "\n";
+std::cerr << "eta Magnetic   is " << etaM  << "\n";
+std::cerr << "eta Electric   is " << etaE  << "\n";
+std::cerr << "etaM + etaE    is " << etaM+etaE  << "\n";
+std::cerr << "++++++++++++++++++++++++++++++++\n";
+
  Rsxf               = m_data.m_l/m_data.m_angle;                     // sxf file determines radius
  rD                 = Rsxf;                                          // design radius is new, in principle
  updateDesignParameters();                                           // pDc, gammaD, ... might change
@@ -71,8 +84,9 @@ std::cerr << "m_data.m_btw01    " << m_data.m_btw01  << "\n";
 */
  }                                            // BUNCH LOOP - END
  bnd++;
+ bendsDT           += 1;
  tofDT             += tofD;
- thetaDT           += thetaD;
+ thetaDT           += eAngle + mAngle;        // thetaD;
  sDT               += m_l;
 std::cerr << "\nJDT2018 - File " << __FILE__ << " line " << __LINE__ << " leave method embend::propagate\n";
 }

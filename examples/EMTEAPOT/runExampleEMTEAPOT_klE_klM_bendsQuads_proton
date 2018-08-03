@@ -1,0 +1,26 @@
+: $SXF COMPILE
+pushd $SXFV
+ll lib/linux
+make clean
+ll lib/linux
+make
+ll lib/linux
+popd
+
+: MAIN SERVER SIDE COMPILE:
+pushd $UAL/codes/EMTEAPOT
+ll lib/linux
+make clean
+ll lib/linux
+make
+ll lib/linux
+popd
+
+: SXF TEST USAGE:
+\cp Makefile_sxfCheck Makefile
+: \cp apdf/eteapot.apdfEMTEAPOT apdf/eteapot.apdf
+\cp userManifest/userBunch1 userManifest/userBunch
+\cp userManifest/designBeamValues-p.hh userManifest/designBeamValues.hh
+make clean
+make
+./emteapot ./sxf/EM_45MeV_pEDM.sxf2_klE_klM_bendsQuads 1.e+06 1 0 1 0.0 1

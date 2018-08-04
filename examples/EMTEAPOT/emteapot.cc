@@ -42,6 +42,12 @@ int main(int argc,char * argv[]){
 
  double f0=atof(argv[2]);
 
+ double RE_MeV     =940;
+ double KE_D_MeV   =atof(argv[8]);
+ double TE_D_MeV_Sq=RE_MeV*RE_MeV+KE_D_MeV*KE_D_MeV;
+ double TE_D_MeV   =sqrt(TE_D_MeV_Sq);
+ double gamma_D    =TE_D_MeV/RE_MeV ;
+
  std::string mysxf    =argv[1];
  std::string mysxfbase=mysxf.substr(7,mysxf.size()-11);
  std::cout << "mysxf     " << mysxf.c_str() << "\n";
@@ -146,15 +152,23 @@ const string L="ring";
  std::cerr << "++===================================================================================++\n";
  std::cerr << "++===================================================================================++\n";
  std::cerr << "++===================================================================================++\n";
- std::cerr << "++  gammaD                                " << gammaD   << "                              ++\n";
- std::cerr << "++  betaD                                 " << betaD    << "                              ++\n";
+ std::cerr << "++                                                                                   ++\n";
+ std::cerr << "++  RE_MeV                                " << RE_MeV   << "                              ++\n";
+ std::cerr << "++  KE_D_MeV                              " << KE_D_MeV << "                              ++\n";
+ std::cerr << "++  TE_D_MeV                              " << TE_D_MeV << "                              ++\n";
+ std::cerr << "++  gamma_D                               " << gamma_D  << "                              ++\n";
+ std::cerr << "++                                                                                   ++\n";
+// std::cerr << "++  gammaD                                " << gammaD   << "                              ++\n";
+// std::cerr << "++  betaD                                 " << betaD    << "                              ++\n";
  std::cerr << "++  tofDT                                 " << tofDT    << "                              ++\n";
  std::cerr << "++  SXF Equilibrium Frequency: 1./tofDT   " << 1./tofDT << "                              ++\n";
- std::cerr << "++  Design Frequency (fD):                " << fD       << "                              ++\n";
+ std::cerr << "++                                                                                   ++\n";
+// std::cerr << "++  Design Frequency (fD):                " << fD       << "                              ++\n";
  std::cerr << "++  sDT                                   " << sDT      << "                              ++\n";
  std::cerr << "++                                                                                   ++\n";
  std::cerr << "++  bendsDT                               " << bendsDT  << "                              ++\n";
  std::cerr << "++  thetaDT (total bend angle - E plus M) " << thetaDT  << "                              ++\n";
+ std::cerr << "++                                                                                   ++\n";
  std::cerr << "++===================================================================================++\n";
  std::cerr << "++===================================================================================++\n";
  std::cerr << "++===================================================================================++\n";

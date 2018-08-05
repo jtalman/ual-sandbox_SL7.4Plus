@@ -2,8 +2,11 @@
 #define INJECTION_AMBIT   argv[3]
 
 std::cout     << "#################################   Design Beam Orientation\n";
-  double gamma0  = UAL::pFSG;                      // fundamental kinematic parameter
+//
+//double gamma0  = UAL::pFSG;                      // fundamental kinematic parameter
 //double gamma0  = GAMMA_FROZEN_SPIN;              // fundamental kinematic parameter
+  double gamma0  = gammaD;                         // derived via KE on command line
+//
 double c       = 1.;                               // other units (mks) have 2.99792458e8 m/s
 double b0      = sqrt(1.-1./gamma0/gamma0);        // equivalent fundamental kinematic parameter
 double v0      = b0*c;                             // equivalent fundamental kinematic parameter

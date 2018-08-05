@@ -42,11 +42,12 @@ int main(int argc,char * argv[]){
 
  double f0=atof(argv[2]);
 
- double RE_MeV     =940;
+//double RE_MeV     =940;
+  double RE_MeV     =UAL::pmass*1000;
  double KE_D_MeV   =atof(argv[8]);
  double TE_D_MeV_Sq=RE_MeV*RE_MeV+KE_D_MeV*KE_D_MeV;
  double TE_D_MeV   =sqrt(TE_D_MeV_Sq);
- double gamma_D    =TE_D_MeV/RE_MeV ;
+ double gammaD    =TE_D_MeV/RE_MeV ;
 
  std::string mysxf    =argv[1];
  std::string mysxfbase=mysxf.substr(7,mysxf.size()-11);
@@ -153,10 +154,17 @@ const string L="ring";
  std::cerr << "++===================================================================================++\n";
  std::cerr << "++===================================================================================++\n";
  std::cerr << "++                                                                                   ++\n";
+ std::cerr << "++  UAL::pmass                            " << UAL::pmass << "                              ++\n";
  std::cerr << "++  RE_MeV                                " << RE_MeV   << "                              ++\n";
  std::cerr << "++  KE_D_MeV                              " << KE_D_MeV << "                              ++\n";
  std::cerr << "++  TE_D_MeV                              " << TE_D_MeV << "                              ++\n";
- std::cerr << "++  gamma_D                               " << gamma_D  << "                              ++\n";
+ std::cerr << "++  gammaD                                " << gammaD   << "                              ++\n";
+ std::cerr << "++                                                                                   ++\n";
+// std::cerr << "++  b0                                    " << b0       << "                              ++\n";
+ std::cerr << "++  betaD                                 " << betaD    << "                              ++\n";
+ std::cerr << "++  v0 (c=1)                              " << v0       << "                              ++\n";
+ std::cerr << "++  vD (MKS)                              " << vD       << "                              ++\n";
+ std::cerr << "++  UAL::clight                           " << UAL::clight << "                              ++\n";
  std::cerr << "++                                                                                   ++\n";
 // std::cerr << "++  gammaD                                " << gammaD   << "                              ++\n";
 // std::cerr << "++  betaD                                 " << betaD    << "                              ++\n";

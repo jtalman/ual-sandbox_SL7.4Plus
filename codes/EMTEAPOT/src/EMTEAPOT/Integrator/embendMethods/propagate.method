@@ -50,6 +50,43 @@ std::cerr << "++++++++++++++++++++++++++++++++\n";
  for(int ip = 1; ip < bunch.size(); ip++) {   // BUNCH LOOP
   PAC::Position& p  = bunch[ip].getPosition();
   pacPmy            = &p;
+
+std::cerr << "++++++++++++++++++++++++++++++++\n";
+std::cerr << "pacPmy->getX()    is  " << pacPmy->getX()  << "\n";
+std::cerr << "pacPmy->getPX()    is " << pacPmy->getPX() << "\n";
+std::cerr << "pacPmy->getY()    is  " << pacPmy->getY()  << "\n";
+std::cerr << "pacPmy->getPY()    is " << pacPmy->getPY() << "\n";
+std::cerr << "pacPmy->getCT()    is " << pacPmy->getCT() << "\n";
+std::cerr << "pacPmy->getDE()    is " << pacPmy->getDE() << "\n";
+std::cerr << "++++++++++++++++++++++++++++++++\n";
+
+//Vector3 v=get_vlcyMKS.method(pacPmy,1.0048);
+/*
+  double e0    = ba.getEnergy();
+  double m0    = ba.getMass();
+  double GG    = ba.getG();
+
+  double p0    = sqrt(e0*e0 - m0*m0);
+  double v0byc = p0/e0;
+  double gamma = e0/m0;
+
+  // position
+
+  PAC::Position& pos = prt.getPosition();
+
+  double x   = pos.getX();
+  double px  = pos.getPX();
+  double y   = pos.getY();
+  double py  = pos.getPY();
+  // double ct  = pos.getCT();
+  double de  = pos.getDE();
+
+  double pz = get_psp0(pos, v0byc);
+
+  double e = de*p0 + e0; 
+  double p = sqrt(e*e - m0*m0);
+*/
+
   entryFF(ip);                                                       // "pure FF" (stub)
   refractIn(ip);                                                     // refract, alternate Lxc, Lyc, Lzc, Lc, no gamma kick
   updateMunoz();                                                     // Lxc, Lyc, Lzc, Lc, Q, kappa, ...

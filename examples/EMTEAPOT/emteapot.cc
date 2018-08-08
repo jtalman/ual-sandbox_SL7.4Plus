@@ -46,6 +46,7 @@ int main(int argc,char * argv[]){
  double KE_D_MeV = atof(argv[8]);
  double KE_D_GeV = KE_D_MeV/1000.;
  double TE_D_GeV = RE_GeV+KE_D_GeV;
+ double EscrD    = TE_D_GeV;
  double gammaD   = 1.+KE_D_GeV/RE_GeV;
 
  std::string mysxf    =argv[1];
@@ -68,6 +69,7 @@ double vDMKS=betaD*UAL::clight;
 
   eD=e0;
   pDc=p0;
+double pcD=p0;
 
   fD=f0;
 
@@ -157,21 +159,22 @@ const string L="ring";
  std::cerr << "++  UAL::pmass                            " << UAL::pmass << "                              ++\n";
  std::cerr << "++  RE_GeV                                " << RE_GeV   << "                              ++\n";
  std::cerr << "++  KE_D_GeV                              " << KE_D_GeV << "                              ++\n";
- std::cerr << "++  Total design energy in GeV is         " << TE_D_GeV << "                              ++\n";
+ std::cerr << "++  Total design energy in GeV (RE+KE)    " << TE_D_GeV << "                              ++\n";
+ std::cerr << "++  EscrD                                 " << EscrD    << "                              ++\n";
  std::cerr << "++  gammaD                                " << gammaD   << "                              ++\n";
  std::cerr << "++                                                                                   ++\n";
-// std::cerr << "++  b0                                    " << b0       << "                              ++\n";
  std::cerr << "++  betaD                                 " << betaD    << "                              ++\n";
  std::cerr << "++  vD (c=1)                              " << v0       << "                              ++\n";
  std::cerr << "++  vDMKS                                 " << vDMKS    << "                              ++\n";
  std::cerr << "++  UAL::clight                           " << UAL::clight << "                              ++\n";
  std::cerr << "++                                                                                   ++\n";
-// std::cerr << "++  gammaD                                " << gammaD   << "                              ++\n";
-// std::cerr << "++  betaD                                 " << betaD    << "                              ++\n";
+ std::cerr << "++  EscrD                                 " << EscrD    << "                              ++\n";
+ std::cerr << "++  pcD                                   " << pcD         << "                              ++\n";
+ std::cerr << "++  sqrt(EscrD*EscrD-RE_GeV*RE_GeV)       " << sqrt(EscrD*EscrD-RE_GeV*RE_GeV)         << "                              ++\n";
+ std::cerr << "++                                                                                   ++\n";
  std::cerr << "++  tofDT                                 " << tofDT    << "                              ++\n";
  std::cerr << "++  SXF Equilibrium Frequency: 1./tofDT   " << 1./tofDT << "                              ++\n";
  std::cerr << "++                                                                                   ++\n";
-// std::cerr << "++  Design Frequency (fD):                " << fD       << "                              ++\n";
  std::cerr << "++  sDT                                   " << sDT      << "                              ++\n";
  std::cerr << "++  sDT/vDMKS                             " << sDT/vDMKS<< "                              ++\n";
  std::cerr << "++                                                                                   ++\n";

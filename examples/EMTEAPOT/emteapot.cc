@@ -42,12 +42,11 @@ int main(int argc,char * argv[]){
 
  double f0=atof(argv[2]);
 
-//double RE_MeV     =940;
-  double RE_MeV     =UAL::pmass*1000;
- double KE_D_MeV   =atof(argv[8]);
- double TE_D_MeV_Sq=RE_MeV*RE_MeV+KE_D_MeV*KE_D_MeV;
- double TE_D_MeV   =sqrt(TE_D_MeV_Sq);
- double gammaD    =TE_D_MeV/RE_MeV ;
+ double RE_GeV   = UAL::pmass;
+ double KE_D_MeV = atof(argv[8]);
+ double KE_D_GeV = KE_D_MeV/1000.;
+ double TE_D_GeV = RE_GeV+KE_D_GeV;
+ double gammaD   = 1.+KE_D_GeV/RE_GeV;
 
  std::string mysxf    =argv[1];
  std::string mysxfbase=mysxf.substr(7,mysxf.size()-11);
@@ -62,9 +61,10 @@ int main(int argc,char * argv[]){
   mDcc=m0;
   qD=q0;
 
-  betaD=b0;
-  vD=betaD*UAL::clight;
-  gammaD=gamma0;
+       betaD=b0;
+       vD=betaD*UAL::clight;
+double vDMKS=betaD*UAL::clight;
+      gammaD=gamma0;
 
   eD=e0;
   pDc=p0;
@@ -155,15 +155,15 @@ const string L="ring";
  std::cerr << "++===================================================================================++\n";
  std::cerr << "++                                                                                   ++\n";
  std::cerr << "++  UAL::pmass                            " << UAL::pmass << "                              ++\n";
- std::cerr << "++  RE_MeV                                " << RE_MeV   << "                              ++\n";
- std::cerr << "++  KE_D_MeV                              " << KE_D_MeV << "                              ++\n";
- std::cerr << "++  TE_D_MeV                              " << TE_D_MeV << "                              ++\n";
+ std::cerr << "++  RE_GeV                                " << RE_GeV   << "                              ++\n";
+ std::cerr << "++  KE_D_GeV                              " << KE_D_GeV << "                              ++\n";
+ std::cerr << "++  Total design energy in GeV is         " << TE_D_GeV << "                              ++\n";
  std::cerr << "++  gammaD                                " << gammaD   << "                              ++\n";
  std::cerr << "++                                                                                   ++\n";
 // std::cerr << "++  b0                                    " << b0       << "                              ++\n";
  std::cerr << "++  betaD                                 " << betaD    << "                              ++\n";
- std::cerr << "++  v0 (c=1)                              " << v0       << "                              ++\n";
- std::cerr << "++  vD (MKS)                              " << vD       << "                              ++\n";
+ std::cerr << "++  vD (c=1)                              " << v0       << "                              ++\n";
+ std::cerr << "++  vDMKS                                 " << vDMKS    << "                              ++\n";
  std::cerr << "++  UAL::clight                           " << UAL::clight << "                              ++\n";
  std::cerr << "++                                                                                   ++\n";
 // std::cerr << "++  gammaD                                " << gammaD   << "                              ++\n";
@@ -173,6 +173,7 @@ const string L="ring";
  std::cerr << "++                                                                                   ++\n";
 // std::cerr << "++  Design Frequency (fD):                " << fD       << "                              ++\n";
  std::cerr << "++  sDT                                   " << sDT      << "                              ++\n";
+ std::cerr << "++  sDT/vDMKS                             " << sDT/vDMKS<< "                              ++\n";
  std::cerr << "++                                                                                   ++\n";
  std::cerr << "++  bendsDT                               " << bendsDT  << "                              ++\n";
  std::cerr << "++  thetaDT (total bend angle - E plus M) " << thetaDT  << "                              ++\n";

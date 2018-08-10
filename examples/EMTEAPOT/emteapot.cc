@@ -41,6 +41,8 @@ int main(int argc,char * argv[]){
 #include "include/setStatic"
 
  double f0=atof(argv[2]);
+ double r0=atof(argv[9]);
+ double rD=r0;
 
  double RE_GeV   = UAL::pmass;
  double KE_D_MeV = atof(argv[8]);
@@ -48,6 +50,7 @@ int main(int argc,char * argv[]){
  double TE_D_GeV = RE_GeV+KE_D_GeV;
  double EscrD    = TE_D_GeV;
  double gammaD   = 1.+KE_D_GeV/RE_GeV;
+// double LD       = L0;
 
  std::string mysxf    =argv[1];
  std::string mysxfbase=mysxf.substr(7,mysxf.size()-11);
@@ -70,6 +73,7 @@ double vDMKS=betaD*UAL::clight;
   eD=e0;
   pDc=p0;
 double pcD=p0;
+double LD       = rD*pcD;      //    L0;
 
   fD=f0;
 
@@ -169,8 +173,10 @@ const string L="ring";
  std::cerr << "++  UAL::clight                           " << UAL::clight << "                              ++\n";
  std::cerr << "++                                                                                   ++\n";
  std::cerr << "++  EscrD                                 " << EscrD    << "                              ++\n";
- std::cerr << "++  pcD                                   " << pcD         << "                              ++\n";
+ std::cerr << "++  pcD                                   " << pcD      << "                              ++\n";
  std::cerr << "++  sqrt(EscrD*EscrD-RE_GeV*RE_GeV)       " << sqrt(EscrD*EscrD-RE_GeV*RE_GeV)         << "                              ++\n";
+ std::cerr << "++  rD                                    " << rD       << "                              ++\n";
+ std::cerr << "++  LD (rD * pcD)                         " << LD       << "                              ++\n";
  std::cerr << "++                                                                                   ++\n";
  std::cerr << "++  tofDT                                 " << tofDT    << "                              ++\n";
  std::cerr << "++  SXF Equilibrium Frequency: 1./tofDT   " << 1./tofDT << "                              ++\n";

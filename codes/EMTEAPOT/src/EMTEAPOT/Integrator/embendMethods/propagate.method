@@ -27,16 +27,19 @@ double mAngle = m_data.m_angle;
 double eAngle = data[1];                         //   !!!   <<<<----
 double etaM = mAngle/(mAngle+eAngle);
 double etaE = eAngle/(mAngle+eAngle);
-std::cerr << "++++++++++++++++++++++++++++++++\n";
-std::cerr << "magnetic angle is " << mAngle  << " (m_data.m_angle) for bend " << bnd << " of " << ualPSs << " total sxf propagators\n";
-std::cerr << "electric angle is " << eAngle  << " (data[1] !!!)    for bend " << bnd << " of " << ualPSs << " total sxf propagators\n";
-std::cerr << "eta Magnetic   is " << etaM  << "\n";
-std::cerr << "eta Electric   is " << etaE  << "\n";
-std::cerr << "etaM + etaE    is " << etaM+etaE  << "\n";
-std::cerr << "++++++++++++++++++++++++++++++++\n";
 
  Rsxf               = m_data.m_l/m_data.m_angle;                     // sxf file determines radius
  rD                 = Rsxf;                                          // design radius is new, in principle
+double rM           = Rsxf;
+
+std::cerr << "++++++++++++++++++++++++++++++++\n";
+std::cerr << "magnetic angle is    " << mAngle  << " (m_data.m_angle) for bend " << bnd << " of " << ualPSs << " total sxf propagators\n";
+std::cerr << "electric angle is    " << eAngle  << " (data[1] !!!)    for bend " << bnd << " of " << ualPSs << " total sxf propagators\n";
+std::cerr << "eta Magnetic   is    " << etaM  << "\n";
+std::cerr << "eta Electric   is    " << etaE  << "\n";
+std::cerr << "etaM + etaE    is    " << etaM+etaE  << "\n";
+std::cerr << "++++++++++++++++++++++++++++++++\n";
+
  updateDesignParameters();                                           // pDc, gammaD, ... might change
                                                                      // they don't here. rD on command line?
  PAC::Bunch& bunch  = static_cast<PAC::Bunch&>(probe);
@@ -52,12 +55,14 @@ std::cerr << "++++++++++++++++++++++++++++++++\n";
   pacPmy            = &p;
 
 std::cerr << "++++++++++++++++++++++++++++++++\n";
-std::cerr << "pacPmy->getX()    is  " << pacPmy->getX()  << "\n";
-std::cerr << "pacPmy->getPX()    is " << pacPmy->getPX() << "\n";
-std::cerr << "pacPmy->getY()    is  " << pacPmy->getY()  << "\n";
-std::cerr << "pacPmy->getPY()    is " << pacPmy->getPY() << "\n";
-std::cerr << "pacPmy->getCT()    is " << pacPmy->getCT() << "\n";
-std::cerr << "pacPmy->getDE()    is " << pacPmy->getDE() << "\n";
+std::cerr << "rM (radius from sxf) is    " << rM      << "\n";
+std::cerr << "pacPmy->getX()       is    " << pacPmy->getX()  << "\n";
+std::cerr << "pacPmy->getPX()      is    " << pacPmy->getPX() << "\n";
+std::cerr << "pacPmy->getY()       is    " << pacPmy->getY()  << "\n";
+std::cerr << "pacPmy->getPY()      is    " << pacPmy->getPY() << "\n";
+std::cerr << "pacPmy->getCT()      is    " << pacPmy->getCT() << "\n";
+std::cerr << "pacPmy->getDE()      is    " << pacPmy->getDE() << "\n\n";
+std::cerr << "vector rIn = (rM, 0, 0) is " << "( " << rM      << " , 0 , 0 )\n";
 std::cerr << "++++++++++++++++++++++++++++++++\n";
 
 //Vector3 v=get_vlcyMKS.method(pacPmy,1.0048);

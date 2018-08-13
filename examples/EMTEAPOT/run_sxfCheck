@@ -1,0 +1,25 @@
+: $SXF COMPILE
+pushd $SXFV
+ll lib/linux
+make clean
+ll lib/linux
+make
+ll lib/linux
+popd
+
+: MAIN SERVER SIDE COMPILE:
+pushd $UAL/codes/EMTEAPOT
+ll lib/linux
+make clean
+ll lib/linux
+make
+ll lib/linux
+popd
+
+: SXF TEST USAGE:
+\cp Makefile_sxfCheck Makefile
+\cp userManifest/userBunch1 userManifest/userBunch
+\cp userManifest/designBeamValues_sxfCheck userManifest/designBeamValues.hh
+make clean
+make
+./sxfCheck ./sxf/measured.sxf

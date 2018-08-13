@@ -154,9 +154,10 @@ const string L="ring";
    return 1;
  }
 
- std::cout << "\n\n\nsize : " << ap->getRootNode().size() << " propagators \n\n\n";
-
  UAL::PropagatorSequence& apSeq = ap->getRootNode();
+ int ualPSs = apSeq.size();
+  std::cout << "\n\n\nsize : " << ualPSs << " propagators \n\n\n";
+//std::cout << "\n\n\nsize : " << ap->getRootNode().size() << " propagators \n\n\n";
 
  int counter = 0;
  std::list<UAL::PropagatorNodePtr>::iterator it;

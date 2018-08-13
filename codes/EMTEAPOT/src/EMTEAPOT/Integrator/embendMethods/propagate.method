@@ -28,8 +28,8 @@ double eAngle = data[1];                         //   !!!   <<<<----
 double etaM = mAngle/(mAngle+eAngle);
 double etaE = eAngle/(mAngle+eAngle);
 std::cerr << "++++++++++++++++++++++++++++++++\n";
-std::cerr << "magnetic angle is " << mAngle  << " (m_data.m_angle) for bend " << bnd << "\n";
-std::cerr << "electric angle is " << eAngle  << " (data[1] !!!)    for bend " << bnd << "\n";
+std::cerr << "magnetic angle is " << mAngle  << " (m_data.m_angle) for bend " << bnd << " of " << ualPSs << " total sxf propagators\n";
+std::cerr << "electric angle is " << eAngle  << " (data[1] !!!)    for bend " << bnd << " of " << ualPSs << " total sxf propagators\n";
 std::cerr << "eta Magnetic   is " << etaM  << "\n";
 std::cerr << "eta Electric   is " << etaE  << "\n";
 std::cerr << "etaM + etaE    is " << etaM+etaE  << "\n";

@@ -155,7 +155,8 @@ const string L="ring";
  }
 
  UAL::PropagatorSequence& apSeq = ap->getRootNode();
- int ualPSs = apSeq.size();
+//int ualPSs = apSeq.size();
+      ualPSs = apSeq.size();
   std::cout << "\n\n\nsize : " << ualPSs << " propagators \n\n\n";
 //std::cout << "\n\n\nsize : " << ap->getRootNode().size() << " propagators \n\n\n";
 

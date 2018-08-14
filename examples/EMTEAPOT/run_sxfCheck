@@ -1,3 +1,4 @@
+: START AT LINE 22 !!
 : $SXF COMPILE
 pushd $SXFV
 ll lib/linux
@@ -15,7 +16,10 @@ ll lib/linux
 make
 ll lib/linux
 popd
+: START AT LINE 22 !!
 
+
+: START HERE      <<<<<<<<------------------
 : SXF TEST USAGE:
 \cp Makefile_sxfCheck Makefile
 \cp userManifest/userBunch1 userManifest/userBunch

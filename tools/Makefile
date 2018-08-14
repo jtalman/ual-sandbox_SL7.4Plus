@@ -1,5 +1,5 @@
 
-DIRS = ./tars ./sxf
+DIRS = ./tars ./sxf ./sxfVerbose
 
 # ifdef MPIHOME
 # DIRS += ./shortmpi

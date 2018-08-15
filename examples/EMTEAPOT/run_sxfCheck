@@ -26,4 +26,4 @@ popd
 \cp userManifest/designBeamValues_sxfCheck userManifest/designBeamValues.hh
 make clean
 make
-./sxfCheck ./sxf/measured.sxf
+./sxfCheck ./sxf/current.sxf

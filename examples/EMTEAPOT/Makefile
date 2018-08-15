@@ -40,11 +40,14 @@ LIBS += 					 -lm
 SRC_DIR  = .
 OBJ_DIR  = ./lib/$(UAL_ARCH)/obj
 
-compile : ./emteapot
+compile : ./sxfCheck ./emteapot
 
 clean :
-	rm -f $(OBJS) $(OBJ_DIR)/emteapot.o ./emteapot
+	rm -f $(OBJS) $(OBJ_DIR)/sxfCheck.o ./sxfCheck $(OBJ_DIR)/emteapot.o ./emteapot
 	rm -rf m_m echo.sxf initialSpin
+
+./sxfCheck: $(OBJ_DIR)/sxfCheck.o
+	$(LD) -o $@  $(LDFLAGS) $(INC) $(OBJ_DIR)/sxfCheck.o $(OBJS) $(LIBS)
 
 ./emteapot: $(OBJ_DIR)/emteapot.o
 	$(LD) -o $@  $(LDFLAGS) $(INC) $(OBJ_DIR)/emteapot.o $(OBJS) $(LIBS)

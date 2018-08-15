@@ -21,7 +21,7 @@ popd
 
 : START HERE      <<<<<<<<------------------
 : SXF TEST USAGE:
-\cp Makefile_sxfCheck Makefile
+: \cp Makefile_sxfCheck Makefile
 \cp userManifest/userBunch1 userManifest/userBunch
 \cp userManifest/designBeamValues_sxfCheck userManifest/designBeamValues.hh
 make clean

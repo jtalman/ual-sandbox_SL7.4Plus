@@ -26,9 +26,9 @@ popd
 \cp userManifest/designBeamValues_sxfCheck userManifest/designBeamValues.hh
 make clean
 make
-./sxfCheck ./sxf/current2.sxf
+ddd ./sxfCheck
+: ./sxf/current2.sxf
 
-: ddd ./sxfCheck
 : ./sxf/EM_45MeV_pEDM.sxf2_klE_klM_bendsQuads
 : ./sxfCheck ./sxf/EM_45MeV_pEDM.sxf2_klE_klM_bendsQuads
 : ./sxfCheck ./sxf/current.sxf

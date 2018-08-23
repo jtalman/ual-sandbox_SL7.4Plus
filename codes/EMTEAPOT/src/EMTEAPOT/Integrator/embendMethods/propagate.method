@@ -57,17 +57,17 @@ std::cerr << "++++++++++++++++++++++++++++++++\n";
   PAC::Position& p  = bunch[ip].getPosition();
   pacPmy            = &p;
 
-double pxIn=pacPmy->getPX()*pDc;
-double pyIn=pacPmy->getPY()*pDc;
-double pPerpIn=pyIn;
+double pcxIn=pacPmy->getPX()*pDc;
+double pcyIn=pacPmy->getPY()*pDc;
+double pcPerpIn=pcyIn;
 
 std::cerr << "++++++++++++++++++++++++++++++++\n";
 std::cerr << "Rsxf (radius from sxf) is  " << Rsxf    << "\n";
 std::cerr << "pDc                  is    " << pDc     << "\n";
 std::cerr << "pacPmy->getX()       is    " << pacPmy->getX()  << "\n";
-std::cerr << "pacPmy->getPX()      is    " << pxIn << "\n";
+std::cerr << "pacPmy->getPX()      is    " << pcxIn << "\n";
 std::cerr << "pacPmy->getY()       is    " << pacPmy->getY()  << "\n";
-std::cerr << "pacPmy->getPY()      is    " << pyIn << "\n";
+std::cerr << "pacPmy->getPY()      is    " << pcyIn << "\n";
 std::cerr << "pacPmy->getCT()      is    " << pacPmy->getCT() << "\n";
 std::cerr << "pacPmy->getDE()      is    " << pacPmy->getDE() << "\n\n";
 std::cerr << std::setprecision(20);
@@ -75,31 +75,35 @@ std::cerr << std::setprecision(20);
 double eIn=eD+pDc*pacPmy->getDE();
 
 //double pcIn=sqrt(eD*eD-mDcc*mDcc);
-  double pcInSqu=(eD+mDcc)*(eD-mDcc);
+//double pcInSqu=(eD+mDcc)*(eD-mDcc);
+  double pcInSqu=(eIn+mDcc)*(eIn-mDcc);
   double pcIn   =sqrt(pcInSqu);
 
-  double pPllInSqu=(pcIn+pPerpIn)*(pcIn-pPerpIn);
-  double pPllIn   =sqrt(pPllInSqu);
+  double pcPllInSqu=(pcIn+pcPerpIn)*(pcIn-pcPerpIn);
+  double pcPllIn   =sqrt(pcPllInSqu);
 
-  double onePlusDelta=pPllIn/pDc;
-  double        Delta=1.-onePlusDelta;
+  double onePlusDelta=pcPllIn/pDc;
+  double        delta=1.-onePlusDelta;
 
-  double pzInSqu=(pPllIn+pxIn)*(pPllIn-pxIn);
-  double pzIn   =sqrt(pzInSqu);
+  double pczInSqu=(pcPllIn+pcxIn)*(pcPllIn-pcxIn);
+  double pczIn   =sqrt(pczInSqu);
 
 Vector3 r_In(Rsxf+pacPmy->getX(),pacPmy->getY(),0);
-Vector3 p_In(pDc*pacPmy->getPX(), pDc*pacPmy->getPY(), pzIn);
-Vector3 l_In=r_In.cross(p_In);
+Vector3 pc_In(pDc*pacPmy->getPX(), pDc*pacPmy->getPY(), pczIn);
+Vector3 l_In=r_In.cross(pc_In);
 
-std::cerr << "scalar eIn is    " << eIn    << "\n";
-std::cerr << "scalar pcIn is   " << pcIn   << "\n";
-std::cerr << "scalar pPllIn is " << pPllIn << "\n";
-std::cerr << "scalar Delta is  " << Delta << "\n";
-std::cerr << "scalar pzIn is   " << pzIn   << "\n\n";
+std::cerr << "scalar eIn           is    " << eIn    << "\n";
+std::cerr << "scalar pcIn          is    " << pcIn   << "\n";
+std::cerr << "scalar pcPllIn       is    " << pcPllIn << "\n";
+std::cerr << "scalar pcPerpIn      is    " << pcPerpIn << "\n";
+std::cerr << "(scalar pcyIn)       is    " << pcyIn << "\n";
+std::cerr << "scalar onePlusDelta  is    " << onePlusDelta << "\n";
+std::cerr << "scalar delta         is    " << delta << "\n";
+std::cerr << "scalar pczIn         is    " << pczIn   << "\n\n";
 
-std::cerr << "vector r_In is   " << r_In   << "\n";
-std::cerr << "vector p_In is   " << p_In   << "\n";
-std::cerr << "vector l_In is   " << l_In   << "\n\n";
+std::cerr << "vector r_In          is    " << r_In   << "\n";
+std::cerr << "vector pc_In         is    " << pc_In   << "\n";
+std::cerr << "vector l_In          is    " << l_In   << "\n\n";
 std::cerr << "++++++++++++++++++++++++++++++++\n";
 
 //Vector3 v=get_vlcyMKS.method(pacPmy,1.0048);
@@ -112,7 +116,7 @@ std::cerr << "++++++++++++++++++++++++++++++++\n";
   double v0byc = p0/e0;
   double gamma = e0/m0;
 std::cerr << "vector r_In = (Rsxf+pacPmy->getX(), 0, 0) is " << "( " << Rsxf      << " , 0 , 0 )\n";
-std::cerr << "vector p_In = p0(pacPmy->getPX() , pacPmy->getPY() , ???) is " << "( " << p0*pacPmy->getPX()      << " , p0*pacPmy->getPY() , ??? )\n";
+std::cerr << "vector pc_In = p0(pacPmy->getPX() , pacPmy->getPY() , ???) is " << "( " << p0*pacPmy->getPX()      << " , p0*pacPmy->getPY() , ??? )\n";
 std::cerr << "++++++++++++++++++++++++++++++++\n";
 
   // position

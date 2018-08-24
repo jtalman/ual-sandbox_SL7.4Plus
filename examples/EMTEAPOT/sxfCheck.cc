@@ -133,17 +133,27 @@ double LD       = rD*pcD;      //    L0;
 // shell.writeSXF(UAL::Args() << UAL::Arg("file",  outputFile.c_str()));
 const string L="ring";
 //UAL::AcceleratorNode* uanA = shell.getLattice(L);
-//UAL::AcceleratorNode* uanA = shell.getLattice("ring");    <<<<----
+
+  UAL::AcceleratorNode* uanA = shell.getLattice("ring");   //    <<<<----
+
 //UAL::AcceleratorNode* uanA = shell.getLattice(UAL::Args() << UAL::Arg("lattice", "ring"));
 //UAL::AcceleratorNode* uanA = shell.getLattice("ring");
 //UAL::AcceleratorNode* Shell::getLattice("ring");
 //UAL::AcceleratorNode* UAL::Shell::getLattice("ring");
+//std::cerr << "UAL::AcceleratorNode* uanA.typeid() " << uanA.typeid() << "\n";
+
+/*
+  std::cerr << "__FILE__ " << __FILE__ << " UAL::AcceleratorNode* typeid(uanA).name() " << typeid(uanA).name() << "\n";
+  std::cerr << "__FILE__ " << __FILE__ << " uanA->getDesignName() " << uanA->getDesignName() << "\n";
+  std::cerr << "__FILE__ " << __FILE__ << " uanA->getType() " << uanA->getType() << "\n";
+*/
 
  shell.addSplit(UAL::Args() << UAL::Arg("lattice", "ring") << UAL::Arg("types", "Sbend")      << UAL::Arg("ir", split-1));  // JDT 7/18/2012 new split specification
  shell.addSplit(UAL::Args() << UAL::Arg("lattice", "ring") << UAL::Arg("types", "Quadrupole") << UAL::Arg("ir", 0));
  shell.addSplit(UAL::Args() << UAL::Arg("lattice", "ring") << UAL::Arg("types", "Sextupole")  << UAL::Arg("ir", 0));
 
- shell.use(UAL::Args() << UAL::Arg("lattice", "ring"));
+ UAL::Args() << UAL::Arg("lattice", "ring");
+ //shell.use(UAL::Args() << UAL::Arg("lattice", "ring"));
 
  UAL::APDF_Builder apBuilder;
 

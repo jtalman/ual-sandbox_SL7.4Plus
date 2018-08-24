@@ -134,7 +134,7 @@ double LD       = rD*pcD;      //    L0;
 const string L="ring";
 //UAL::AcceleratorNode* uanA = shell.getLattice(L);
 
-  UAL::AcceleratorNode* uanA = shell.getLattice("ring");   //    <<<<----
+//UAL::AcceleratorNode* uanA = shell.getLattice("ring");   //    <<<<----
 
 //UAL::AcceleratorNode* uanA = shell.getLattice(UAL::Args() << UAL::Arg("lattice", "ring"));
 //UAL::AcceleratorNode* uanA = shell.getLattice("ring");

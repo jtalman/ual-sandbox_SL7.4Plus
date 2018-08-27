@@ -60,3 +60,8 @@ void copy(const EMTEAPOT::quad& mt)
 
   m_mdata = mt.m_mdata;
 }
+
+const char*  getType()
+{
+ return "EMTEAPOT::quad";
+}

@@ -25,3 +25,8 @@ void setLatticeElements(const UAL::AcceleratorNode& sequence,
 {
    ETEAPOT::BasicTracker::setLatticeElements(sequence, is0, is1, attSet);
 }
+
+const char*  getType()
+{
+ return "EMTEAPOT::drift";
+}

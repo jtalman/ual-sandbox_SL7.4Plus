@@ -43,7 +43,6 @@ int main(int argc,char * argv[]){
  double f0=atof(argv[2]);
  double r0=atof(argv[9]);
 
-/*
  double rD=r0;
 
  double RE_GeV   = UAL::pmass;
@@ -53,7 +52,6 @@ int main(int argc,char * argv[]){
  double EscrD    = TE_D_GeV;
  double gammaD   = 1.+KE_D_GeV/RE_GeV;
 // double LD       = L0;
-// */
 
  std::string mysxf    =argv[1];
  std::string mysxfbase=mysxf.substr(7,mysxf.size()-11);
@@ -164,9 +162,9 @@ const string L="ring";
  std::cerr << "++===================================================================================++\n";
  std::cerr << "++                                                                                   ++\n";
  std::cerr << "++  UAL::pmass                            " << UAL::pmass << "                              ++\n";
- std::cerr << "++  RE_GeV                                " << RE_GeV   << "                              ++\n";
- std::cerr << "++  KE_D_GeV                              " << KE_D_GeV << "                              ++\n";
- std::cerr << "++  Total design energy in GeV (RE+KE)    " << TE_D_GeV << "                              ++\n";
+// std::cerr << "++  RE_GeV                                " << RE_GeV   << "                              ++\n";
+// std::cerr << "++  KE_D_GeV                              " << KE_D_GeV << "                              ++\n";
+// std::cerr << "++  Total design energy in GeV (RE+KE)    " << TE_D_GeV << "                              ++\n";
  std::cerr << "++  EscrD                                 " << EscrD    << "                              ++\n";
  std::cerr << "++  gammaD                                " << gammaD   << "                              ++\n";
  std::cerr << "++                                                                                   ++\n";
@@ -177,7 +175,7 @@ const string L="ring";
  std::cerr << "++                                                                                   ++\n";
  std::cerr << "++  EscrD                                 " << EscrD    << "                              ++\n";
  std::cerr << "++  pcD                                   " << pcD      << "                              ++\n";
- std::cerr << "++  sqrt(EscrD*EscrD-RE_GeV*RE_GeV)       " << sqrt(EscrD*EscrD-RE_GeV*RE_GeV)         << "                              ++\n";
+// std::cerr << "++  sqrt(EscrD*EscrD-RE_GeV*RE_GeV)       " << sqrt(EscrD*EscrD-RE_GeV*RE_GeV)         << "                              ++\n";
  std::cerr << "++  rD                                    " << rD       << "                              ++\n";
  std::cerr << "++  LD (rD * pcD)                         " << LD       << "                              ++\n";
  std::cerr << "++                                                                                   ++\n";

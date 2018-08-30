@@ -40,7 +40,7 @@ LIBS += 					 -lm
 SRC_DIR  = .
 OBJ_DIR  = ./lib/$(UAL_ARCH)/obj
 
-compile : ./sxfCheck ./sxfManual ./emteapot
+compile : ./sxfCheck ./emteapot
 
 clean :
 	rm -f $(OBJS) $(OBJ_DIR)/sxfCheck.o ./sxfCheck $(OBJ_DIR)/sxfManual.o ./sxfManual $(OBJ_DIR)/emteapot.o ./emteapot

@@ -21,12 +21,17 @@ popd
 
 : START HERE      <<<<<<<<------------------
 : SXF TEST USAGE:
-: \cp Makefile_sxfCheck Makefile
+ls -l sxfManual.cc
+\rm sxfManual.cc
+\cp Makefile_sxfCheck Makefile
 \cp userManifest/userBunch1 userManifest/userBunch
 \cp userManifest/designBeamValues_sxfCheck userManifest/designBeamValues.hh
 make clean
 make
 ./sxfCheck ./sxf/current2.sxf
+make sxfManual
+ls -l sxfManual.cc
+ls -l sxfManual
 
 : ddd ./sxfCheck
 : ./sxf/EM_45MeV_pEDM.sxf2_klE_klM_bendsQuads

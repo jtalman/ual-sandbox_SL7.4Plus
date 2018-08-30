@@ -42,6 +42,8 @@ int main(int argc,char * argv[]){
 
  double f0=atof(argv[2]);
  double r0=atof(argv[9]);
+
+/*
  double rD=r0;
 
  double RE_GeV   = UAL::pmass;
@@ -51,6 +53,7 @@ int main(int argc,char * argv[]){
  double EscrD    = TE_D_GeV;
  double gammaD   = 1.+KE_D_GeV/RE_GeV;
 // double LD       = L0;
+// */
 
  std::string mysxf    =argv[1];
  std::string mysxfbase=mysxf.substr(7,mysxf.size()-11);

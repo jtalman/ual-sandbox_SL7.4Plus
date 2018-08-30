@@ -172,10 +172,19 @@ const string L="ring";
 //std::cout << "\n\n\nsize : " << ap->getRootNode().size() << " propagators \n\n\n";
 
  int counter = 0;
+ std::string ualPSS;
  std::list<UAL::PropagatorNodePtr>::iterator it;
  for(it = apSeq.begin(); it != apSeq.end(); it++){
-  std::cout << counter++ << " (*it)->getType() " << (*it)->getType() << std::endl;
+  ualPSS=(*it)->getType();
+  std::cout << counter++ << " (*it)->getType() " << ualPSS << std::endl;
+  if( ualPSS == "EMTEAPOT::marker" ) {std::cerr << "emm\n"; for_sxfManual << "emm.propagate(bunch);\n";}
+  if( ualPSS == "EMTEAPOT::drift" )  {std::cerr << "emd\n"; for_sxfManual << "emd.propagate(bunch);\n";}
+  if( ualPSS == "EMTEAPOT::quad" )   {std::cerr << "emq\n"; for_sxfManual << "emq.propagate(bunch);\n";}
+  if( ualPSS == "EMTEAPOT::embend" ) {std::cerr << "eme\n"; for_sxfManual << "eme.propagate(bunch);\n";}
+//for_sxfManual << (*it)->getType() << "\n";
  }
+ for_sxfManual << "}\n";
+ for_sxfManual.close();
 
  // ************************************************************************
  std::cout << "\nBunch Part." << std::endl;

@@ -17,13 +17,17 @@ for_sxfManual << "#include \"EMTEAPOT/Integrator/genMethods/bunchParticleExtern\
 for_sxfManual << "#include \"EMTEAPOT/Integrator/genMethods/bunchParticleDef\"\n";
 
 for_sxfManual << "int main(int argc,char * argv[])\{\n";
+
+//for_sxfManual << "UAL::Probe& probe;\n";
+for_sxfManual << "PAC::Bunch bunch(2);\n";
+for_sxfManual << "                     \n";
 for_sxfManual << "EMTEAPOT::marker emm;\n";
 for_sxfManual << "EMTEAPOT::drift emd;\n";
-for_sxfManual << "EMTEAPOT::embend eme;\n";
 for_sxfManual << "EMTEAPOT::quad emq;\n";
+for_sxfManual << "EMTEAPOT::embend eme;\n";
 for_sxfManual << "EMTEAPOT::sext ems;\n";
 for_sxfManual << "EMTEAPOT::oct emo;\n";
 for_sxfManual << "EMTEAPOT::rfCavity emrf;\n";
-for_sxfManual << "}\n";
+//for_sxfManual << "}\n";
 
-for_sxfManual.close();
+//for_sxfManual.close();

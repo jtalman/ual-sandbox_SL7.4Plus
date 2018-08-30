@@ -37,8 +37,6 @@ using namespace UAL;
 int main(int argc,char * argv[]){
  int startTime, endTime, totalTime;
 
-//#include "include/getArgs"
-
 //if(argc!=10){
 if(argc!=2){
   std::cout << "usage: ./sxfCheck ./sxf/measured.sxf\n";
@@ -57,6 +55,7 @@ if(argc!=2){
 */
  exit(0);
 }
+
 ofstream m_m;
 m_m.open ("m_m");
 m_m << "1";   //   argv[2];
@@ -73,6 +72,8 @@ std::cerr << "EMTEAPOT::embend::dZFF " << EMTEAPOT::embend::dZFF << "\n";
 std::cerr << "EMTEAPOT::embend::m_m " << EMTEAPOT::embend::m_m << "\n";
 //std::cerr << "EMTEAPOT::quad::m_m    " << EMTEAPOT::quad::m_m    << "\n";
 //#include "include/setStatic"
+
+#include"for_sxfManual"
 
  double f0=1;   //   atof(argv[2]);
  double r0=1;   //   atof(argv[9]);

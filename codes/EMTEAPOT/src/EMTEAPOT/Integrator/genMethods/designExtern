@@ -36,4 +36,7 @@
 
  extern int ualPSs;
 
+ extern double QFh_l;
+ extern double Qfh_q;
+
 #endif

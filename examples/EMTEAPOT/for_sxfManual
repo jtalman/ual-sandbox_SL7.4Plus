@@ -3,8 +3,11 @@ for_sxfManual.open ("sxfManual.cc");
 
 for_sxfManual << "#include \"EMTEAPOT/Integrator/marker.cc\"\n";
 for_sxfManual << "#include \"EMTEAPOT/Integrator/drift.cc\"\n";
-for_sxfManual << "#include \"EMTEAPOT/Integrator/embend.cc\"\n";
+
 for_sxfManual << "#include \"EMTEAPOT/Integrator/quad.cc\"\n";
+//for_sxfManual << "static double EMTEAPOT::quad::q;\n";
+
+for_sxfManual << "#include \"EMTEAPOT/Integrator/embend.cc\"\n";
 for_sxfManual << "#include \"EMTEAPOT/Integrator/sext.cc\"\n";
 for_sxfManual << "#include \"EMTEAPOT/Integrator/oct.cc\"\n";
 for_sxfManual << "#include \"EMTEAPOT/Integrator/rfCavity.cc\"\n";
@@ -16,18 +19,22 @@ for_sxfManual << "#include \"EMTEAPOT/Integrator/genMethods/designDef\"\n";
 for_sxfManual << "#include \"EMTEAPOT/Integrator/genMethods/bunchParticleExtern\"\n";
 for_sxfManual << "#include \"EMTEAPOT/Integrator/genMethods/bunchParticleDef\"\n";
 
+for_sxfManual << "#include \"userManifest/probeDataForTwiss\"\n";
+
 for_sxfManual << "int main(int argc,char * argv[])\{\n";
 
 //for_sxfManual << "UAL::Probe& probe;\n";
 for_sxfManual << "PAC::Bunch bunch(2);\n";
+for_sxfManual << "bunch[0].getPosition().set(      0,       0,      0,      0,      0,      0 );\n";
+for_sxfManual << "bunch[1].getPosition().set( +x1typ,       0,      0, +y2typ,      0,      0 );\n";
 for_sxfManual << "                     \n";
-for_sxfManual << "EMTEAPOT::marker emm;\n";
-for_sxfManual << "EMTEAPOT::drift emd;\n";
-for_sxfManual << "EMTEAPOT::quad emq;\n";
-for_sxfManual << "EMTEAPOT::embend eme;\n";
-for_sxfManual << "EMTEAPOT::sext ems;\n";
-for_sxfManual << "EMTEAPOT::oct emo;\n";
-for_sxfManual << "EMTEAPOT::rfCavity emrf;\n";
+for_sxfManual << "EMTEAPOT::marker em_m;\n";
+for_sxfManual << "EMTEAPOT::drift em_d;\n";
+for_sxfManual << "EMTEAPOT::quad em_q;\n";
+for_sxfManual << "EMTEAPOT::embend em_em;\n";
+for_sxfManual << "EMTEAPOT::sext em_s;\n";
+for_sxfManual << "EMTEAPOT::oct em_o;\n";
+for_sxfManual << "EMTEAPOT::rfCavity em_rf;\n";
 //for_sxfManual << "}\n";
 
 //for_sxfManual.close();

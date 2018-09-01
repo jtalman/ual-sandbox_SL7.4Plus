@@ -36,4 +36,7 @@
 
  int ualPSs = 0;
 
+ double QFh_l = +0.1;
+ double Qfh_q = -0.005;
+
 #endif

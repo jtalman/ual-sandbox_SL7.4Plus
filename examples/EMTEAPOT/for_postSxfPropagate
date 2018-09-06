@@ -1,0 +1,40 @@
+ofstream for_postSxfPropagate;
+for_postSxfPropagate.open ("postSxfPropagate.cc");
+
+for_postSxfPropagate << "#include \"EMTEAPOT/Integrator/marker.cc\"\n";
+for_postSxfPropagate << "#include \"EMTEAPOT/Integrator/drift.cc\"\n";
+
+for_postSxfPropagate << "#include \"EMTEAPOT/Integrator/quad.cc\"\n";
+//for_postSxfPropagate << "static double EMTEAPOT::quad::q;\n";
+
+for_postSxfPropagate << "#include \"EMTEAPOT/Integrator/embend.cc\"\n";
+for_postSxfPropagate << "#include \"EMTEAPOT/Integrator/sext.cc\"\n";
+for_postSxfPropagate << "#include \"EMTEAPOT/Integrator/oct.cc\"\n";
+for_postSxfPropagate << "#include \"EMTEAPOT/Integrator/rfCavity.cc\"\n";
+
+for_postSxfPropagate << "#include \"EMTEAPOT/Integrator/genMethods/spinExtern\"\n";
+for_postSxfPropagate << "#include \"EMTEAPOT/Integrator/genMethods/spinDef\"\n";
+for_postSxfPropagate << "#include \"EMTEAPOT/Integrator/genMethods/designExtern\"\n";
+for_postSxfPropagate << "#include \"EMTEAPOT/Integrator/genMethods/designDef\"\n";
+for_postSxfPropagate << "#include \"EMTEAPOT/Integrator/genMethods/bunchParticleExtern\"\n";
+for_postSxfPropagate << "#include \"EMTEAPOT/Integrator/genMethods/bunchParticleDef\"\n";
+
+for_postSxfPropagate << "#include \"userManifest/probeDataForTwiss\"\n";
+
+for_postSxfPropagate << "int main(int argc,char * argv[])\{\n";
+
+//for_postSxfPropagate << "UAL::Probe& probe;\n";
+for_postSxfPropagate << "PAC::Bunch bunch(2);\n";
+for_postSxfPropagate << "bunch[0].getPosition().set(      0,       0,      0,      0,      0,      0 );\n";
+for_postSxfPropagate << "bunch[1].getPosition().set( +x1typ,       0,      0, +y2typ,      0,      0 );\n";
+for_postSxfPropagate << "                     \n";
+for_postSxfPropagate << "EMTEAPOT::marker em_m;\n";
+for_postSxfPropagate << "EMTEAPOT::drift em_d;\n";
+for_postSxfPropagate << "EMTEAPOT::quad em_q;\n";
+for_postSxfPropagate << "EMTEAPOT::embend em_em;\n";
+for_postSxfPropagate << "EMTEAPOT::sext em_s;\n";
+for_postSxfPropagate << "EMTEAPOT::oct em_o;\n";
+for_postSxfPropagate << "EMTEAPOT::rfCavity em_rf;\n";
+//for_postSxfPropagate << "}\n";
+
+//for_postSxfPropagate.close();

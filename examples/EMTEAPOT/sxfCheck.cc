@@ -73,7 +73,7 @@ std::cerr << "EMTEAPOT::embend::m_m " << EMTEAPOT::embend::m_m << "\n";
 //std::cerr << "EMTEAPOT::quad::m_m    " << EMTEAPOT::quad::m_m    << "\n";
 //#include "include/setStatic"
 
-#include"for_sxfManual"
+#include"for_postSxfPropagate"
 
  double f0=1;   //   atof(argv[2]);
  double r0=1;   //   atof(argv[9]);
@@ -185,13 +185,13 @@ const string L="ring";
   ualPSS=(*it)->getType();
 //e_qMD = (*it)->getMltData();
   std::cout << counter++ << " (*it)->getType() " << ualPSS << std::endl;
-  if( ualPSS == "EMTEAPOT::marker" ) {for_sxfManual << "em_m.propagate(bunch);\n";}
-  if( ualPSS == "EMTEAPOT::drift" )  {for_sxfManual << "em_d.propagate(bunch);\n";}
+  if( ualPSS == "EMTEAPOT::marker" ) {for_postSxfPropagate << "em_m.propagate(bunch);\n";}
+  if( ualPSS == "EMTEAPOT::drift" )  {for_postSxfPropagate << "em_d.propagate(bunch);\n";}
   if( ualPSS == "EMTEAPOT::quad" ){
 // q=(*it)->get_q();
-// for_sxfManual << "EMTEAPOT::em_q::q=0.005;\n";
-// for_sxfManual << "EMTEAPOT::quad::q=0.005;\n";
-   for_sxfManual << "em_q.propagate(bunch);\n";
+// for_postSxfPropagate << "EMTEAPOT::em_q::q=0.005;\n";
+// for_postSxfPropagate << "EMTEAPOT::quad::q=0.005;\n";
+   for_postSxfPropagate << "em_q.propagate(bunch);\n";
 // ualPNp=*it;
 
 // em_qptr=((EMTEAPOT::quad*)(*it));
@@ -204,11 +204,11 @@ const string L="ring";
 // e_qMD = (*it)->getMltData();
    std::cerr << "typeid( (*it) ).name() " << typeid( (*it) ).name() << "\n";
   }
-  if( ualPSS == "EMTEAPOT::embend" ) {for_sxfManual << "em_em.propagate(bunch);\n";}
-//for_sxfManual << (*it)->getType() << "\n";
+  if( ualPSS == "EMTEAPOT::embend" ) {for_postSxfPropagate << "em_em.propagate(bunch);\n";}
+//for_postSxfPropagate << (*it)->getType() << "\n";
  }
- for_sxfManual << "}\n";
- for_sxfManual.close();
+ for_postSxfPropagate << "}\n";
+ for_postSxfPropagate.close();
 
  // ************************************************************************
  std::cout << "\nBunch Part." << std::endl;

@@ -23,7 +23,25 @@ void setLatticeElements(const UAL::AcceleratorNode& sequence,
                                               int is1,
                                               const UAL::AttributeSet& attSet)
 {
-   ETEAPOT::BasicTracker::setLatticeElements(sequence, is0, is1, attSet);
+ std::cerr << "\nJDT2018 - File " << __FILE__ << " line " << __LINE__ << " enter method void setLatticeElements(const UAL::AcceleratorNode& sequence, int is0, int is1, const UAL::AttributeSet& attSet)\n";
+
+//UAL::AcceleratorNodeFinder::Iterator it = UAL::AcceleratorNodeFinder::getInstance().find(accName);
+  UAL::AcceleratorNodeFinder::Iterator it = UAL::AcceleratorNodeFinder::getInstance().find("ring");
+  UAL::AcceleratorNode* m_lattice;
+  m_lattice = (it->second).operator->();
+  double at = 0;
+  int lsize = m_lattice->getNodeCount();
+  UAL::AcceleratorNode* const anode = m_lattice->getNodeAt(is0);
+  double elpos = anode->getPosition();
+  std::string elname = anode->getName();
+  std::string elDname = anode->getDesignName();
+  std::string eltype = anode->getType();
+  for_postSxfPropagate << "/* " << elpos << " " << elname <<  " " << elDname << " " << eltype << " */";
+
+ for_postSxfPropagate << "em_m.propagate(bunch);\n";
+ ETEAPOT::BasicTracker::setLatticeElements(sequence, is0, is1, attSet);
+
+ std::cerr << "\nJDT2018 - File " << __FILE__ << " line " << __LINE__ << " leave method void setLatticeElements(const UAL::AcceleratorNode& sequence, int is0, int is1, const UAL::AttributeSet& attSet)\n";
 }
 
 const char*  getType()

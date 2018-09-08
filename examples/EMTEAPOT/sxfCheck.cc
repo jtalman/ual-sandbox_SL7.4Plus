@@ -159,6 +159,8 @@ const string L="ring";
  UAL::APDF_Builder apBuilder;
 
  UAL::AcceleratorPropagator* ap = apBuilder.parse(apdfFile);
+ for_postSxfPropagate << "}\n";
+ for_postSxfPropagate.close();
 
  if(ap == 0) {
    std::cout << "Accelerator Propagator has not been created " << std::endl;
@@ -185,6 +187,7 @@ const string L="ring";
   ualPSS=(*it)->getType();
 //e_qMD = (*it)->getMltData();
   std::cout << counter++ << " (*it)->getType() " << ualPSS << std::endl;
+/*
   if( ualPSS == "EMTEAPOT::marker" ) {for_postSxfPropagate << "em_m.propagate(bunch);\n";}
   if( ualPSS == "EMTEAPOT::drift" )  {for_postSxfPropagate << "em_d.propagate(bunch);\n";}
   if( ualPSS == "EMTEAPOT::quad" ){
@@ -206,9 +209,12 @@ const string L="ring";
   }
   if( ualPSS == "EMTEAPOT::embend" ) {for_postSxfPropagate << "em_em.propagate(bunch);\n";}
 //for_postSxfPropagate << (*it)->getType() << "\n";
+*/
  }
+/*
  for_postSxfPropagate << "}\n";
  for_postSxfPropagate.close();
+*/
 
  // ************************************************************************
  std::cout << "\nBunch Part." << std::endl;

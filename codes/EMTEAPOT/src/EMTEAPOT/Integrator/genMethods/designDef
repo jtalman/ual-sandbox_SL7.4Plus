@@ -1,6 +1,12 @@
 #ifndef EMTEAPOT_DESIGN_DEF
 #define EMTEAPOT_DESIGN_DEF
 
+//#include<iostream>
+#include<fstream>
+
+std::ofstream for_postSxfPropagate;
+//for_postSxfPropagate.open ("postSxfPropagate.cc");
+
  double mDcc;
  double qD;
 

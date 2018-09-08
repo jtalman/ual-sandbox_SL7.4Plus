@@ -7,6 +7,8 @@
 
 #include<iostream>
 #include<iomanip>
+
+#include"UAL/SMF/AcceleratorNodeFinder.hh"
 #include"ETEAPOT/Integrator/BasicTracker.hh"
 
 #include"EMTEAPOT/Integrator/genMethods/Vectors.h"

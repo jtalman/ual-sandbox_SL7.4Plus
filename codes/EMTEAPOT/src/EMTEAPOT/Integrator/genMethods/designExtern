@@ -1,6 +1,10 @@
 #ifndef EMTEAPOT_DESIGN_EXTERN
 #define EMTEAPOT_DESIGN_EXTERN
 
+#include<fstream>
+
+ extern std::ofstream for_postSxfPropagate;
+
  extern double mDcc;                 // physics
  extern double qD;
 

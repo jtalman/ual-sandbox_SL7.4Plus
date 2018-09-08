@@ -1,4 +1,4 @@
-ofstream for_postSxfPropagate;
+//ofstream for_postSxfPropagate;
 for_postSxfPropagate.open ("postSxfPropagate.cc");
 
 for_postSxfPropagate << "#include \"EMTEAPOT/Integrator/marker.cc\"\n";

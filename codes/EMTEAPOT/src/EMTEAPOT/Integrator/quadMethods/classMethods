@@ -30,6 +30,16 @@ std::cerr << "\nJDT2018 - File " << __FILE__ << " line " << __LINE__ << " enter 
    ETEAPOT::BasicTracker::setLatticeElements(sequence, is0, is1, attSet);
    const PacLattice& lattice     = (PacLattice&) sequence;
    setLatticeElement(lattice[is0]);
+
+   PacLattElement ple = *((PacLattElement*) sequence.getNodeAt(is0));
+   std::string pleDN = ple.getDesignName();
+   if(pleDN=="QFh"){for_postSxfPropagate << "/* lattice index " << is0 << " " << pleDN << " " << numQFh << " at " << ple.getPosition() << " */";}
+   if(pleDN=="QD"){ for_postSxfPropagate << "/* lattice index " << is0 << " " << pleDN << " " << numQD  << " at " << ple.getPosition() << " */";}
+// for_postSxfPropagate << "/* type " << ple.getType() << " name " << ple.getName() << " design name " << ple.getDesignName() << " length " << ple.getLength() << " n " << ple.getN() << " angle " << ple.getAngle() << " position " << ple.getPosition() << " */";
+   for_postSxfPropagate << "em_q.propagate(bunch);\n";
+   if(pleDN=="QFh"){numQFh++;}
+   if(pleDN=="QD"){ numQD++;}
+
 }
 
 void setLatticeElement(const PacLattElement& e)

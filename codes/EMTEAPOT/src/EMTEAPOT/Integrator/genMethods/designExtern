@@ -40,6 +40,9 @@
 
  extern int ualPSs;
 
+ extern int numQFh;
+ extern int numQD;
+
  extern double QFh_l;
  extern double Qfh_q;
 

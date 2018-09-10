@@ -42,6 +42,8 @@ std::ofstream for_postSxfPropagate;
 
  int ualPSs = 0;
 
+ int numQFh=1;
+ int numQD =1;
  double QFh_l = +0.1;
  double Qfh_q = -0.005;
 

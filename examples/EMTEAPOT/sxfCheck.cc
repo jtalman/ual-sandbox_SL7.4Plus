@@ -14,6 +14,7 @@
 #include <gsl/gsl_randist.h>
 
 #include "UAL/SMF/AcceleratorNode.hh"
+#include "UAL/SMF/AcceleratorNodeFinder.hh"
 
 #include "UAL/APDF/APDF_Builder.hh"
 #include "PAC/Beam/Position.hh"
@@ -39,10 +40,10 @@ int main(int argc,char * argv[]){
 
 //if(argc!=10){
 if(argc!=2){
-  std::cout << "usage: ./sxfCheck ./sxf/measured.sxf\n";
+  std::cout << "usage: ./sxfCheck ./sxf/current2.sxf\n";
 //std::cout << "usage: ./sxfCheck ./sxf/measured.sxf 1.0504653e+06 1 0 1 0.0 1 45 9\n";
  std::cout << "argv[0] is this executable         - ./sxfCheck                                 \n";
- std::cout << "argv[1] is the input sxf file      - ./sxf/measured.sxf                         \n";
+ std::cout << "argv[1] is the input sxf file      - ./sxf/current2.sxf                         \n";
 /*
  std::cout << "argv[2] is the design frequency, fD, 1.0504653e+06                              \n";
  std::cout << "argv[3] is the nominal electrode m - 1                                          \n";
@@ -70,24 +71,11 @@ std::cerr << "EMTEAPOT::embend::m_m " << EMTEAPOT::embend::m_m << "\n";
               EMTEAPOT::embend::dZFF=1;   //   atof( argv[6] );
 std::cerr << "EMTEAPOT::embend::dZFF " << EMTEAPOT::embend::dZFF << "\n";
 std::cerr << "EMTEAPOT::embend::m_m " << EMTEAPOT::embend::m_m << "\n";
-//std::cerr << "EMTEAPOT::quad::m_m    " << EMTEAPOT::quad::m_m    << "\n";
-//#include "include/setStatic"
 
 #include"for_postSxfPropagate"
 
  double f0=1;   //   atof(argv[2]);
  double r0=1;   //   atof(argv[9]);
-
-/*
- double rD=r0;
- double RE_GeV   = UAL::pmass;
- double KE_D_MeV = atof(argv[8]);
- double KE_D_GeV = KE_D_MeV/1000.;
- double TE_D_GeV = RE_GeV+KE_D_GeV;
- double EscrD    = TE_D_GeV;
- double gammaD   = 1.+KE_D_GeV/RE_GeV;
-// double LD       = L0;
-*/
 
  std::string mysxf    =argv[1];
  std::string mysxfbase=mysxf.substr(7,mysxf.size()-11);
@@ -98,7 +86,6 @@ std::cerr << "EMTEAPOT::embend::m_m " << EMTEAPOT::embend::m_m << "\n";
 
 #include "userManifest/designBeamValues.hh"
 
-//
   mDcc=m0;
   qD=q0;
 
@@ -115,7 +102,6 @@ double LD       = rD*pcD;      //    L0;
   fD=f0;
 
   tofDT=0;
-//
 
 #include "userManifest/extractParameters.h"
 
@@ -123,110 +109,106 @@ double LD       = rD*pcD;      //    L0;
 #include "userManifest/userBunch"
  int spltBndsPrBend=pow(2,splitForBends);
 
- // ************************************************************************
- std::cout << "\nDefine the space of Taylor maps." << std::endl;
- // ************************************************************************
-
- std::cout << "order " << order << "\n";
- shell.setMapAttributes(UAL::Args() << UAL::Arg("order", order));
-
  shell.readSXF(UAL::Args() << UAL::Arg("file",  sxfFile.c_str()));
-// shell.writeSXF(UAL::Args() << UAL::Arg("file",  outputFile.c_str()));
-const string L="ring";
-//UAL::AcceleratorNode* uanA = shell.getLattice(L);
-
-//UAL::AcceleratorNode* uanA = shell.getLattice("ring");   //    <<<<----
-
-//UAL::AcceleratorNode* uanA = shell.getLattice(UAL::Args() << UAL::Arg("lattice", "ring"));
-//UAL::AcceleratorNode* uanA = shell.getLattice("ring");
-//UAL::AcceleratorNode* Shell::getLattice("ring");
-//UAL::AcceleratorNode* UAL::Shell::getLattice("ring");
-//std::cerr << "UAL::AcceleratorNode* uanA.typeid() " << uanA.typeid() << "\n";
-
-/*
-  std::cerr << "__FILE__ " << __FILE__ << " UAL::AcceleratorNode* typeid(uanA).name() " << typeid(uanA).name() << "\n";
-  std::cerr << "__FILE__ " << __FILE__ << " uanA->getDesignName() " << uanA->getDesignName() << "\n";
-  std::cerr << "__FILE__ " << __FILE__ << " uanA->getType() " << uanA->getType() << "\n";
-*/
-
- shell.addSplit(UAL::Args() << UAL::Arg("lattice", "ring") << UAL::Arg("types", "Sbend")      << UAL::Arg("ir", split-1));  // JDT 7/18/2012 new split specification
- shell.addSplit(UAL::Args() << UAL::Arg("lattice", "ring") << UAL::Arg("types", "Quadrupole") << UAL::Arg("ir", 0));
- shell.addSplit(UAL::Args() << UAL::Arg("lattice", "ring") << UAL::Arg("types", "Sextupole")  << UAL::Arg("ir", 0));
-
- UAL::Args() << UAL::Arg("lattice", "ring");
- //shell.use(UAL::Args() << UAL::Arg("lattice", "ring"));
-
  UAL::APDF_Builder apBuilder;
-
  UAL::AcceleratorPropagator* ap = apBuilder.parse(apdfFile);
- for_postSxfPropagate << "}\n";
- for_postSxfPropagate.close();
-
- if(ap == 0) {
-   std::cout << "Accelerator Propagator has not been created " << std::endl;
-   return 1;
- }
-
  UAL::PropagatorSequence& apSeq = ap->getRootNode();
-//int ualPSs = apSeq.size();
-      ualPSs = apSeq.size();
-  std::cout << "\n\n\nsize : " << ualPSs << " propagators \n\n\n";
-//std::cout << "\n\n\nsize : " << ap->getRootNode().size() << " propagators \n\n\n";
+
+ UAL::AcceleratorNode& ual_an_r = apSeq.getFrontAcceleratorNode();
+ UAL::AcceleratorNode  ual_an   = apSeq.getFrontAcceleratorNode();
+
+ UAL::AcceleratorNodeFinder::Iterator ual_anf_it = UAL::AcceleratorNodeFinder::getInstance().find("ring");
+ UAL::AcceleratorNode*  m_lattice = (ual_anf_it->second).operator->();
+ UAL::AcceleratorNode*       anode;
+ const PacLattice& p_lattice     = (PacLattice&) m_lattice;
+
+ const UAL::AcceleratorNode& sequence=*m_lattice;
+ const PacLattice& lattice     = (PacLattice&) sequence;
+//      PacLattElement& ple = lattice[0];
+  std::string ple_gt;
+  PacElemBend* m_bnd;
+  PacElemAttributes* attributes;
+//PacElemAttributes* attributes = e.getBody();
+  PacElemMultipole* m_mlt;
+  PacElemOffset* m_offset;
+  PacElemRotation* m_rotation;
+
+  for(int i=0;i<lattice.size();i++){
+   const PacLattElement& ple = lattice[i];
+   ple_gt=ple.getType();
+   if(ple_gt==""){std::cerr << "JDT DRIFT JDT DRIFT JDT DRIFT JDT DRIFT JDT DRIFT \n";}
+// if(ple_gt=="Quadrupole"){PacElemMultipole* quadSet = (PacElemMultipole*) &(*it); std::cerr << "JDT Quadrupole\n";}
+// if(ple_gt==""){"drift\n";}
+// else{std::cerr << " ple.getType() " << ple_gt << " ple_gt.length() " << ple_gt.length() << "\n";}
+// std::cerr << " ple.getType() " << ple.getType() << "\n\n";
+//
+std::cerr << "ple.getLength() " << ple.getLength() << "\n";
+   attributes = ple.getBody();
+   if(attributes){
+    for(PacElemAttributes::iterator it = attributes->begin(); it != attributes->end(); it++){
+      switch((*it).key()){
+      case PAC_BEND:
+      m_bnd = (PacElemBend*) &(*it);
+std::cerr << "JDT Bend\n";
+//std::cerr << "m_bnd->length() " << m_bnd->length() << "\n";
+std::cerr << "m_bnd->angle() " << m_bnd->angle() << "\n";
+std::cerr << "m_bnd->fint() " << m_bnd->fint() << "\n";
+      break;
+      case PAC_MULTIPOLE:
+        m_mlt = (PacElemMultipole*) &(*it);
+std::cerr << "JDT Multipole\n";
+std::cerr << "m_mlt->kl(0) " << m_mlt->kl(0) << "\n";
+std::cerr << "m_mlt->kl(1) " << m_mlt->kl(1) << "\n";
+std::cerr << "m_mlt->kl(2) " << m_mlt->kl(2) << "\n";
+std::cerr << "m_mlt->kl(3) " << m_mlt->kl(3) << "\n";
+std::cerr << "m_mlt->ktl(0) " << m_mlt->kl(0) << "\n";
+std::cerr << "m_mlt->ktl(1) " << m_mlt->kl(1) << "\n";
+std::cerr << "m_mlt->ktl(2) " << m_mlt->kl(2) << "\n";
+std::cerr << "m_mlt->ktl(3) " << m_mlt->kl(3) << "\n";
+        break;
+      case PAC_OFFSET:
+        m_offset = (PacElemOffset*) &(*it);
+        break;
+      case PAC_APERTURE:
+        // m_aperture = (PacElemAperture*) &(*it);
+        break;
+      case PAC_ROTATION:
+        m_rotation = (PacElemRotation*) &(*it);
+        break;
+        default:
+        break;
+       }   
+      }   
+     }
+      
+  }
+
+ const PacLattice& p_lattice2     = (PacLattice&) ual_an_r;
+ ualPSs = apSeq.size();
+ std::cerr << "\n\n\nsize : " << ualPSs << " propagators \n\n\n";
 
  int counter = 0;
- std::string ualPSS;
  std::list<UAL::PropagatorNodePtr>::iterator it;
- ETEAPOT::MltData e_qMD;
-
- EMTEAPOT::quad  em_q;
- EMTEAPOT::quad* em_qptr;
-
- UAL::PropagatorNode* ualPNp;
- double q;
+ anode = m_lattice->getNodeAt(counter);
+ UAL::PropagatorNodePtr ual_pnp;
+// std::string ple_gt;
  for(it = apSeq.begin(); it != apSeq.end(); it++){
-  ualPSS=(*it)->getType();
-//e_qMD = (*it)->getMltData();
-  std::cout << counter++ << " (*it)->getType() " << ualPSS << std::endl;
+  ual_pnp = *(it);
 /*
-  if( ualPSS == "EMTEAPOT::marker" ) {for_postSxfPropagate << "em_m.propagate(bunch);\n";}
-  if( ualPSS == "EMTEAPOT::drift" )  {for_postSxfPropagate << "em_d.propagate(bunch);\n";}
-  if( ualPSS == "EMTEAPOT::quad" ){
-// q=(*it)->get_q();
-// for_postSxfPropagate << "EMTEAPOT::em_q::q=0.005;\n";
-// for_postSxfPropagate << "EMTEAPOT::quad::q=0.005;\n";
-   for_postSxfPropagate << "em_q.propagate(bunch);\n";
-// ualPNp=*it;
-
-// em_qptr=((EMTEAPOT::quad*)(*it));
-// em_q=(EMTEAPOT::quad)(*it);
-// em_q=                 *it ;
-// q=(*it)->get_q();
-
-// e_qMD =                  (*it) ->getMltData();
-// e_qMD = ((EMTEAPOT::quad)(*it))->getMltData();
-// e_qMD = (*it)->getMltData();
-   std::cerr << "typeid( (*it) ).name() " << typeid( (*it) ).name() << "\n";
-  }
-  if( ualPSS == "EMTEAPOT::embend" ) {for_postSxfPropagate << "em_em.propagate(bunch);\n";}
-//for_postSxfPropagate << (*it)->getType() << "\n";
+  std::cerr << counter++ << " (*(ual_pnp)).getType() " << (*(ual_pnp)).getType() << "\n";
+  std::cerr << " typeid( *(ual_pnp) ).name() " << typeid( *(ual_pnp) ).name() << "\n";
+  const PacLattElement& ple = lattice[counter];
 */
+//ple_gt=ple.getType();
+//std::cerr << " ple.getType() " << ple_gt << "\n\n";
+//std::cerr << " ple.getType() " << ple.getType() << "\n\n";
  }
-/*
+
  for_postSxfPropagate << "}\n";
  for_postSxfPropagate.close();
-*/
-
- // ************************************************************************
- std::cout << "\nBunch Part." << std::endl;
- // ************************************************************************
-
- // ************************************************************************
- std::cout << "\nTracking. " << std::endl;
- // ************************************************************************
 
  double t; // time variable
 
- turns = 10;
  turns=1;   //   atoi( argv[5] );
  #include"userManifest/S"
  #include"userManifest/spin"

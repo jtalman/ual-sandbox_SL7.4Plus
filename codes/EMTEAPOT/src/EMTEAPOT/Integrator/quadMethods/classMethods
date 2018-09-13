@@ -33,18 +33,42 @@ std::cerr << "\nJDT2018 - File " << __FILE__ << " line " << __LINE__ << " enter 
 
    PacLattElement ple = *((PacLattElement*) sequence.getNodeAt(is0));
    std::string pleDN = ple.getDesignName();
-   if(pleDN=="QFh"){for_postSxfPropagate << "/* lattice index " << is0 << " " << pleDN << " " << numQFh << " at " << ple.getPosition() << " */";}
-   if(pleDN=="QD"){ for_postSxfPropagate << "/* lattice index " << is0 << " " << pleDN << " " << numQD  << " at " << ple.getPosition() << " */";}
+// if(pleDN=="QFh"){for_postSxfPropagate << "/* lattice index " << is0 << " " << pleDN << " " << numQFh << " at " << ple.getPosition() << " */";}
+// if(pleDN=="QD"){ for_postSxfPropagate << "/* lattice index " << is0 << " " << pleDN << " " << numQD  << " at " << ple.getPosition() << " */";}
 // for_postSxfPropagate << "/* type " << ple.getType() << " name " << ple.getName() << " design name " << ple.getDesignName() << " length " << ple.getLength() << " n " << ple.getN() << " angle " << ple.getAngle() << " position " << ple.getPosition() << " */";
-   for_postSxfPropagate << "em_q.propagate(bunch);\n";
+// for_postSxfPropagate << "em_q.propagate(bunch);\n";
    if(pleDN=="QFh"){numQFh++;}
    if(pleDN=="QD"){ numQD++;}
 
+std::cerr << "\nJDT2018 - File " << __FILE__ << " line " << __LINE__ << " leave method setLatticeElements(UAL)\n";
 }
 
 void setLatticeElement(const PacLattElement& e)
 {
 std::cerr << "\nJDT2018 - File " << __FILE__ << " line " << __LINE__ << " enter method setLatticeElements(PAC)\n";
+PacElemMultipole* m_mlt;
+PacElemRotation* m_rotation;
+PacElemAttributes* attributes = e.getBody();
+if(attributes){
+    for(PacElemAttributes::iterator it = attributes->begin(); it != attributes->end(); it++){
+      switch((*it).key()){
+      case PAC_MULTIPOLE:
+	m_mlt = (PacElemMultipole*) &(*it);
+	break;
+      case PAC_OFFSET:
+	m_offset = (PacElemOffset*) &(*it);
+	break;
+      case PAC_APERTURE:
+	// m_aperture = (PacElemAperture*) &(*it);
+	break;
+      case PAC_ROTATION:
+	m_rotation = (PacElemRotation*) &(*it);
+	break;
+      default:
+	break;
+      }
+    }
+}
   // length
   // m_l = e.getLength();
 
@@ -61,6 +85,7 @@ else{
 
   m_mdata.setLatticeElement(e);
 
+std::cerr << "\nJDT2018 - File " << __FILE__ << " line " << __LINE__ << " leave method setLatticeElements(PAC)\n";
 }
 
 void copy(const EMTEAPOT::quad& mt) 

@@ -126,6 +126,9 @@ double LD       = rD*pcD;      //    L0;
  const PacLattice& lattice     = (PacLattice&) sequence;
 //      PacLattElement& ple = lattice[0];
   std::string ple_gt;
+  double ple_P;
+  double ple_L;
+  double actualPosition;
 /*
   PacElemBend* m_bnd;
   PacElemAttributes* attributes;
@@ -135,14 +138,21 @@ double LD       = rD*pcD;      //    L0;
   PacElemRotation* m_rotation;
 */
 
+  for_postSxfPropagate.setf( ios::fixed );
+  for_postSxfPropagate.precision( 4 );
   for(int i=0;i<lattice.size();i++){
    const PacLattElement& ple = lattice[i];
    ple_gt=ple.getType();
+   ple_P=ple.getPosition();
+   ple_L=ple.getLength();
+   actualPosition=(int)(10000.*(ple_P + ple_L/2.))/10000.;
 //std::cerr << "ple_gt " << ple_gt << "\n";
    if(ple_gt==""){for_postSxfPropagate << "em_d.propagate(bunch);\n";}
-   if(ple_gt=="Marker"){for_postSxfPropagate << "/* " << ple.getDesignName() << " " << ple.getPosition() << " */" << " em_m.propagate(bunch);\n";}
-   if(ple_gt=="Quadrupole"){for_postSxfPropagate << "/* " << ple.getDesignName() << " " << ple.getPosition() << " */" << " em_q.propagate(bunch);\n";}
-   if(ple_gt=="Sbend"){for_postSxfPropagate << "/* " << ple.getDesignName() << " " << ple.getPosition() << " */" << " em_em.propagate(bunch);\n";}
+   if(ple_gt=="Marker"){for_postSxfPropagate << "/* " << ple.getDesignName() << " " << ple_P << " */" << " em_m.propagate(bunch);\n";}
+   if(ple_gt=="Quadrupole"){for_postSxfPropagate << "/* " << ple.getDesignName() << " " << actualPosition << " */" << " em_q.propagate(bunch);\n";}
+// if(ple_gt=="Quadrupole"){for_postSxfPropagate << "/* " << ple.getDesignName() << " " << ple_P << " */" << " em_q.propagate(bunch);\n";}
+// if(ple_gt=="Sbend"){for_postSxfPropagate << "/* " << ple.getDesignName() << " " << ple_P << " */" << " em_em.propagate(bunch);\n";}
+   if(ple_gt=="Sbend"){for_postSxfPropagate << "/* " << ple.getDesignName() << " " << actualPosition << " */" << " em_em.propagate(bunch);\n";}
 // if(ple_gt=="Quadrupole"){PacElemMultipole* quadSet = (PacElemMultipole*) &(*it); std::cerr << "JDT Quadrupole\n";}
 // if(ple_gt==""){"drift\n";}
 // else{std::cerr << " ple.getType() " << ple_gt << " ple_gt.length() " << ple_gt.length() << "\n";}

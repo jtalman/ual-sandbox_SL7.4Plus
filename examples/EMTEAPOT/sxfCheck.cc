@@ -148,7 +148,7 @@ double LD       = rD*pcD;      //    L0;
    actualPosition=(int)(10000.*(ple_P + ple_L/2.))/10000.;
 //std::cerr << "ple_gt " << ple_gt << "\n";
    if(ple_gt==""){for_postSxfPropagate << "em_d.propagate(bunch);\n";}
-   if(ple_gt=="Marker"){for_postSxfPropagate << "/* " << ple.getDesignName() << " " << ple_P << " */" << " em_m.propagate(bunch);\n";}
+   if(ple_gt=="Marker"){for_postSxfPropagate << "/* " << ple.getDesignName() << " " << actualPosition << " */" << " em_m.propagate(bunch);\n";}
    if(ple_gt=="Quadrupole"){for_postSxfPropagate << "/* " << ple.getDesignName() << " " << actualPosition << " */" << " em_q.propagate(bunch);\n";}
 // if(ple_gt=="Quadrupole"){for_postSxfPropagate << "/* " << ple.getDesignName() << " " << ple_P << " */" << " em_q.propagate(bunch);\n";}
 // if(ple_gt=="Sbend"){for_postSxfPropagate << "/* " << ple.getDesignName() << " " << ple_P << " */" << " em_em.propagate(bunch);\n";}

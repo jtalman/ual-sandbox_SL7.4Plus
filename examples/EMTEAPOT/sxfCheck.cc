@@ -126,22 +126,29 @@ double LD       = rD*pcD;      //    L0;
  const PacLattice& lattice     = (PacLattice&) sequence;
 //      PacLattElement& ple = lattice[0];
   std::string ple_gt;
+/*
   PacElemBend* m_bnd;
   PacElemAttributes* attributes;
 //PacElemAttributes* attributes = e.getBody();
   PacElemMultipole* m_mlt;
   PacElemOffset* m_offset;
   PacElemRotation* m_rotation;
+*/
 
   for(int i=0;i<lattice.size();i++){
    const PacLattElement& ple = lattice[i];
    ple_gt=ple.getType();
-   if(ple_gt==""){std::cerr << "JDT DRIFT JDT DRIFT JDT DRIFT JDT DRIFT JDT DRIFT \n";}
+//std::cerr << "ple_gt " << ple_gt << "\n";
+   if(ple_gt==""){for_postSxfPropagate << "em_d.propagate(bunch);\n";}
+   if(ple_gt=="Marker"){for_postSxfPropagate << "/* " << ple.getDesignName() << " " << ple.getPosition() << " */" << " em_m.propagate(bunch);\n";}
+   if(ple_gt=="Quadrupole"){for_postSxfPropagate << "/* " << ple.getDesignName() << " " << ple.getPosition() << " */" << " em_q.propagate(bunch);\n";}
+   if(ple_gt=="Sbend"){for_postSxfPropagate << "/* " << ple.getDesignName() << " " << ple.getPosition() << " */" << " em_em.propagate(bunch);\n";}
 // if(ple_gt=="Quadrupole"){PacElemMultipole* quadSet = (PacElemMultipole*) &(*it); std::cerr << "JDT Quadrupole\n";}
 // if(ple_gt==""){"drift\n";}
 // else{std::cerr << " ple.getType() " << ple_gt << " ple_gt.length() " << ple_gt.length() << "\n";}
 // std::cerr << " ple.getType() " << ple.getType() << "\n\n";
 //
+/*
 std::cerr << "ple.getLength() " << ple.getLength() << "\n";
    attributes = ple.getBody();
    if(attributes){
@@ -180,9 +187,11 @@ std::cerr << "m_mlt->ktl(3) " << m_mlt->kl(3) << "\n";
        }   
       }   
      }
+*/
       
   }
 
+/*
  const PacLattice& p_lattice2     = (PacLattice&) ual_an_r;
  ualPSs = apSeq.size();
  std::cerr << "\n\n\nsize : " << ualPSs << " propagators \n\n\n";
@@ -194,15 +203,14 @@ std::cerr << "m_mlt->ktl(3) " << m_mlt->kl(3) << "\n";
 // std::string ple_gt;
  for(it = apSeq.begin(); it != apSeq.end(); it++){
   ual_pnp = *(it);
-/*
   std::cerr << counter++ << " (*(ual_pnp)).getType() " << (*(ual_pnp)).getType() << "\n";
   std::cerr << " typeid( *(ual_pnp) ).name() " << typeid( *(ual_pnp) ).name() << "\n";
   const PacLattElement& ple = lattice[counter];
-*/
 //ple_gt=ple.getType();
 //std::cerr << " ple.getType() " << ple_gt << "\n\n";
 //std::cerr << " ple.getType() " << ple.getType() << "\n\n";
  }
+*/
 
  for_postSxfPropagate << "}\n";
  for_postSxfPropagate.close();

@@ -43,14 +43,14 @@ int main(int argc,char * argv[]){
  double f0=atof(argv[2]);
  double r0=atof(argv[9]);
 
- double rD=r0;
+// double rD=r0;
 
- double RE_GeV   = UAL::pmass;
- double KE_D_MeV = atof(argv[8]);
- double KE_D_GeV = KE_D_MeV/1000.;
- double TE_D_GeV = RE_GeV+KE_D_GeV;
- double EscrD    = TE_D_GeV;
- double gammaD   = 1.+KE_D_GeV/RE_GeV;
+// double RE_GeV   = UAL::pmass;
+// double KE_D_MeV = atof(argv[8]);
+// double KE_D_GeV = KE_D_MeV/1000.;
+// double TE_D_GeV = RE_GeV+KE_D_GeV;
+// double EscrD    = TE_D_GeV;
+// double gammaD   = 1.+KE_D_GeV/RE_GeV;
 // double LD       = L0;
 
  std::string mysxf    =argv[1];

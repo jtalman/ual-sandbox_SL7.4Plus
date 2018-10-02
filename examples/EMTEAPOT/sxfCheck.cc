@@ -15,6 +15,8 @@
 
 #include "UAL/SMF/AcceleratorNode.hh"
 #include "UAL/SMF/AcceleratorNodeFinder.hh"
+#include "SMF/PacElemLength.h"
+#include "SMF/PacElemComplexity.h"
 
 #include "UAL/APDF/APDF_Builder.hh"
 #include "PAC/Beam/Position.hh"
@@ -147,12 +149,13 @@ double LD       = rD*pcD;      //    L0;
    ple_L=ple.getLength();
    actualPosition=(int)(10000.*(ple_P + ple_L/2.))/10000.;
 //std::cerr << "ple_gt " << ple_gt << "\n";
-   if(ple_gt==""){for_postSxfPropagate << "em_d.propagate(bunch);\n";}
+   if(ple_gt==""){ple_gt="Drift";for_postSxfPropagate << "em_d.propagate(bunch);\n";}
    if(ple_gt=="Marker"){for_postSxfPropagate << "/* " << ple.getDesignName() << " " << actualPosition << " */" << " em_m.propagate(bunch);\n";}
    if(ple_gt=="Quadrupole"){for_postSxfPropagate << "/* " << ple.getDesignName() << " " << actualPosition << " */" << " em_q.propagate(bunch);\n";}
 // if(ple_gt=="Quadrupole"){for_postSxfPropagate << "/* " << ple.getDesignName() << " " << ple_P << " */" << " em_q.propagate(bunch);\n";}
 // if(ple_gt=="Sbend"){for_postSxfPropagate << "/* " << ple.getDesignName() << " " << ple_P << " */" << " em_em.propagate(bunch);\n";}
-   if(ple_gt=="Sbend"){for_postSxfPropagate << "/* " << ple.getDesignName() << " " << actualPosition << " */" << " em_em.propagate(bunch);\n";}
+// if(ple_gt=="Sbend"){for_postSxfPropagate << "/* " << ple.getDesignName() << " " << actualPosition << " */" << " em_em.propagate(bunch);\n";}
+   if(ple_gt=="Sbend"){for_postSxfPropagate << "/* " << ple.getDesignName() << " " << actualPosition << " */" << " em_em.propagate(bunch);\n";
 // if(ple_gt=="Quadrupole"){PacElemMultipole* quadSet = (PacElemMultipole*) &(*it); std::cerr << "JDT Quadrupole\n";}
 // if(ple_gt==""){"drift\n";}
 // else{std::cerr << " ple.getType() " << ple_gt << " ple_gt.length() " << ple_gt.length() << "\n";}
@@ -198,8 +201,91 @@ std::cerr << "m_mlt->ktl(3) " << m_mlt->kl(3) << "\n";
       }   
      }
 */
+
+    PacElemMultipole* p_entryMlt;
+    PacElemMultipole* p_exitMlt;
+
+    PacElemLength* p_length;           // 1: l
+    PacElemBend* p_bend;               // 2: angle, fint
+    PacElemMultipole* p_mlt;           // 3: kl, ktl
+    PacElemOffset* p_offset;           // 4: dx, dy, ds
+    PacElemRotation* p_rotation;       // 5: dphi, dtheta, tilt
+    // PacElemAperture*p_aperture;     // 6: shape, xsize, ysize
+    PacElemComplexity* p_complexity;   // 7: n
+    // PacElemSolenoid* p_solenoid;    // 8: ks
+    // PacElemRfCavity* p_rf;          // 9: volt, lag, harmon
+
+  PacElemAttributes* attributes = ple.getBody();
+  int size;
+  double*data;
+  int j;
+
+  if(attributes){
+    for(PacElemAttributes::iterator it = attributes->begin(); it != attributes->end(); it++){
+      switch((*it).key()){
+       case PAC_LENGTH:                          // 1: l
+            p_length = (PacElemLength*) &(*it);
+std::cerr << "PAC_BEND PAC_LENGTH " << ple_gt << "\n";
+            break;
+       case PAC_BEND:                            // 2: angle, fint
+            p_bend = (PacElemBend*) &(*it);
+            data=p_bend->data();
+            size=p_bend->size();
+std::cerr << "PAC_BEND " << ple_gt << " angle " << p_bend->angle() << "\n";
+std::cerr << "PAC_BEND " << ple_gt << " fint " << p_bend->fint() << "\n";
+std::cerr << "PAC_BEND " << ple_gt << " size " << size << "\n";
+for(j=0;j<size;j++){
+ std::cerr << "PAC_BEND " << j << " data[j] " << data[j] << "\n";
+}
+            break;
+       case PAC_MULTIPOLE:                       // 3: kl, ktl
+            p_bend = (PacElemBend*) &(*it);
+            p_mlt = (PacElemMultipole*) &(*it);
+            data=p_mlt->data();
+            size=p_mlt->size();
+std::cerr << "PAC_BEND PAC_MULTIPOLE " << ple_gt << "\n";
+std::cerr << "PAC_BEND PAC_MULTIPOLE " << ple_gt << " size " << size << "\n";
+for(j=0;j<size;j++){
+ std::cerr << "PAC_BEND PAC_MULTIPOLE " << j << " data[j] " << data[j] << "\n";
+}
+std::cerr << "\n\n";
+            break;
+       case PAC_OFFSET:                          // 4: dx, dy, ds
+std::cerr << "PAC_OFFSET " << ple_gt << "\n";
+            p_offset = (PacElemOffset*) &(*it);
+            break;
+       case PAC_ROTATION:                        // 5: dphi, dtheta, tilt
+std::cerr << "PAC_ROTATION " << ple_gt << "\n";
+            p_rotation = (PacElemRotation*) &(*it);
+            break;
+       case PAC_APERTURE:                        // 6: shape, xsize, ysize
+std::cerr << "PAC_APERTURE " << ple_gt << "\n";
+            // p_aperture = (PacElemAperture*) &(*it);
+            break;
+       case PAC_COMPLEXITY:                     // 7: n
+std::cerr << "PAC_COMPLEXITY " << ple_gt << "\n";
+            p_complexity = (PacElemComplexity* ) &(*it);
+            break;
+       case PAC_SOLENOID:                       // 8: ks
+std::cerr << "PAC_SOLENOID " << ple_gt << "\n";
+            // p_solenoid = (PacElemSolenoid* ) &(*it);
+            break;
+       case PAC_RFCAVITY:                       // 9: volt, lag, harmon
+std::cerr << "PAC_RFCAVITY " << ple_gt << "\n";
+           // p_rf = (PacElemRfCavity* ) &(*it);
+           break;
+      default:
+        break;
+      }   
+    }   
+  }
+  else{
+   std::cerr << "Marker " << ple_gt << "\n";
+  }
+
       
   }
+}
 
 /*
  const PacLattice& p_lattice2     = (PacLattice&) ual_an_r;

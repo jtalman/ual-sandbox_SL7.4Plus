@@ -155,7 +155,7 @@ double LD       = rD*pcD;      //    L0;
 // if(ple_gt=="Quadrupole"){for_postSxfPropagate << "/* " << ple.getDesignName() << " " << ple_P << " */" << " em_q.propagate(bunch);\n";}
 // if(ple_gt=="Sbend"){for_postSxfPropagate << "/* " << ple.getDesignName() << " " << ple_P << " */" << " em_em.propagate(bunch);\n";}
 // if(ple_gt=="Sbend"){for_postSxfPropagate << "/* " << ple.getDesignName() << " " << actualPosition << " */" << " em_em.propagate(bunch);\n";}
-   if(ple_gt=="Sbend"){for_postSxfPropagate << "/* " << ple.getDesignName() << " " << actualPosition << " */" << " em_em.propagate(bunch);\n";
+// if(ple_gt=="Sbend"){for_postSxfPropagate << "/* " << ple.getDesignName() << " " << actualPosition << " */" << " em_em.propagateWithArguments(bunch);\n";
 // if(ple_gt=="Quadrupole"){PacElemMultipole* quadSet = (PacElemMultipole*) &(*it); std::cerr << "JDT Quadrupole\n";}
 // if(ple_gt==""){"drift\n";}
 // else{std::cerr << " ple.getType() " << ple_gt << " ple_gt.length() " << ple_gt.length() << "\n";}
@@ -201,6 +201,9 @@ std::cerr << "m_mlt->ktl(3) " << m_mlt->kl(3) << "\n";
       }   
      }
 */
+//void propagateWithArguments(UAL::Probe& probe, double klE0, double klE1, double klM0)
+// if(ple_gt=="Sbend"){for_postSxfPropagate << "/* " << ple.getDesignName() << " " << actualPosition << " */" << " em_em.propagateWithArguments(bunch,0.0,0.0,0.0);\n";
+   if(ple_gt=="Sbend"){for_postSxfPropagate << "/* " << ple.getDesignName() << " " << actualPosition << " */";
 
     PacElemMultipole* p_entryMlt;
     PacElemMultipole* p_exitMlt;
@@ -219,6 +222,8 @@ std::cerr << "m_mlt->ktl(3) " << m_mlt->kl(3) << "\n";
   int size;
   double*data;
   int j;
+  std::string SklE0,SklE1,SklM0;
+  double       klE0, klE1, klM0;
 
   if(attributes){
     for(PacElemAttributes::iterator it = attributes->begin(); it != attributes->end(); it++){
@@ -232,6 +237,8 @@ std::cerr << "PAC_BEND PAC_LENGTH " << ple_gt << "\n";
             data=p_bend->data();
             size=p_bend->size();
 std::cerr << "PAC_BEND " << ple_gt << " angle " << p_bend->angle() << "\n";
+klE0=p_bend->angle();
+//SklE0=std::to_string(klE0);
 std::cerr << "PAC_BEND " << ple_gt << " fint " << p_bend->fint() << "\n";
 std::cerr << "PAC_BEND " << ple_gt << " size " << size << "\n";
 for(j=0;j<size;j++){
@@ -244,6 +251,8 @@ for(j=0;j<size;j++){
             data=p_mlt->data();
             size=p_mlt->size();
 std::cerr << "PAC_BEND PAC_MULTIPOLE " << ple_gt << "\n";
+klM0=data[1];
+klE1=data[2];
 std::cerr << "PAC_BEND PAC_MULTIPOLE " << ple_gt << " size " << size << "\n";
 for(j=0;j<size;j++){
  std::cerr << "PAC_BEND PAC_MULTIPOLE " << j << " data[j] " << data[j] << "\n";
@@ -279,12 +288,14 @@ std::cerr << "PAC_RFCAVITY " << ple_gt << "\n";
       }   
     }   
   }
-  else{
-   std::cerr << "Marker " << ple_gt << "\n";
-  }
+//else{
+// std::cerr << "Marker " << ple_gt << "\n";
+//}
+//void propagateWithArguments(UAL::Probe& probe, double klE0, double klE1, double klM0)
+   for_postSxfPropagate << " em_em.propagateWithArguments(bunch," << klE0 << ", " << klE1 << ", " << klM0 << ");\n";
 
-      
   }
+ if(ple_gt=="Marker"){for_postSxfPropagate << "/* " << ple.getDesignName() << " " << actualPosition << " */" << " em_m.propagate(bunch);\n";}
 }
 
 /*

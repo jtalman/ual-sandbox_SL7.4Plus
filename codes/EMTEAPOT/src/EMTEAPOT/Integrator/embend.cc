@@ -37,6 +37,7 @@ namespace EMTEAPOT {
 inline ETEAPOT::MltData& getMltData();
 
 #include "EMTEAPOT/Integrator/embendMethods/propagate.method"
+#include "EMTEAPOT/Integrator/embendMethods/propagateWithArguments.method"
 
 #include "EMTEAPOT/Integrator/embendMethods/entryFF.method"
 #include "EMTEAPOT/Integrator/embendMethods/refractIn.method"

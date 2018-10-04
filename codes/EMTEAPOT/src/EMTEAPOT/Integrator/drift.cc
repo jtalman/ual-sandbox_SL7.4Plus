@@ -25,6 +25,7 @@ namespace EMTEAPOT {
    #include"EMTEAPOT/Integrator/driftMethods/classMethods"
 
    #include"EMTEAPOT/Integrator/driftMethods/propagate.method"
+   #include"EMTEAPOT/Integrator/driftMethods/propagateWithArguments.method"
    #include"EMTEAPOT/Integrator/genMethods/get_vlcyMKS.method"
    #include"EMTEAPOT/Integrator/genMethods/passDrift.method"
 

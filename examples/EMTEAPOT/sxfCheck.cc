@@ -131,79 +131,6 @@ double LD       = rD*pcD;      //    L0;
   double ple_P;
   double ple_L;
   double actualPosition;
-/*
-  PacElemBend* m_bnd;
-  PacElemAttributes* attributes;
-//PacElemAttributes* attributes = e.getBody();
-  PacElemMultipole* m_mlt;
-  PacElemOffset* m_offset;
-  PacElemRotation* m_rotation;
-*/
-
-  for_postSxfPropagate.setf( ios::fixed );
-  for_postSxfPropagate.precision( 4 );
-  for(int i=0;i<lattice.size();i++){
-   const PacLattElement& ple = lattice[i];
-   ple_gt=ple.getType();
-   ple_P=ple.getPosition();
-   ple_L=ple.getLength();
-   actualPosition=(int)(10000.*(ple_P + ple_L/2.))/10000.;
-//std::cerr << "ple_gt " << ple_gt << "\n";
-   if(ple_gt==""){ple_gt="Drift";for_postSxfPropagate << "em_d.propagate(bunch);\n";}
-   if(ple_gt=="Marker"){for_postSxfPropagate << "/* " << ple.getDesignName() << " " << actualPosition << " */" << " em_m.propagate(bunch);\n";}
-   if(ple_gt=="Quadrupole"){for_postSxfPropagate << "/* " << ple.getDesignName() << " " << actualPosition << " */" << " em_q.propagate(bunch);\n";}
-// if(ple_gt=="Quadrupole"){for_postSxfPropagate << "/* " << ple.getDesignName() << " " << ple_P << " */" << " em_q.propagate(bunch);\n";}
-// if(ple_gt=="Sbend"){for_postSxfPropagate << "/* " << ple.getDesignName() << " " << ple_P << " */" << " em_em.propagate(bunch);\n";}
-// if(ple_gt=="Sbend"){for_postSxfPropagate << "/* " << ple.getDesignName() << " " << actualPosition << " */" << " em_em.propagate(bunch);\n";}
-// if(ple_gt=="Sbend"){for_postSxfPropagate << "/* " << ple.getDesignName() << " " << actualPosition << " */" << " em_em.propagateWithArguments(bunch);\n";
-// if(ple_gt=="Quadrupole"){PacElemMultipole* quadSet = (PacElemMultipole*) &(*it); std::cerr << "JDT Quadrupole\n";}
-// if(ple_gt==""){"drift\n";}
-// else{std::cerr << " ple.getType() " << ple_gt << " ple_gt.length() " << ple_gt.length() << "\n";}
-// std::cerr << " ple.getType() " << ple.getType() << "\n\n";
-//
-/*
-std::cerr << "ple.getLength() " << ple.getLength() << "\n";
-   attributes = ple.getBody();
-   if(attributes){
-    for(PacElemAttributes::iterator it = attributes->begin(); it != attributes->end(); it++){
-      switch((*it).key()){
-      case PAC_BEND:
-      m_bnd = (PacElemBend*) &(*it);
-std::cerr << "JDT Bend\n";
-//std::cerr << "m_bnd->length() " << m_bnd->length() << "\n";
-std::cerr << "m_bnd->angle() " << m_bnd->angle() << "\n";
-std::cerr << "m_bnd->fint() " << m_bnd->fint() << "\n";
-      break;
-      case PAC_MULTIPOLE:
-        m_mlt = (PacElemMultipole*) &(*it);
-std::cerr << "JDT Multipole\n";
-std::cerr << "m_mlt->kl(0) " << m_mlt->kl(0) << "\n";
-std::cerr << "m_mlt->kl(1) " << m_mlt->kl(1) << "\n";
-std::cerr << "m_mlt->kl(2) " << m_mlt->kl(2) << "\n";
-std::cerr << "m_mlt->kl(3) " << m_mlt->kl(3) << "\n";
-std::cerr << "m_mlt->ktl(0) " << m_mlt->kl(0) << "\n";
-std::cerr << "m_mlt->ktl(1) " << m_mlt->kl(1) << "\n";
-std::cerr << "m_mlt->ktl(2) " << m_mlt->kl(2) << "\n";
-std::cerr << "m_mlt->ktl(3) " << m_mlt->kl(3) << "\n";
-        break;
-      case PAC_OFFSET:
-        m_offset = (PacElemOffset*) &(*it);
-        break;
-      case PAC_APERTURE:
-        // m_aperture = (PacElemAperture*) &(*it);
-        break;
-      case PAC_ROTATION:
-        m_rotation = (PacElemRotation*) &(*it);
-        break;
-        default:
-        break;
-       }   
-      }   
-     }
-*/
-//void propagateWithArguments(UAL::Probe& probe, double klE0, double klE1, double klM0)
-// if(ple_gt=="Sbend"){for_postSxfPropagate << "/* " << ple.getDesignName() << " " << actualPosition << " */" << " em_em.propagateWithArguments(bunch,0.0,0.0,0.0);\n";
-   if(ple_gt=="Sbend"){for_postSxfPropagate << "/* " << ple.getDesignName() << " " << actualPosition << " */";
 
     PacElemMultipole* p_entryMlt;
     PacElemMultipole* p_exitMlt;
@@ -218,12 +145,28 @@ std::cerr << "m_mlt->ktl(3) " << m_mlt->kl(3) << "\n";
     // PacElemSolenoid* p_solenoid;    // 8: ks
     // PacElemRfCavity* p_rf;          // 9: volt, lag, harmon
 
-  PacElemAttributes* attributes = ple.getBody();
+//PacElemAttributes* attributes = ple.getBody();
+  PacElemAttributes* attributes;
   int size;
   double*data;
   int j;
   std::string SklE0,SklE1,SklM0;
   double       klE0, klE1, klM0;
+
+  for_postSxfPropagate.setf( ios::fixed );
+  for_postSxfPropagate.precision( 4 );
+  for(int i=0;i<lattice.size();i++){
+   const PacLattElement& ple = lattice[i];
+   attributes = ple.getBody();
+   ple_gt=ple.getType();
+   ple_P=ple.getPosition();
+   ple_L=ple.getLength();
+   actualPosition=(int)(10000.*(ple_P + ple_L/2.))/10000.;
+   if(ple_gt==""){ple_gt="Drift";for_postSxfPropagate << "/* (implicit) Drift */ em_d.propagateWithArguments(bunch, " << ple_L << ");\n";}
+   if(ple_gt=="Marker"){for_postSxfPropagate << "/* " << ple.getDesignName() << " " << actualPosition << " */" << " em_m.propagate(bunch);\n";}
+   if(ple_gt=="Quadrupole"){for_postSxfPropagate << "/* " << ple.getDesignName() << " " << actualPosition << " */" << " em_q.propagate(bunch);\n";}
+   if(ple_gt=="Sbend"){for_postSxfPropagate << "/* " << ple.getDesignName() << " " << actualPosition << " */";
+
 
   if(attributes){
     for(PacElemAttributes::iterator it = attributes->begin(); it != attributes->end(); it++){

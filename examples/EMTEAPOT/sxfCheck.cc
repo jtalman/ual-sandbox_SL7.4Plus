@@ -162,9 +162,9 @@ double LD       = rD*pcD;      //    L0;
    ple_P=ple.getPosition();
    ple_L=ple.getLength();
    actualPosition=(int)(10000.*(ple_P + ple_L/2.))/10000.;
-   if(ple_gt==""){ple_gt="Drift";for_postSxfPropagate << "/* (implicit) Drift */ em_d.propagateWithArguments(bunch, " << ple_L << ");\n";}
-   if(ple_gt=="Marker"){for_postSxfPropagate << "/* " << ple.getDesignName() << " " << actualPosition << " */" << " em_m.propagate(bunch);\n";}
-   if(ple_gt=="Quadrupole"){for_postSxfPropagate << "/* " << ple.getDesignName() << " " << actualPosition << " */" << " em_q.propagate(bunch);\n";}
+   if(ple_gt==""){ple_gt="Drift";for_postSxfPropagate << "implicitDrift.propagateWithArguments(bunch, " << ple_L << ");\n";}
+   if(ple_gt=="Marker"){for_postSxfPropagate << "/* " << ple.getDesignName() << " " << actualPosition << " */" << " marker.propagate(bunch);\n";}
+   if(ple_gt=="Quadrupole"){for_postSxfPropagate << "/* " << ple.getDesignName() << " " << actualPosition << " */" << " quad.propagate(bunch);\n";}
    if(ple_gt=="Sbend"){for_postSxfPropagate << "/* " << ple.getDesignName() << " " << actualPosition << " */";
 
 
@@ -235,10 +235,10 @@ std::cerr << "PAC_RFCAVITY " << ple_gt << "\n";
 // std::cerr << "Marker " << ple_gt << "\n";
 //}
 //void propagateWithArguments(UAL::Probe& probe, double klE0, double klE1, double klM0)
-   for_postSxfPropagate << " em_em.propagateWithArguments(bunch," << klE0 << ", " << klE1 << ", " << klM0 << ");\n";
+   for_postSxfPropagate << " bend.propagateWithArguments(bunch," << klE0 << ", " << klE1 << ", " << klM0 << ");\n";
 
   }
- if(ple_gt=="Marker"){for_postSxfPropagate << "/* " << ple.getDesignName() << " " << actualPosition << " */" << " em_m.propagate(bunch);\n";}
+ if(ple_gt=="Marker"){for_postSxfPropagate << "/* " << ple.getDesignName() << " " << actualPosition << " */" << " marker.propagate(bunch);\n";}
 }
 
 /*

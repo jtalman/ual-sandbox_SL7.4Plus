@@ -167,7 +167,53 @@ double LD       = rD*pcD;      //    L0;
 
    if(ple_gt=="Marker"){for_postSxfPropagate << "/* " << ple.getDesignName() << " " << actualPosition << " */" << " marker.propagate(bunch);\n";}
 
-   if(ple_gt=="Quadrupole"){for_postSxfPropagate << "/* " << ple.getDesignName() << " " << actualPosition << " */" << " quad.propagate(bunch);\n";}
+// if(ple_gt=="Quadrupole"){for_postSxfPropagate << "/* " << ple.getDesignName() << " " << actualPosition << " */" << " quad.propagate(bunch);\n";}
+   if(ple_gt=="Quadrupole"){for_postSxfPropagate << "/* " << ple.getDesignName() << " " << actualPosition << " */";
+    if(attributes){
+     for(PacElemAttributes::iterator it = attributes->begin(); it != attributes->end(); it++){
+      switch((*it).key()){
+       case PAC_LENGTH:                          // 1: l
+            p_length = (PacElemLength*) &(*it);
+            break;
+       case PAC_BEND:                            // 2: angle, fint
+            p_bend = (PacElemBend*) &(*it);
+            data=p_bend->data();
+            size=p_bend->size();
+            klE0=p_bend->angle();
+            break;
+       case PAC_MULTIPOLE:                       // 3: kl, ktl
+            p_bend = (PacElemBend*) &(*it);
+            p_mlt = (PacElemMultipole*) &(*it);
+            data=p_mlt->data();
+            size=p_mlt->size();
+            klM0=data[1];
+            klE1=data[2];
+            break;
+       case PAC_OFFSET:                          // 4: dx, dy, ds
+            p_offset = (PacElemOffset*) &(*it);
+            break;
+       case PAC_ROTATION:                        // 5: dphi, dtheta, tilt
+            p_rotation = (PacElemRotation*) &(*it);
+            break;
+       case PAC_APERTURE:                        // 6: shape, xsize, ysize
+            // p_aperture = (PacElemAperture*) &(*it);
+            break;
+       case PAC_COMPLEXITY:                     // 7: n
+            p_complexity = (PacElemComplexity* ) &(*it);
+            break;
+       case PAC_SOLENOID:                       // 8: ks
+            // p_solenoid = (PacElemSolenoid* ) &(*it);
+            break;
+       case PAC_RFCAVITY:                       // 9: volt, lag, harmon
+           // p_rf = (PacElemRfCavity* ) &(*it);
+           break;
+      default:
+        break;
+      }   
+     }   
+    }
+   for_postSxfPropagate << " quad.propagateWithArguments(bunch, " << klE0 << ", " << klE1 << ", " << klM0 << ");\n";
+   }
 
    if(ple_gt=="Sbend"){for_postSxfPropagate << "/* " << ple.getDesignName() << " " << actualPosition << " */";
     if(attributes){
@@ -180,15 +226,15 @@ double LD       = rD*pcD;      //    L0;
             p_bend = (PacElemBend*) &(*it);
             data=p_bend->data();
             size=p_bend->size();
-klE0=p_bend->angle();
+            klE0=p_bend->angle();
             break;
        case PAC_MULTIPOLE:                       // 3: kl, ktl
             p_bend = (PacElemBend*) &(*it);
             p_mlt = (PacElemMultipole*) &(*it);
             data=p_mlt->data();
             size=p_mlt->size();
-klM0=data[1];
-klE1=data[2];
+            klM0=data[1];
+            klE1=data[2];
             break;
        case PAC_OFFSET:                          // 4: dx, dy, ds
             p_offset = (PacElemOffset*) &(*it);

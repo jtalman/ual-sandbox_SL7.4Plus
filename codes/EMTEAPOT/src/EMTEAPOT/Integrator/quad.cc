@@ -26,6 +26,8 @@ namespace EMTEAPOT {
    inline ETEAPOT::MltData& getMltData();
 
 #include "EMTEAPOT/Integrator/quadMethods/propagate.method"
+#include "EMTEAPOT/Integrator/quadMethods/propagateWithArguments.method"
+
 #include "EMTEAPOT/Integrator/genMethods/get_vlcyMKS.method"
 #include "EMTEAPOT/Integrator/genMethods/passDrift.method"
 

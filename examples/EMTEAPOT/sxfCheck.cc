@@ -162,105 +162,60 @@ double LD       = rD*pcD;      //    L0;
    ple_P=ple.getPosition();
    ple_L=ple.getLength();
    actualPosition=(int)(10000.*(ple_P + ple_L/2.))/10000.;
+
    if(ple_gt==""){ple_gt="Drift";for_postSxfPropagate << "implicitDrift.propagateWithArguments(bunch, " << ple_L << ");\n";}
+
    if(ple_gt=="Marker"){for_postSxfPropagate << "/* " << ple.getDesignName() << " " << actualPosition << " */" << " marker.propagate(bunch);\n";}
+
    if(ple_gt=="Quadrupole"){for_postSxfPropagate << "/* " << ple.getDesignName() << " " << actualPosition << " */" << " quad.propagate(bunch);\n";}
+
    if(ple_gt=="Sbend"){for_postSxfPropagate << "/* " << ple.getDesignName() << " " << actualPosition << " */";
-
-
-  if(attributes){
-    for(PacElemAttributes::iterator it = attributes->begin(); it != attributes->end(); it++){
+    if(attributes){
+     for(PacElemAttributes::iterator it = attributes->begin(); it != attributes->end(); it++){
       switch((*it).key()){
        case PAC_LENGTH:                          // 1: l
             p_length = (PacElemLength*) &(*it);
-std::cerr << "PAC_BEND PAC_LENGTH " << ple_gt << "\n";
             break;
        case PAC_BEND:                            // 2: angle, fint
             p_bend = (PacElemBend*) &(*it);
             data=p_bend->data();
             size=p_bend->size();
-std::cerr << "PAC_BEND " << ple_gt << " angle " << p_bend->angle() << "\n";
 klE0=p_bend->angle();
-//SklE0=std::to_string(klE0);
-std::cerr << "PAC_BEND " << ple_gt << " fint " << p_bend->fint() << "\n";
-std::cerr << "PAC_BEND " << ple_gt << " size " << size << "\n";
-for(j=0;j<size;j++){
- std::cerr << "PAC_BEND " << j << " data[j] " << data[j] << "\n";
-}
             break;
        case PAC_MULTIPOLE:                       // 3: kl, ktl
             p_bend = (PacElemBend*) &(*it);
             p_mlt = (PacElemMultipole*) &(*it);
             data=p_mlt->data();
             size=p_mlt->size();
-std::cerr << "PAC_BEND PAC_MULTIPOLE " << ple_gt << "\n";
 klM0=data[1];
 klE1=data[2];
-std::cerr << "PAC_BEND PAC_MULTIPOLE " << ple_gt << " size " << size << "\n";
-for(j=0;j<size;j++){
- std::cerr << "PAC_BEND PAC_MULTIPOLE " << j << " data[j] " << data[j] << "\n";
-}
-std::cerr << "\n\n";
             break;
        case PAC_OFFSET:                          // 4: dx, dy, ds
-std::cerr << "PAC_OFFSET " << ple_gt << "\n";
             p_offset = (PacElemOffset*) &(*it);
             break;
        case PAC_ROTATION:                        // 5: dphi, dtheta, tilt
-std::cerr << "PAC_ROTATION " << ple_gt << "\n";
             p_rotation = (PacElemRotation*) &(*it);
             break;
        case PAC_APERTURE:                        // 6: shape, xsize, ysize
-std::cerr << "PAC_APERTURE " << ple_gt << "\n";
             // p_aperture = (PacElemAperture*) &(*it);
             break;
        case PAC_COMPLEXITY:                     // 7: n
-std::cerr << "PAC_COMPLEXITY " << ple_gt << "\n";
             p_complexity = (PacElemComplexity* ) &(*it);
             break;
        case PAC_SOLENOID:                       // 8: ks
-std::cerr << "PAC_SOLENOID " << ple_gt << "\n";
             // p_solenoid = (PacElemSolenoid* ) &(*it);
             break;
        case PAC_RFCAVITY:                       // 9: volt, lag, harmon
-std::cerr << "PAC_RFCAVITY " << ple_gt << "\n";
            // p_rf = (PacElemRfCavity* ) &(*it);
            break;
       default:
         break;
       }   
-    }   
+     }   
+    }
+   for_postSxfPropagate << " bend.propagateWithArguments(bunch, " << klE0 << ", " << klE1 << ", " << klM0 << ");\n";
   }
-//else{
-// std::cerr << "Marker " << ple_gt << "\n";
-//}
-//void propagateWithArguments(UAL::Probe& probe, double klE0, double klE1, double klM0)
-   for_postSxfPropagate << " bend.propagateWithArguments(bunch," << klE0 << ", " << klE1 << ", " << klM0 << ");\n";
-
-  }
- if(ple_gt=="Marker"){for_postSxfPropagate << "/* " << ple.getDesignName() << " " << actualPosition << " */" << " marker.propagate(bunch);\n";}
-}
-
-/*
- const PacLattice& p_lattice2     = (PacLattice&) ual_an_r;
- ualPSs = apSeq.size();
- std::cerr << "\n\n\nsize : " << ualPSs << " propagators \n\n\n";
-
- int counter = 0;
- std::list<UAL::PropagatorNodePtr>::iterator it;
- anode = m_lattice->getNodeAt(counter);
- UAL::PropagatorNodePtr ual_pnp;
-// std::string ple_gt;
- for(it = apSeq.begin(); it != apSeq.end(); it++){
-  ual_pnp = *(it);
-  std::cerr << counter++ << " (*(ual_pnp)).getType() " << (*(ual_pnp)).getType() << "\n";
-  std::cerr << " typeid( *(ual_pnp) ).name() " << typeid( *(ual_pnp) ).name() << "\n";
-  const PacLattElement& ple = lattice[counter];
-//ple_gt=ple.getType();
-//std::cerr << " ple.getType() " << ple_gt << "\n\n";
-//std::cerr << " ple.getType() " << ple.getType() << "\n\n";
  }
-*/
 
  for_postSxfPropagate << "}\n";
  for_postSxfPropagate.close();

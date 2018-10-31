@@ -17,6 +17,17 @@ void propagateWithArguments(UAL::Probe& probe, double klE0, double klE1, double 
   passDrift( m_l/2., tofD/2. );
  }                                                              // end electric
 
+ double qm              = klM0;                                 // start magnetic
+ for(int ip = 1; ip < bunch.size(); ip++) {
+  PAC::Position& pacP   = bunch[ip].getPosition();
+  pacPmy                = &pacP;
+  passDrift( m_l/2., tofD/2. );
+  pacP[1]              -= qm*pacP[0];
+  pacP[3]              += qm*pacP[2];
+  #include"quadSpinEvolve"
+  passDrift( m_l/2., tofD/2. );
+ }                                                              // end magnetic
+
  tofDT                 +=tofD;                                  // sxf spot check
  sDT                   += m_l;                                  // sxf spot check
 }

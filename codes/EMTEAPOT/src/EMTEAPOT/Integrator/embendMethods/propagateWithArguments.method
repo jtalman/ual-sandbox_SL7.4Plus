@@ -1,6 +1,7 @@
 // embend file
 void propagateWithArguments(UAL::Probe& probe, double klE0, double klE1, double klM0)                                    // Bend method
 {
+/*
 double* data           = m_mdata.m_mlt->data();
 std::cerr << "\nJDT2018 - File " << __FILE__ << " line " << __LINE__ << " enter method embend::propagate - sizeof(data) " << sizeof(data) << "\n";
 std::cerr << "data[0] " << data[0] << "\n";
@@ -14,6 +15,7 @@ std::cerr << "data[7] " << data[7] << "\n";
 std::cerr << "m_l     " << m_l     << "\n";
 
 std::cerr << "typeid(m_data),name()     " << typeid(m_data).name()     << "\n";
+*/
  tofD               = m_l/vD;
  thetaD             = m_data.m_angle;
 std::cerr << "thetaD    " << thetaD  << "\n";
@@ -24,7 +26,7 @@ std::cerr << "m_data.m_btw01    " << m_data.m_btw01  << "\n";
 //std::cerr << "                                                                                                  m_data.kls0    " << m_data.kls0  << "\n";
 
 double eAngle = m_data.m_angle;
-double mAngle = data[1];                         //   !!!   <<<<----
+double mAngle = klM0;   //0;//data[1];                         //   !!!   <<<<----
 double tAngle = mAngle+eAngle;                   //   !!!   <<<<----
 double etaM = mAngle/(mAngle+eAngle);
 double etaE = eAngle/(mAngle+eAngle);

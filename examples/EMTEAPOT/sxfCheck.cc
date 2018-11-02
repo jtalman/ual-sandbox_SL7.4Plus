@@ -150,11 +150,15 @@ double LD       = rD*pcD;      //    L0;
   int size;
   double*data;
   int j;
-  std::string SklE0,SklE1,SklM0;
-  double       klE0, klE1, klM0;
+  std::string SklE0,SklE1,SklE2, SklM0,SklM1, SklM2;
+  double       klE0, klE1, klE2, klM0, klM1, klM2;
 
   for_postSxfPropagate.setf( ios::fixed );
-  for_postSxfPropagate.precision( 4 );
+
+//for_postSxfPropagate.precision( 4 );
+//for_postSxfPropagate.precision( 9 );
+  for_postSxfPropagate.precision( 7 );
+
   for(int i=0;i<lattice.size();i++){
    const PacLattElement& ple = lattice[i];
    attributes = ple.getBody();
@@ -188,6 +192,15 @@ double LD       = rD*pcD;      //    L0;
             size=p_mlt->size();
             klM0=data[1];
             klE1=data[2];
+            klM1=data[3];
+std::cerr << "QUAD PAC_MULTIPOLE data[0] " << data[0] << "\n";
+std::cerr << "QUAD PAC_MULTIPOLE data[1] " << data[1] << "\n";
+std::cerr << "QUAD PAC_MULTIPOLE data[2] " << data[2] << "\n";
+std::cerr << "QUAD PAC_MULTIPOLE data[3] " << data[3] << "\n";
+std::cerr << "QUAD PAC_MULTIPOLE data[4] " << data[4] << "\n";
+std::cerr << "QUAD PAC_MULTIPOLE data[5] " << data[5] << "\n";
+std::cerr << "QUAD PAC_MULTIPOLE data[6] " << data[6] << "\n";
+std::cerr << "QUAD PAC_MULTIPOLE data[7] " << data[7] << "\n";
             break;
        case PAC_OFFSET:                          // 4: dx, dy, ds
             p_offset = (PacElemOffset*) &(*it);
@@ -212,7 +225,7 @@ double LD       = rD*pcD;      //    L0;
       }   
      }   
     }
-   for_postSxfPropagate << " quad.propagateWithArguments(bunch, " << klE0 << ", " << klE1 << ", " << klM0 << ");\n";
+   for_postSxfPropagate << " quad.propagateWithArguments(bunch, " << klE0 << ", " << klE1 << ", " << klM0 << ", " << klM1 << ");\n";
    }
 
    if(ple_gt=="Sbend"){for_postSxfPropagate << "/* " << ple.getDesignName() << " " << actualPosition << " */";
@@ -235,6 +248,13 @@ double LD       = rD*pcD;      //    L0;
             size=p_mlt->size();
             klM0=data[1];
             klE1=data[2];
+            klM1=data[3];
+            klM2=data[4];
+std::cerr << "BEND PAC_MULTIPOLE data[0] " << data[0] << "\n";
+std::cerr << "BEND PAC_MULTIPOLE data[1] " << data[1] << "\n";
+std::cerr << "BEND PAC_MULTIPOLE data[2] " << data[2] << "\n";
+std::cerr << "BEND PAC_MULTIPOLE data[3] " << data[3] << "\n";
+std::cerr << "BEND PAC_MULTIPOLE data[4] " << data[4] << "\n";
             break;
        case PAC_OFFSET:                          // 4: dx, dy, ds
             p_offset = (PacElemOffset*) &(*it);
@@ -259,7 +279,7 @@ double LD       = rD*pcD;      //    L0;
       }   
      }   
     }
-   for_postSxfPropagate << " bend.propagateWithArguments(bunch, " << klE0 << ", " << klE1 << ", " << klM0 << ");\n";
+   for_postSxfPropagate << " bend.propagateWithArguments(bunch, " << klE0 << ", " << klE1 << ", " << klM0 << ", " << klM1 << ");\n";
   }
  }
 

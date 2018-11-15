@@ -1,0 +1,42 @@
+: START AT LINE 22 !!
+: $SXF COMPILE
+pushd $SXFV
+ll lib/linux
+make clean
+ll lib/linux
+make
+ll lib/linux
+popd
+
+: MAIN SERVER SIDE COMPILE:
+pushd $UAL/codes/EMTEAPOT
+ll lib/linux
+make clean
+ll lib/linux
+make
+ll lib/linux
+popd
+: START AT LINE 22 !!
+
+
+: START HERE      <<<<<<<<------------------
+: SXF TEST USAGE:
+ls -l postSxfPropagate.cc
+\rm postSxfPropagate.cc
+\cp Makefile_sxfCheck Makefile
+\cp userManifest/userBunch1 userManifest/userBunch
+\cp userManifest/designBeamValues_sxfCheck userManifest/designBeamValues.hh
+make clean
+make
+
+:./sxfCheck ./sxf/current2.sxf
+ ./sxfCheck ./sxf/E_BM_Z.sxf
+
+make postSxfPropagate
+ls -l postSxfPropagate.cc
+ls -l postSxfPropagate
+
+: ddd ./sxfCheck
+: ./sxf/EM_45MeV_pEDM.sxf2_klE_klM_bendsQuads
+: ./sxfCheck ./sxf/EM_45MeV_pEDM.sxf2_klE_klM_bendsQuads
+: ./sxfCheck ./sxf/current.sxf

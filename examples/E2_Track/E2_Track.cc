@@ -178,5 +178,36 @@ int main(int argc,char * argv[]){
  std::cerr << "\n";
 #endif
 
+ std::cerr << "(double) mDcc = " << mDcc << "\n";
+ std::cerr << "(double) qD = " << qD << "\n"; 
+
+ std::cerr << "(double) betaD = " << betaD << "\n";
+ std::cerr << "(double) vD = " << vD << "\n"; 
+ std::cerr << "(double) gammaD = " << gammaD << "\n";
+
+ std::cerr << "(double) eD = " << eD << "\n"; 
+ std::cerr << "(double) pDc = " << pDc << "\n";
+
+ std::cerr << "(double) fD = " << fD << "\n"; 
+ std::cerr << "(double) tofD = " << tofD << "\n";
+
+ std::cerr << "(double) thetaD = " << thetaD << "\n";
+ std::cerr << "(double) th = " << th << "\n"; 
+
+ std::cerr << "(double) tofDT = " << tofDT << "\n";
+ std::cerr << "(double) thetaDT = " << thetaDT << "\n";
+
+ std::cerr << "(double) Rsxf = " << Rsxf << "\n";
+ std::cerr << "(double) rD = " << rD << "\n"; 
+// std::cerr << "(double) LD = " << LD << "\n"; 
+ std::cerr << "(double) LDc = " << LDc << "\n";
+ std::cerr << "(double) kD = " << kD << "\n"; 
+ std::cerr << "(double) EscrD = " << EscrD << "\n";
+ std::cerr << "(double) ED = " << ED << "\n"; 
+
+ std::cerr << "(double) sDT = " << sDT << "\n";
+
+// std::cerr << "(double) bendsDT = " << bendsDT << "\n";
+
  return 0;
 }

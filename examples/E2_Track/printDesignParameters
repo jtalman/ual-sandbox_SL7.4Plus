@@ -1,0 +1,21 @@
+: MAIN SERVER SIDE COMPILE:
+pushd $UAL/codes/ETEAPOT2
+ll lib/linux
+make clean
+ll lib/linux
+make
+ll lib/linux
+popd
+
+setenv LD_LIBRARY_PATH $SXF/lib/$SXF_ARCH/:$LD_LIBRARY_PATH
+
+: SXF TEST USAGE:
+\cp $UAL/examples/E2_Track/Makefile_sxfCheck $UAL/examples/E2_Track/Makefile
+\cp userManifest/userBunch1 userManifest/userBunch
+: \cp userManifest/designBeamValues-e.hh userManifest/designBeamValues.hh
+\cp userManifest/designBeamValues-p.hh userManifest/designBeamValues.hh
+make clean
+make
+
+./E2_Track ./sxf/E_BM_Z.sxf 5.4142678e+05 -1 0 1 0.02 1  >! /dev/null  
+: ./E2_Track ./sxf/E_AGS_AnEDM_SepQuads.RF-.sxf 6.9511053e6 -1 0 1 0.02 1  >! /dev/null  

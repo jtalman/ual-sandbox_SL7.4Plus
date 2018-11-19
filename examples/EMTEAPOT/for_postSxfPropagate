@@ -23,6 +23,8 @@ for_postSxfPropagate << "#include \"userManifest/probeDataForTwiss\"\n";
 
 for_postSxfPropagate << "int main(int argc,char * argv[])\{\n";
 
+for_postSxfPropagate << "#include \"parameters\"\n";
+
 //for_postSxfPropagate << "UAL::Probe& probe;\n";
 for_postSxfPropagate << "PAC::Bunch bunch(2);\n";
 for_postSxfPropagate << "bunch[0].getPosition().set(      0,       0,      0,      0,      0,      0 );\n";

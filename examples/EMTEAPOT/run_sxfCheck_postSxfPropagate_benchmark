@@ -31,7 +31,8 @@ make clean
 make
 
 :./sxfCheck ./sxf/current2.sxf
- ./sxfCheck ./sxf/E_BM_Z.sxf
+:./sxfCheck ./sxf/E_BM_Z.sxf
+ ./sxfCheck ./sxf/EM_BM_Z.sxf
 
 make postSxfPropagate
 ls -l postSxfPropagate.cc

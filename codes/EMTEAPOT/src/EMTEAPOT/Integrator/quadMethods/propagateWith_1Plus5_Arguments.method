@@ -2,6 +2,7 @@
 
 void propagateWith_1Plus5_Arguments(UAL::Probe& probe, double lngth, double klE0, double klE1, double klM0, double klM1)
 {
+std::cerr << "\nJDT2018 - enter File " << __FILE__ << " line " << __LINE__ << "\n";
  m_l=lngth;
  tofD                   = m_l/vD;                               // sxf spot check
 
@@ -35,4 +36,5 @@ void propagateWith_1Plus5_Arguments(UAL::Probe& probe, double lngth, double klE0
 
  tofDT                 +=tofD;                                  // sxf spot check
  sDT                   += m_l;                                  // sxf spot check
+std::cerr << "\nJDT2018 - leave File " << __FILE__ << " line " << __LINE__ << "\n";
 }

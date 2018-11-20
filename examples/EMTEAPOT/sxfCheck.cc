@@ -289,6 +289,9 @@ std::cerr << "QUAD PAC_MULTIPOLE data[7] " << data[7] << "\n";
   }
  }
 
+ for_postSxfPropagate << " std::cerr << \"sDT = \" << sDT << \"\\n\";" << "\n";
+ for_postSxfPropagate << " std::cerr << \"tofDT = \" << tofDT << \"\\n\";" << "\n";
+ for_postSxfPropagate << " std::cerr << \"1./tofDT = \" << 1./tofDT << \"\\n\";" << "\n";
  for_postSxfPropagate << "}\n";
  for_postSxfPropagate.close();
 

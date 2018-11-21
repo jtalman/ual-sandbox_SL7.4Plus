@@ -157,7 +157,8 @@ double LD       = rD*pcD;      //    L0;
 
 //for_postSxfPropagate.precision( 4 );
 //for_postSxfPropagate.precision( 9 );
-  for_postSxfPropagate.precision( 7 );
+//for_postSxfPropagate.precision( 7 );
+  for_postSxfPropagate.precision( 11 );
 
   for(int i=0;i<lattice.size();i++){
    const PacLattElement& ple = lattice[i];
@@ -289,9 +290,14 @@ std::cerr << "QUAD PAC_MULTIPOLE data[7] " << data[7] << "\n";
   }
  }
 
+ for_postSxfPropagate << " std::cerr << \"\\n\";";
  for_postSxfPropagate << " std::cerr << \"sDT = \" << sDT << \"\\n\";" << "\n";
  for_postSxfPropagate << " std::cerr << \"tofDT = \" << tofDT << \"\\n\";" << "\n";
- for_postSxfPropagate << " std::cerr << \"1./tofDT = \" << 1./tofDT << \"\\n\";" << "\n";
+ for_postSxfPropagate << " std::cerr << \"\\n\";";
+ for_postSxfPropagate << " std::cerr << \"turns = \" << turns << \"\\n\";" << "\n";
+ for_postSxfPropagate << " std::cerr << \"sDT/turns = \" << sDT/(double)turns << \"\\n\";" << "\n";
+ for_postSxfPropagate << " std::cerr << \"turns/tofDT = \" << (double)turns/tofDT << \"\\n\";" << "\n";
+ for_postSxfPropagate << "}\n";
  for_postSxfPropagate << "}\n";
  for_postSxfPropagate.close();
 

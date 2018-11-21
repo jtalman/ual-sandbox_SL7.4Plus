@@ -38,7 +38,8 @@ for_postSxfPropagate << "EMTEAPOT::quad quad;\n";
 for_postSxfPropagate << "EMTEAPOT::embend bend;\n";
 for_postSxfPropagate << "EMTEAPOT::sext sext;\n";
 for_postSxfPropagate << "EMTEAPOT::oct oct;\n";
-for_postSxfPropagate << "EMTEAPOT::rfCavity rf;\n";
-//for_postSxfPropagate << "}\n";
+for_postSxfPropagate << "EMTEAPOT::rfCavity rf;\n\n";
 
-//for_postSxfPropagate.close();
+for_postSxfPropagate << "int turns=atoi(argv[1]);\n\n";
+
+for_postSxfPropagate << "for(int i=0;i<turns;i++){\n";

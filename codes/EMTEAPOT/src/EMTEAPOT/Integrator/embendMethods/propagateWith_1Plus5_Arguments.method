@@ -4,42 +4,21 @@ void propagateWith_1Plus5_Arguments(UAL::Probe& probe, double lngth, double klE0
 {
 std::cerr << "\nJDT2018 - enter File " << __FILE__ << " line " << __LINE__ << "\n";
 m_l=lngth;
-/*
-double* data           = m_mdata.m_mlt->data();
-std::cerr << "\nJDT2018 - File " << __FILE__ << " line " << __LINE__ << " enter method embend::propagate - sizeof(data) " << sizeof(data) << "\n";
-std::cerr << "data[0] " << data[0] << "\n";
-std::cerr << "data[1] " << data[1] << "\n";
-std::cerr << "data[2] " << data[2] << "\n";
-std::cerr << "data[3] " << data[3] << "\n";
-std::cerr << "data[4] " << data[4] << "\n";
-std::cerr << "data[5] " << data[5] << "\n";
-std::cerr << "data[6] " << data[6] << "\n";
-std::cerr << "data[7] " << data[7] << "\n";
-std::cerr << "m_l     " << m_l     << "\n";
-
-std::cerr << "typeid(m_data),name()     " << typeid(m_data).name()     << "\n";
-*/
  tofD               = m_l/vD;
- thetaD             = m_data.m_angle;
+ thetaD             = klE0;
 std::cerr << "thetaD    " << thetaD  << "\n";
-std::cerr << "m_data.m_atw00    " << m_data.m_atw00  << "\n";
-std::cerr << "m_data.m_atw01    " << m_data.m_atw01  << "\n";
-std::cerr << "m_data.m_btw00    " << m_data.m_btw00  << "\n";
-std::cerr << "m_data.m_btw01    " << m_data.m_btw01  << "\n";
-//std::cerr << "                                                                                                  m_data.kls0    " << m_data.kls0  << "\n";
 
-double eAngle = m_data.m_angle;
+double eAngle = thetaD;
 double mAngle = klM0;   //0;//data[1];                         //   !!!   <<<<----
 double tAngle = mAngle+eAngle;                   //   !!!   <<<<----
 double etaM = mAngle/(mAngle+eAngle);
 double etaE = eAngle/(mAngle+eAngle);
 
- Rsxf               = m_data.m_l/tAngle;                     // sxf file determines radius
+// Rsxf               = m_data.m_l/tAngle;                     // sxf file determines radius
  rD                 = Rsxf;                                          // design radius is new, in principle
 double rM           = Rsxf;
 
 std::cerr << "++++++++++++++++++++++++++++++++\n";
-std::cerr << "m_data.m_l           " << m_data.m_l  << "\n";
 std::cerr << "electric angle is    " << eAngle  << " (data[1] !!!)    for bend " << bnd << " of " << ualPSs << " total sxf propagators\n";
 std::cerr << "magnetic angle is    " << mAngle  << " (m_data.m_angle) for bend " << bnd << " of " << ualPSs << " total sxf propagators\n";
 std::cerr << "tAngle               " << tAngle  << "\n";

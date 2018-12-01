@@ -38,6 +38,17 @@ make postSxfPropagate
 ls -l postSxfPropagate.cc
 ls -l postSxfPropagate
 
+\rm out/JDTout
+
+./postSxfPropagate 1
+
+gnuplot -persist
+ set title 'X Oscillation Over One Turn'
+ set xlabel 'Split Bend'
+ set ylabel 'x as a Function of Split Bend'
+ p 'out/JDTout' u (160./331.*$2):4 w l
+ q
+
 : ddd ./sxfCheck
 : ./sxf/EM_45MeV_pEDM.sxf2_klE_klM_bendsQuads
 : ./sxfCheck ./sxf/EM_45MeV_pEDM.sxf2_klE_klM_bendsQuads

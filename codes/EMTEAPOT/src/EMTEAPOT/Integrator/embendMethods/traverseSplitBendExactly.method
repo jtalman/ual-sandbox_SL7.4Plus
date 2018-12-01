@@ -5,6 +5,24 @@ void traverseSplitBendExactly(int ip){
  Vector3 rOutVnewMP = get_rOutV_rot();
  Vector3 pOutVnewMP = get_pOutV_rot();
 
+  double qD      = UAL::elemCharge;
+  double GeVperJ = 1./qD/1.e9;
+
+//double kDJ     = pDc*vD*Rsxf;
+//double kDJ     = pDc*bD*Rsxf;
+  double kDJ     = pDc*betaD*Rsxf;
+  double EscrDJ  = gammaD*mDcc;
+  double EscrDK  = mDcc/gammaD+kDJ/Rsxf;
+
+ std::cerr << "########################## qD      " << qD  << " ##########################\n";
+ std::cerr << "########################## GeVperJ " << GeVperJ  << " ##########################\n";
+ std::cerr << "########################## pDc     " << pDc << " ##########################\n";
+ std::cerr << "########################## betaD   " << betaD  << " ##########################\n";
+ std::cerr << "########################## Rsxf    " << Rsxf  << " ##########################\n";
+ std::cerr << "########################## kDJ     " << kDJ << " ##########################\n";
+ std::cerr << "########################## EscrDJ  " << EscrDJ  << " ##########################\n";
+ std::cerr << "########################## EscrDK  " << EscrDK  << " ##########################\n";
+
   p[0]             += get_dr();
   p[1]             += get_dpxBypDc();   //   "Del_dpdz" in ETEAPOT_MltTurn::DipoleAlgorithm.icc +210
 //p[1]              = pxOutp/pDc;

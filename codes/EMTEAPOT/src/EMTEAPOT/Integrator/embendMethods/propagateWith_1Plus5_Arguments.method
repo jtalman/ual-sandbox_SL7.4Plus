@@ -30,11 +30,20 @@ std::cerr << "++++++++++++++++++++++++++++++++\n";
  updateDesignParameters();                                           // pDc, gammaD, ... might change
                                                                      // they don't here. rD on command line?
  PAC::Bunch& bunch  = static_cast<PAC::Bunch&>(probe);
- int totalSplitBends= 2*pow( 2, m_data.m_ir );
+
+//int totalSplitBends= 2*pow( 2, m_data.m_ir );
+//int totalSplitBends= 2*pow( 2, 0 );
+  int totalSplitBends= 2;
+
 // int splitBndsPerTrn= bndsPerTrn*totalSplitBends;
 //std::cerr << "totalSplitBends " << totalSplitBends << " splitBndsPerTrn " << splitBndsPerTrn << "\n";
- double m           = m_data.m_m;
- double theta       = 2.*m_data.m_angle/totalSplitBends;
+
+//double m           = m_data.m_m;
+  double m           = 0;
+
+  double theta       = 2.*eAngle/totalSplitBends;
+//double theta       = 2.*m_data.m_angle/totalSplitBends;
+
  double invFclLngtX = (m-1.)*theta/rD;
  th=theta/2.;                                                        // angle for exact beam advance
  for(int ip = 1; ip < bunch.size(); ip++) {   // BUNCH LOOP

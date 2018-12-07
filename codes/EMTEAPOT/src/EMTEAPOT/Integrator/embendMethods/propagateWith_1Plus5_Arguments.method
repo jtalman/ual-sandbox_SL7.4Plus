@@ -135,6 +135,7 @@ std::cerr << "++++++++++++++++++++++++++++++++\n";
   for(int i = 0; i < totalSplitBends/2; i++){       // SPLIT LOOP
    update_xi();                                                      // xi0, xip0, xi_co
    traverseSplitBendExactly(ip);                                     // pure Munoz, uses rD, th
+   split_bnd++;
    perSplitBendOutput(ip);
    initSpin(ip);
    updateMunoz();                                                    // Lxc, Lyc, Lzc, Lc, Q, kappa, ...
@@ -146,6 +147,7 @@ std::cerr << "++++++++++++++++++++++++++++++++\n";
    updateMunoz();                                                    // Lxc, Lyc, Lzc, Lc, Q, kappa, ...
    update_xi();
    traverseSplitBendExactly(ip);                                     // pure Munoz, uses rD, th
+   split_bnd++;
    perSplitBendOutput(ip);
 
    initSpin(ip);

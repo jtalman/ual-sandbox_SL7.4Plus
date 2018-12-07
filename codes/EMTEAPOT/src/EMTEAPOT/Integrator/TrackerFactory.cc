@@ -10,6 +10,7 @@ int EMTEAPOT::marker::markerCount=0;
 double EMTEAPOT::embend::dZFF;
 double EMTEAPOT::embend::m_m;
 int EMTEAPOT::embend::bnd=0;
+int EMTEAPOT::embend::split_bnd=0;
 
 EMTEAPOT::TrackerFactory::TrackerFactory()
 {

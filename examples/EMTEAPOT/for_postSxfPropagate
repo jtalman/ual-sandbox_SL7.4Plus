@@ -1,6 +1,9 @@
 //ofstream for_postSxfPropagate;
 for_postSxfPropagate.open ("postSxfPropagate.cc");
 
+for_postSxfPropagate << "#include <stdio.h>\n";
+for_postSxfPropagate << "#include <stdlib.h>\n";
+
 for_postSxfPropagate << "#include \"EMTEAPOT/Integrator/marker.cc\"\n";
 for_postSxfPropagate << "#include \"EMTEAPOT/Integrator/drift.cc\"\n";
 

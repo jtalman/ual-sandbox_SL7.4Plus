@@ -29,6 +29,8 @@ namespace EMTEAPOT {
 #include "EMTEAPOT/Integrator/quadMethods/propagateWithArguments.method"
 #include "EMTEAPOT/Integrator/quadMethods/propagateWith_1Plus5_Arguments.method"
 
+#include "EMTEAPOT/Integrator/quadMethods/quadPropagate.method"
+
 #include "EMTEAPOT/Integrator/genMethods/get_vlcyMKS.method"
 #include "EMTEAPOT/Integrator/genMethods/passDrift.method"
 

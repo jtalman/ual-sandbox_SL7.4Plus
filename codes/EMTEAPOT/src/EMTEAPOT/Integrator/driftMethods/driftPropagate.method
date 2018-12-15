@@ -1,0 +1,16 @@
+// drift file
+void driftPropagate(UAL::Probe& probe, double l)
+{
+ std::cerr << "\nJDT2018 - enter File " << __FILE__ << " line " << __LINE__ << "\n";
+ m_l=l;
+ PAC::Bunch& bunch    = static_cast<PAC::Bunch&>(probe);
+ tofD                 = m_l/vD;
+ for(int ip = 1; ip < bunch.size(); ip++) {
+  PAC::Position& pacP = bunch[ip].getPosition();
+  pacPmy              = &pacP;
+  passDrift( m_l, tofD );
+ }
+ tofDT               +=tofD;
+ sDT                 += m_l;
+ std::cerr << "\nJDT2018 - leave File " << __FILE__ << " line " << __LINE__ << "\n";
+}

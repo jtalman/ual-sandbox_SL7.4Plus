@@ -29,6 +29,8 @@ namespace EMTEAPOT {
    #include"EMTEAPOT/Integrator/genMethods/get_vlcyMKS.method"
    #include"EMTEAPOT/Integrator/genMethods/passDrift.method"
 
+   #include"EMTEAPOT/Integrator/driftMethods/driftPropagate.method"
+
  };
 
 }

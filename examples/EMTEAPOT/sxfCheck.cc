@@ -168,7 +168,8 @@ double LD       = rD*pcD;      //    L0;
    ple_L=ple.getLength();
    actualPosition=(int)(10000.*(ple_P + ple_L/2.))/10000.;
 
-   if(ple_gt==""){ple_gt="Drift";for_postSxfPropagate << "implicitDrift.propagateWithArguments(bunch, " << ple_L << ");\n";}
+   if(ple_gt==""){ple_gt="Drift";for_postSxfPropagate << "implicitDrift.driftPropagate(bunch, " << ple_L << ");\n";}
+// if(ple_gt==""){ple_gt="Drift";for_postSxfPropagate << "implicitDrift.propagateWithArguments(bunch, " << ple_L << ");\n";}
 
    if(ple_gt=="Marker"){for_postSxfPropagate << "/* " << ple.getDesignName() << " " << actualPosition << " */" << " marker.propagate(bunch);\n";}
 
@@ -227,7 +228,8 @@ std::cerr << "QUAD PAC_MULTIPOLE data[7] " << data[7] << "\n";
       }   
      }   
     }
-   for_postSxfPropagate << " quad.propagateWith_1Plus5_Arguments(bunch, " << lngth << ", " << klE0 << ", " << klE1 << ", " << klM0 << ", " << klM1 << ");\n";
+   for_postSxfPropagate << " quad.quadPropagate(bunch, " << lngth << ", " << klE0 << ", " << klE1 << ", " << klM0 << ", " << klM1 << ");\n";
+// for_postSxfPropagate << " quad.propagateWith_1Plus5_Arguments(bunch, " << lngth << ", " << klE0 << ", " << klE1 << ", " << klM0 << ", " << klM1 << ");\n";
 // for_postSxfPropagate << " quad.propagateWithArguments(bunch, " << lngth << ", " << klE0 << ", " << klE1 << ", " << klM0 << ", " << klM1 << ");\n";
    }
 
@@ -286,7 +288,7 @@ std::cerr << "QUAD PAC_MULTIPOLE data[7] " << data[7] << "\n";
       }   
      }   
     }
-   for_postSxfPropagate << " bend.propagateWith_1Plus5_Arguments(bunch, " << lngth<< ", " << klE0 << ", " << klE1 << ", " << klM0 << ", " << klM1 << ");\n";
+   for_postSxfPropagate << " bend.bendPropagate(bunch, " << lngth<< ", " << klE0 << ", " << klE1 << ", " << klM0 << ", " << klM1 << ");\n";
   }
  }
 

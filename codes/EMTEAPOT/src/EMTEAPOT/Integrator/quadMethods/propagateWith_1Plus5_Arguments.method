@@ -10,28 +10,30 @@ std::cerr << "\nJDT2018 - enter File " << __FILE__ << " line " << __LINE__ << "\
 
  double q;
 
- double qe              = klE1;                                 // start electric
+//double qe              = klE1;                                 // start electric
+  double qe              = klE0;                                 // start electric
+
  for(int ip = 1; ip < bunch.size(); ip++) {
   PAC::Position& pacP   = bunch[ip].getPosition();
   pacPmy                = &pacP;
-  passDrift( m_l/2., tofD/2. );
+  passQuadDrift( m_l/2., tofD/2. );
   pacP[1]              -= qe*pacP[0];
   pacP[3]              += qe*pacP[2];
   q=qe;
   #include"quadSpinEvolve"
-  passDrift( m_l/2., tofD/2. );
+  passQuadDrift( m_l/2., tofD/2. );
  }                                                              // end electric
 
  double qm              = klM1;                                 // start magnetic
  for(int ip = 1; ip < bunch.size(); ip++) {
   PAC::Position& pacP   = bunch[ip].getPosition();
   pacPmy                = &pacP;
-  passDrift( m_l/2., tofD/2. );
+  passQuadDrift( m_l/2., tofD/2. );
   pacP[1]              -= qm*pacP[0];
   pacP[3]              += qm*pacP[2];
   q=qm;
   #include"quadSpinEvolve"
-  passDrift( m_l/2., tofD/2. );
+  passQuadDrift( m_l/2., tofD/2. );
  }                                                              // end magnetic
 
  tofDT                 +=tofD;                                  // sxf spot check

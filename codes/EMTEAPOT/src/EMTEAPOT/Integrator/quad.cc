@@ -34,6 +34,8 @@ namespace EMTEAPOT {
 #include "EMTEAPOT/Integrator/genMethods/get_vlcyMKS.method"
 #include "EMTEAPOT/Integrator/genMethods/passDrift.method"
 
+#include "EMTEAPOT/Integrator/quadMethods/passQuadDrift.method"
+
     /** Element length */
     // double m_l;
 

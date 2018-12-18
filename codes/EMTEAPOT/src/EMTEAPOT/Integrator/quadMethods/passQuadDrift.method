@@ -1,4 +1,5 @@
 void passQuadDrift(double D, double T){
+std::cerr << "\nJDT2018 - enter File " << __FILE__ << " line " << __LINE__ << "\n";
  PAC::Position& p = *pacPmy;
  xinput           = p[0];
  yinput           = p[2];
@@ -48,4 +49,5 @@ std::cerr << "================================================================" 
  p[4]            -= cdt_circ;
 
  double dummy     = 1.0;
+std::cerr << "\nJDT2018 - leave File " << __FILE__ << " line " << __LINE__ << "\n";
 }

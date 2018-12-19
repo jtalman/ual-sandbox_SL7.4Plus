@@ -10,7 +10,9 @@ std::cerr << "\nJDT2018 - enter File " << __FILE__ << " line " << __LINE__ << "\
 
  double q;
 
- double qe              = klE1;                                 // start electric
+//double qe              = klE1;                                 // start electric
+  double qe              = klE0;                                 // start electric
+
  for(int ip = 1; ip < bunch.size(); ip++) {
   PAC::Position& pacP   = bunch[ip].getPosition();
   pacPmy                = &pacP;

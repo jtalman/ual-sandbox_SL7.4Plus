@@ -16,14 +16,15 @@ for_postSxfPropagate << "#include \"EMTEAPOT/Integrator/sext.cc\"\n";
 for_postSxfPropagate << "#include \"EMTEAPOT/Integrator/oct.cc\"\n";
 for_postSxfPropagate << "#include \"EMTEAPOT/Integrator/rfCavity.cc\"\n";
 
-for_postSxfPropagate << "#include \"EMTEAPOT/Integrator/genMethods/spinExtern\"\n";
+//for_postSxfPropagate << "#include \"EMTEAPOT/Integrator/genMethods/spinExtern\"\n";
 for_postSxfPropagate << "#include \"EMTEAPOT/Integrator/genMethods/spinDef\"\n";
-for_postSxfPropagate << "#include \"EMTEAPOT/Integrator/genMethods/designExtern\"\n";
+//for_postSxfPropagate << "#include \"EMTEAPOT/Integrator/genMethods/designExtern\"\n";
 for_postSxfPropagate << "#include \"EMTEAPOT/Integrator/genMethods/designDef\"\n";
-for_postSxfPropagate << "#include \"EMTEAPOT/Integrator/genMethods/bunchParticleExtern\"\n";
+//for_postSxfPropagate << "#include \"EMTEAPOT/Integrator/genMethods/bunchParticleExtern\"\n";
 for_postSxfPropagate << "#include \"EMTEAPOT/Integrator/genMethods/bunchParticleDef\"\n";
 
-for_postSxfPropagate << "#include \"userManifest/probeDataForTwiss\"\n";
+for_postSxfPropagate << "#include \"userManifest/probeDataForTwiss\"\n\n";
+//for_postSxfPropagate << "#include \"parameters\"\n\n";
 
 for_postSxfPropagate << "int main(int argc,char * argv[])\{\n";
 

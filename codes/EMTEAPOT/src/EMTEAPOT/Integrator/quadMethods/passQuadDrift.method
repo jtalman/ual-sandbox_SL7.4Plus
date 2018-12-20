@@ -9,8 +9,13 @@ std::cerr << "\nJDT2018 - enter File " << __FILE__ << " line " << __LINE__ << "\
  vlcy             = get_vlcyMKS(p, gama);
  vT               = sqrt(vlcy[0]*vlcy[0] + vlcy[1]*vlcy[1]);
 
- ang              = atan( vT/vlcy[2] );
- dst              = D/cos(ang);
+ double vZ        = (double)vlcy[2];
+
+//ang             = atan( vT/vlcy[2] );
+  ang             = (double) atan2( vT, vZ );
+ double cs        = (double) cos(ang);
+  dst             = (double) (D/cs);
+//dst             = D/cos(ang);
 
  spd              = vlcy.length();
  tof              = dst/spd;

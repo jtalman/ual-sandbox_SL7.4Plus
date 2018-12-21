@@ -36,6 +36,8 @@ namespace EMTEAPOT {
 
 #include "EMTEAPOT/Integrator/quadMethods/passQuadDrift.method"
 
+#include "EMTEAPOT/Integrator/quadMethods/my_cos"
+
     /** Element length */
     // double m_l;
 

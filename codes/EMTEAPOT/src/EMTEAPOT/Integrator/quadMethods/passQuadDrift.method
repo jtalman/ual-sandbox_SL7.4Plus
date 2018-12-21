@@ -17,6 +17,9 @@ std::cerr << "\nJDT2018 - enter File " << __FILE__ << " line " << __LINE__ << "\
   dst             = (double) (D/cs);
 //dst             = D/cos(ang);
 
+ double mc        = (double) my_cos(ang);
+ double dstp      = (double) (D/mc);
+
  spd              = vlcy.length();
  tof              = dst/spd;
 

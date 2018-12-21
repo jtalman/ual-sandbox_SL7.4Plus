@@ -14,7 +14,7 @@
  double x;
  double y;
  double z;
- double dst;
+ double _dst_;
 
  double e;                         // e is "energy" of current bunch loop particle.
                                    // Somewhat confusingly, e can be fundamental charge.

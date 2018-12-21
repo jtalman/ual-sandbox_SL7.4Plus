@@ -14,7 +14,7 @@
  extern double trnsDst;
  extern double ang;
  extern double z;
- extern double dst;
+ extern double _dst_;
 
  extern double e;
  extern double Escr;

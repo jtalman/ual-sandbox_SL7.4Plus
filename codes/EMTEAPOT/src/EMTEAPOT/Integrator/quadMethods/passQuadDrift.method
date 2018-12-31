@@ -14,15 +14,16 @@ std::cerr << "\nJDT2018 - enter File " << __FILE__ << " line " << __LINE__ << "\
 //ang             = atan( vT/vlcy[2] );
   ang             = (double) atan2( vT, vZ );
  double cs        = (double) cos(ang);
-  _dst_           = (double) (D/cs);
+//_dst_           = (double) (D/cs);
 //dst             = (double) (D/cs);
 //dst             = D/cos(ang);
 
  double mc        = (double) my_cos(ang);
- double dstp      = (double) (D/mc);
+        dstp      = (double) (D/mc);
 
  spd              = vlcy.length();
- tof              = _dst_/spd;
+  tof              = dstp/spd;
+//tof              = _dst_/spd;
 //tof             = dst/spd;
 
  x                = vlcy[0]*tof;

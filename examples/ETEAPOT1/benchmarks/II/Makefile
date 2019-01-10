@@ -26,11 +26,12 @@ LIBS += -L$(UAL_ACCSIM)/lib/$(UAL_ARCH)          -lAccsim
 LIBS += -L$(UAL_TEAPOT)/lib/$(UAL_ARCH)          -lTeapot
 LIBS += -L$(UAL_ETEAPOT)/lib/$(UAL_ARCH)         -lETeapot
 LIBS += -L$(UAL_ETEAPOT_MltTurn)/lib/$(UAL_ARCH) -lETEAPOT_MltTurn
-LIBS += -L$(UAL_PAC)/lib/$(UAL_ARCH)             -lPacSMF -lPacOptics -lPac
+LIBS += -L$(UAL_PAC)/lib/$(UAL_ARCH)             -lPacSMF -lPacOptics -lPac -lPacSurvey
 LIBS += -L$(UAL_ZLIB)/lib/$(UAL_ARCH)            -lZTps
 LIBS += -L$(UAL)/codes/UAL/lib/$(UAL_ARCH)       -lUal
 LIBS += -L$(SXF)/lib/$(UAL_ARCH)                 -lSXF
 LIBS += -L$(UAL)/tools/lib/$(UAL_ARCH)           -lpcre -lxml2 -lrfftw -lfftw
+LIBS +=                                          -pthread
 LIBS +=                                          -lm 
 
 SRC_DIR  = .

@@ -16,7 +16,7 @@ INC += -I$(UAL)/codes/UAL/include
 INC += -I$(UAL_ZLIB)/src
 INC += -I$(UAL)/tools/include
 INC += -I$(SXF)/src
-INC += -I/home/ual/tools/gsl/include
+#INC += -I/home/ual/tools/gsl/include
 
 LIBS  =
 LIBS += -L$(UAL)/ext/UI/lib/$(UAL_ARCH)          -lUalUI
@@ -26,26 +26,30 @@ LIBS += -L$(UAL_ACCSIM)/lib/$(UAL_ARCH)          -lAccsim
 LIBS += -L$(UAL_TEAPOT)/lib/$(UAL_ARCH)          -lTeapot
 LIBS += -L$(UAL_ETEAPOT)/lib/$(UAL_ARCH)         -lETeapot
 LIBS += -L$(UAL_ETEAPOT_MltTurn)/lib/$(UAL_ARCH) -lETEAPOT_MltTurn
-LIBS += -L$(UAL_PAC)/lib/$(UAL_ARCH)             -lPacSMF -lPacOptics -lPac
+LIBS += -L$(UAL_PAC)/lib/$(UAL_ARCH)             -lPacSMF -lPacOptics -lPac -lPacSurvey
 LIBS += -L$(UAL_ZLIB)/lib/$(UAL_ARCH)            -lZTps
 LIBS += -L$(UAL)/codes/UAL/lib/$(UAL_ARCH)       -lUal
 LIBS += -L$(SXF)/lib/$(UAL_ARCH)                 -lSXF
 LIBS += -L$(UAL)/tools/lib/$(UAL_ARCH)           -lpcre -lxml2 -lrfftw -lfftw
+LIBS +=                                          -pthread
 LIBS +=                                          -lm 
+LIBS +=                                          -lgsl
 
 SRC_DIR  = .
 OBJ_DIR  = ./lib/$(UAL_ARCH)/obj
 
-OBJS = $(OBJ_DIR)/positionPrinter.o
+#OBJS = $(OBJ_DIR)/positionPrinter.o
+OBJS = 
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.cc
 	@echo object file compilation
 	$(CC) $(CCFLAGS) $(INC) -c $< -o $@
 
-compile: $(OBJS) ETEAPOT_MltTurn positionPrinter
+#compile: $(OBJS) ETEAPOT_MltTurn positionPrinter
+compile: $(OBJS) ETEAPOT_MltTurn
 
-./positionPrinter: $(OBJ_DIR)/positionPrinter.o $(OBJS)
-	$(CC) -o $@  $(CCFLAGS) $(INC) $(OBJ_DIR)/positionPrinter.o $(OBJS) $(LIBS)
+#./positionPrinter: $(OBJ_DIR)/positionPrinter.o $(OBJS)
+#	$(CC) -o $@  $(CCFLAGS) $(INC) $(OBJ_DIR)/positionPrinter.o $(OBJS) $(LIBS)
 
 ./ETEAPOT_MltTurn: $(OBJ_DIR)/ETEAPOT_MltTurn.o $(OBJS)
 	$(CC) -o $@  $(CCFLAGS) $(INC) $(OBJ_DIR)/ETEAPOT_MltTurn.o $(OBJS) $(LIBS)

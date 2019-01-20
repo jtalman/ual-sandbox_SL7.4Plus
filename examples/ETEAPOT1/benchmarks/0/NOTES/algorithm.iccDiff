@@ -1,0 +1,28 @@
+[talman@x201-3 NOTES]$ diff ../algorithm.icc  /home/talman/UAL_Latest/ualusr2011/ual745/ual1/codes/ETEAPOT/src/ETEAPOT/Integrator/
+72d71
+< /*
+77,79d75
+< std::cout << "JDT-pOf4" << ip << " " << p[4] << " " << S[ip] << "\n";
+< std::cout << "JDT-pOf5" << ip << " " << p[5] << " " << S[ip] << "\n";
+< */
+131,132c127,128
+< if( isnormal(dr) )       p[0]      += dr;
+< std::cout << "JDT-pOf0" << ip << " " << p[0] << " " << S[ip] << "\n";
+---
+>        p[0]      += dr;
+> //std::cout << "JDT-pOf0" << ip << " " << p[0] << " " << S[ip] << "\n";
+134c130
+< std::cout << "JDT-pOf1" << ip << " " << p[1] << " " << S[ip] << "\n";
+---
+> //std::cout << "JDT-pOf1" << ip << " " << p[1] << " " << S[ip] << "\n";
+137c133
+< std::cout << "JDT-pOf2" << ip << " " << p[2] << " " << S[ip] << "\n";
+---
+> //std::cout << "JDT-pOf2" << ip << " " << p[2] << " " << S[ip] << "\n";
+139c135
+< std::cout << "JDT-pOf3" << ip << " " << p[3] << " " << S[ip] << "\n";
+---
+> //std::cout << "JDT-pOf3" << ip << " " << p[3] << " " << S[ip] << "\n";
+150d145
+< std::cout << "JDT-pOf5" << ip << " " << p[5] << " " << S[ip] << "\n";
+[talman@x201-3 NOTES]$ 

@@ -1,0 +1,85 @@
+[talman@x201-3 NOTES]$ diff ../Makefile /home/talman/UAL_Latest/ualusr2011/ual745/ual1/examples/ETEAPOT/
+2c2
+< CCFLAGS  = -g -fpic -ansi -Wall -Wextra -fpermissive     # Compilation flags
+---
+> CCFLAGS  = -g -fpic -ansi -Wall      # Compilation flags
+6a7
+> LDFLAGS  =                           # Linker flags
+14d14
+< INC += -I$(UAL_ETEAPOT_MltTurn)/src
+21d20
+< INC += -I$(UAL)/codes/ETEAPOT/src/ETEAPOT/Integrator
+23,37c22,33
+< LIBS += -L$(UAL)/ext/UI/lib/$(UAL_ARCH)  	 -lUalUI
+< LIBS += -L$(UAL_TIBETAN)/lib/$(UAL_ARCH)  	 -lTibetan
+< LIBS += -L$(UAL_SXF)/lib/$(UAL_ARCH) 		 -lUalSXF2
+< LIBS += -L$(UAL_ACCSIM)/lib/$(UAL_ARCH) 	 -lAccsim
+< LIBS += -L$(UAL_TEAPOT)/lib/$(UAL_ARCH) 	 -lTeapot
+< #LIBS += -L$(UAL_ETEAPOT)/lib/$(UAL_ARCH) 	 -lETeapot
+< LIBS += -L$(UAL_ETEAPOT_MltTurn)/lib/$(UAL_ARCH) -lETEAPOT_MltTurn
+< LIBS += -L$(UAL_PAC)/lib/$(UAL_ARCH)  		 -lPacSMF -lPacOptics -lPac
+< LIBS += -L$(UAL_ZLIB)/lib/$(UAL_ARCH) 		 -lZTps
+< LIBS += -L$(UAL)/codes/UAL/lib/$(UAL_ARCH) 	 -lUal
+< LIBS += -L$(SXF)/lib/$(UAL_ARCH) 		 -lSXF
+< LIBS += -L$(UAL)/tools/lib/$(UAL_ARCH) 		 -lpcre -lxml2 -lrfftw -lfftw
+< LIBS += 					 -lm
+< 
+< LIBS2 = $(UAL)/codes/ETEAPOT/lib/linux/obj/ElemSlice.o $(UAL)/codes/ETEAPOT/lib/linux/obj/DipoleData.o $(UAL)/codes/ETEAPOT/lib/linux/obj/MltData.o $(UAL)/codes/ETEAPOT/lib/linux/obj/BasicPropagator.o $(UAL)/codes/ETEAPOT/lib/linux/obj/BasicTracker.o $(UAL)/codes/ETEAPOT/lib/linux/obj/DriftTracker.o $(UAL)/codes/ETEAPOT/lib/linux/obj/MarkerTracker.o $(UAL)/codes/ETEAPOT/lib/linux/obj/MltTracker.o $(UAL)/codes/ETEAPOT/lib/linux/obj/TrackerFactory.o $(UAL)/codes/ETEAPOT/lib/linux/obj/RFCavityTracker.o $(UAL)/codes/ETEAPOT/lib/linux/obj/LossCollector.o $(UAL)/codes/ETEAPOT/lib/linux/obj/Eteapot.o $(UAL)/codes/ETEAPOT/lib/linux/obj/positionPrinter.o -L$(UAL)/codes/ETEAPOT/lib/linux -L$(UAL)/codes/PAC/lib/linux -L$(UAL)/codes/ZLIB/lib/linux -L$(UAL)/codes/UAL/lib/linux -lUal -ldl -L$(UAL)/codes/TEAPOT/lib/linux -lTeapot -L$(UAL)/codes/UAL/lib/linux -lUal -L$(UAL)/tools/lib/linux -lgsl -lgslcblas -L$(UAL)/codes/PAC/lib/linux -lPacSMF -L$(UAL)/codes/PAC/lib/linux -lPacOptics -L$(UAL)/codes/PAC/lib/linux -lPac  -L$(UAL)/codes/PAC/lib/linux -lPacSurvey -L$(UAL)/codes/ZLIB/lib/linux -lZTps -L$(UAL)/tools/lib/linux -lgsl -lgslcblas
+---
+> LIBS += -L$(UAL)/ext/UI/lib/$(UAL_ARCH)  	-lUalUI
+> LIBS += -L$(UAL_TIBETAN)/lib/$(UAL_ARCH)  	-lTibetan
+> LIBS += -L$(UAL_SXF)/lib/$(UAL_ARCH) 		-lUalSXF2
+> LIBS += -L$(UAL_ACCSIM)/lib/$(UAL_ARCH) 	-lAccsim
+> LIBS += -L$(UAL_TEAPOT)/lib/$(UAL_ARCH) 	-lTeapot
+> LIBS += -L$(UAL_ETEAPOT)/lib/$(UAL_ARCH) 	-lETeapot
+> LIBS += -L$(UAL_PAC)/lib/$(UAL_ARCH)  		-lPacSMF -lPacOptics -lPac
+> LIBS += -L$(UAL_ZLIB)/lib/$(UAL_ARCH) 		-lZTps
+> LIBS += -L$(UAL)/codes/UAL/lib/$(UAL_ARCH) 	-lUal
+> LIBS += -L$(SXF)/lib/$(UAL_ARCH) 		-lSXF
+> LIBS += -L$(UAL)/tools/lib/$(UAL_ARCH) 		-lpcre -lxml2 -lrfftw -lfftw
+> LIBS += 					-lm
+38a35
+> SRC_DIR  = .
+41,43c38,41
+< #compile : ./tracker
+< #compile : ./libETeapot.so
+<  compile : ./libETeapot.so ./tracker
+---
+> OBJS = $(OBJ_DIR)/positionPrinter.o \
+> 	$(OBJ_DIR)/xmgracePrint.o
+> 
+> compile : $(OBJS) ./tracker ./evolver
+46c44,50
+< 	rm -f $(OBJ_DIR)/* ./libETeapot.so ./tracker out/cpp/* trtrin OUT E*
+---
+> 	rm -f $(OBJS) $(OBJ_DIR)/tracker.o ./tracker
+> 
+> ./tracker  : $(OBJ_DIR)/tracker.o $(OBJS)
+> 	$(LD) -o $@  $(LDFLAGS) $(INC) $(OBJ_DIR)/tracker.o $(OBJS) $(LIBS)
+> 
+> ./evolver  : $(OBJ_DIR)/evolver.o $(OBJS)
+> 	$(LD) -o $@  $(LDFLAGS) $(INC) $(OBJ_DIR)/evolver.o $(OBJS) $(LIBS)
+48,49c52,53
+< $(OBJ_DIR)/DipoleTracker.o :
+< 	$(CC) -c DipoleTracker.cc -fPIC $(INC) -o $(OBJ_DIR)/DipoleTracker.o
+---
+> ./sxfUtility: $(OBJ_DIR)/sxfUtility.o
+> 	$(LD) -o $@  $(LDFLAGS) $(INC) $(OBJ_DIR)/sxfUtility.o $(LIBS)
+51,52c55,56
+< $(OBJ_DIR)/tracker.o : 
+< 	$(CC) -c tracker.cc $(INC) -o $(OBJ_DIR)/tracker.o
+---
+> $(OBJ_DIR)/%.o : $(SRC_DIR)/%.cc
+> 	$(CC) $(CCFLAGS) $(INC) -c $< -o $@
+54,55c58,59
+< ./libETeapot.so  : $(OBJ_DIR)/DipoleTracker.o
+< 	$(DLD) $(DLDFLAGS) -o $@  $(LDFLAGS) $(INC) $(OBJ_DIR)/DipoleTracker.o $(LIBS2)
+---
+> $(OBJ_DIR)/%.o : $(SRC_DIR)/%.cpp
+> 	$(CC) $(CCFLAGS) $(INC) -c $< -o $@
+57,58d60
+< ./tracker  : $(OBJ_DIR)/tracker.o
+< 	$(CC) -o $@  $(LDFLAGS) $(INC) $(OBJ_DIR)/tracker.o $(LIBS) ./libETeapot.so
+[talman@x201-3 NOTES]$ 
+
+

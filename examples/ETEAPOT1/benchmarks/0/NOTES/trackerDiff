@@ -1,0 +1,34 @@
+[talman@x201-3 NOTES]$ diff ../tracker.cc /home/talman/UAL_Latest/ualusr2011/ual745/ual1/examples/ETEAPOT/
+27,28c27,28
+< //#include "positionPrinter.hh"
+< //#include "xmgracePrint.hh"
+---
+> #include "positionPrinter.hh"
+> #include "xmgracePrint.hh"
+149,151c149,151
+< //getcwd(cpath, MAXPATHLEN);
+< //printf("pwd -> %s\n", cpath);
+< //std::string path=cpath;
+---
+> getcwd(cpath, MAXPATHLEN);
+> printf("pwd -> %s\n", cpath);
+> std::string path=cpath;
+153c153
+< //  etpot->twissFromTracking( ba, ap, argv[4] );
+---
+>   etpot->twissFromTracking( ba, ap, argv[4] );
+179,180c179,180
+< // positionPrinter pP;
+< // pP.open(orbitFile.c_str());
+---
+>  positionPrinter pP;
+>  pP.open(orbitFile.c_str());
+189c189
+< // pP.write(iturn, ip, bunch);
+---
+>    pP.write(iturn, ip, bunch);
+195c195
+< // pP.close();
+---
+>  pP.close();
+[talman@x201-3 NOTES]$ 

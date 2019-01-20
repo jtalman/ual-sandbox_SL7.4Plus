@@ -1,0 +1,33 @@
+[talman@x201-3 NOTES]$ diff ../DipoleTracker.cc /home/talman/UAL_Latest/ualusr2011/ual745/ual1/codes/ETEAPOT/src/ETEAPOT/Integrator/
+0a1,6
+> // Library       : ETEAPOT
+> // File          : ETEAPOT/Integrator/DipoleTracker.cc
+> // Copyright     : see Copyright file
+> // Author        : L.Schachinger and R.Talman
+> // C++ version   : N.Malitsky 
+> 
+82,83c88
+< //for(int ip = 0; ip < bunch.size(); ip++) {
+<   for(int ip = 1; ip < bunch.size(); ip++) {
+---
+>   for(int ip = 0; ip < bunch.size(); ip++) {
+89c94
+< //  s_algorithm.passEntry(m_edata, p);
+---
+>     s_algorithm.passEntry(m_edata, p);
+93c98
+< //  s_algorithm.passExit(m_edata, p);
+---
+>     s_algorithm.passExit(m_edata, p);
+112a118,127
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+[talman@x201-3 NOTES]$ 

@@ -1,0 +1,61 @@
+: START AT LINE 22 !!
+: $SXF COMPILE
+pushd $SXFV
+ll lib/linux
+make clean
+ll lib/linux
+make
+ll lib/linux
+popd
+
+: MAIN SERVER SIDE COMPILE:
+pushd $UAL/codes/EMTEAPOT
+ll lib/linux
+make clean
+ll lib/linux
+make
+ll lib/linux
+popd
+: START AT LINE 22 !!
+
+
+: START HERE      <<<<<<<<------------------
+: SXF TEST USAGE:
+ls -l postSxfPropagate.cc
+\rm postSxfPropagate.cc
+\cp Makefile_sxfCheck Makefile
+\cp userManifest/userBunch1 userManifest/userBunch
+\cp userManifest/designBeamValues_sxfCheck userManifest/designBeamValues.hh
+\cp parameters-E_BM_Z parameters
+make clean
+make
+
+:./sxfCheck ./sxf/current2.sxf
+:./sxfCheck ./sxf/E_BM_Z.sxf
+ ./sxfCheck ./sxf/EM_BM_Z.sxf
+
+make postSxfPropagate
+ls -l postSxfPropagate.cc
+ls -l postSxfPropagate
+
+\rm out/JDTout
+
+./postSxfPropagate 1 >&! OUT
+
+gnuplot -persist
+#set title 'X Oscillation Over One Turn'
+ set title 'PX Oscillation Over One Turn'
+ set xlabel 'Split Bend'
+ set ylabel 'px as a Function of Split Bend'
+#set ylabel 'x as a Function of Split Bend'
+ p 'out/JDTout' u (331./160.*$2):5 w l
+#p 'out/JDTout' u (331./160.*$2):4 w l
+#p 'out/JDTout' u (160./331.*$2):4 w l
+ q
+
+: cat OUT : grep JDT_EM_dr : less
+
+: ddd ./sxfCheck
+: ./sxf/EM_45MeV_pEDM.sxf2_klE_klM_bendsQuads
+: ./sxfCheck ./sxf/EM_45MeV_pEDM.sxf2_klE_klM_bendsQuads
+: ./sxfCheck ./sxf/current.sxf

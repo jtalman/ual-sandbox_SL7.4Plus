@@ -43,9 +43,10 @@ ls -l postSxfPropagate
 ./postSxfPropagate 1
 
 gnuplot -persist
- set title 'X Oscillation Over One Turn'
- set xlabel 'Split Bend'
- set ylabel 'x as a Function of Split Bend'
+ set title 'One turn: x versus s for 1 micron initial delta in x'
+ set xlabel 's [m]'
+#set xlabel 'Split Bend'
+ set ylabel 'x as a Function of Split Bend [m]'
  p 'out/JDTout' u (331./160.*$2):4 w l
 #p 'out/JDTout' u (160./331.*$2):4 w l
  q

@@ -15,8 +15,9 @@ double etaM = mAngle/(mAngle+eAngle);
 double etaE = eAngle/(mAngle+eAngle);
 
 // Rsxf               = m_data.m_l/tAngle;                     // sxf file determines radius
+   Rsxf               =        m_l/tAngle;                     // sxf file determines radius
  rD                 = Rsxf;                                          // design radius is new, in principle
-double rM           = Rsxf;
+//double rM           = Rsxf;
 
 std::cerr << "++++++++++++++++++++++++++++++++\n";
 std::cerr << "electric angle is    " << eAngle  << " (data[1] !!!)    for bend " << bnd << " of " << ualPSs << " total sxf propagators\n";

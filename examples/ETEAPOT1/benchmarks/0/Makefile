@@ -43,7 +43,7 @@ OBJ_DIR  = ./lib/$(UAL_ARCH)/obj
  compile : ./libETeapot.so ./tracker
 
 clean :
-	rm -f $(OBJ_DIR)/* ./libETeapot.so ./tracker out/cpp/* trtrin OUT E* echo.sxf m_m
+	rm -f $(OBJ_DIR)/* ./libETeapot.so ./tracker out/cpp/* trtrin OUT E* echo.sxf m_m Nu*
 
 $(OBJ_DIR)/DipoleTracker.o :
 	$(CC) -c DipoleTracker.cc -fPIC $(INC) -o $(OBJ_DIR)/DipoleTracker.o

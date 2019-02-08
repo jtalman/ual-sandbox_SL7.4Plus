@@ -24,7 +24,7 @@ make
 : reference UAL/ETEAPOT Results Augmented for Proton EDM Benchmark Lattices, J. Talman, R. Talman, April 29, 2012
 : JDT2018 page 8
 
-gnuplot
+gnuplot -persist
    set title 'X Oscillation Over One Turn'
    set xlabel 'Split Bend'
    set ylabel 'x as a Function of Split Bend'

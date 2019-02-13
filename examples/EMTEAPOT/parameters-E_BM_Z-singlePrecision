@@ -16,7 +16,7 @@ rD = 4.0000000e+01;
 LDc = 2.8029613e+01;
 
 kD   = 1.6772334e+01;
-kJDT = pD*vD*Rsxf;
+//kJDT = pD*vD*Rsxf;
 
 EscrD = 0.0000000e+00;
 ED = 1.0482709e-02;

@@ -5,6 +5,8 @@
 
  extern std::ofstream for_postSxfPropagate;
 
+ extern std::ofstream for_postSxfPropagateCommandLineProbe;
+
  extern double mDcc;                 // physics
  extern double qD;
 

@@ -7,6 +7,8 @@
 std::ofstream for_postSxfPropagate;
 //for_postSxfPropagate.open ("postSxfPropagate.cc");
 
+std::ofstream for_postSxfPropagateCommandLineProbe;
+
  double mDcc;
  double qD;
 

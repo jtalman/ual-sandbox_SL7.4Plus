@@ -1,0 +1,29 @@
+ls -l postSxfPropagateCommandLineProbe.cc
+\rm postSxfPropagateCommandLineProbe.cc
+\cp Makefile_sxfParse Makefile
+\cp userManifest/userBunch1 userManifest/userBunch
+\cp userManifest/designBeamValues_sxfCheck userManifest/designBeamValues.hh
+
+\cp parameters-E_BM_Z-doublePrecision parameters
+
+make clean
+make
+
+./sxfParse ./sxf/EM_BM_Z.sxf
+
+make postSxfPropagateCommandLineProbe
+ls -l postSxfPropagateCommandLineProbe.cc
+ls -l postSxfPropagateCommandLineProbe
+
+\rm out/*
+
+./postSxfPropagateCommandLineProbe 1
+
+gnuplot -persist
+ set title 'One turn: x versus s for 1 micron initial delta in x'
+ set xlabel 's [m]'
+#set xlabel 'Split Bend'
+ set ylabel 'x as a Function of Split Bend [m]'
+ p 'out/JDTout' u (331./160.*$2):4 w l
+#p 'out/JDTout' u (160./331.*$2):4 w l
+ q

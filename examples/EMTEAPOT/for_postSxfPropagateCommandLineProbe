@@ -35,7 +35,7 @@ for_postSxfPropagateCommandLineProbe << "tofDT=0;\n";
 //for_postSxfPropagateCommandLineProbe << "UAL::Probe& probe;\n";
 for_postSxfPropagateCommandLineProbe << "PAC::Bunch bunch(2);\n";
 for_postSxfPropagateCommandLineProbe << "bunch[0].getPosition().set(      0,       0,      0,      0,      0,      0 );\n";
-for_postSxfPropagateCommandLineProbe << "bunch[1].getPosition().set( +x1typ,       0,      0,      0,      0,      0 );\n";
+//for_postSxfPropagateCommandLineProbe << "bunch[1].getPosition().set( +x1typ,       0,      0,      0,      0,      0 );\n";
 //for_postSxfPropagateCommandLineProbe << "bunch[1].getPosition().set( +x1typ,       0,      0, +y2typ,      0,      0 );\n";
 for_postSxfPropagateCommandLineProbe << "                     \n";
 for_postSxfPropagateCommandLineProbe << "EMTEAPOT::marker marker;\n";
@@ -47,5 +47,6 @@ for_postSxfPropagateCommandLineProbe << "EMTEAPOT::oct oct;\n";
 for_postSxfPropagateCommandLineProbe << "EMTEAPOT::rfCavity rf;\n\n";
 
 for_postSxfPropagateCommandLineProbe << "int turns=atoi(argv[1]);\n\n";
+for_postSxfPropagateCommandLineProbe << "bunch[1].getPosition().set( atof(argv[2]), atof(argv[3]), atof(argv[4]), atof(argv[5]), atof(argv[6]), atof(argv[7]) );\n";
 
 for_postSxfPropagateCommandLineProbe << "for(int i=0;i<turns;i++){\n";

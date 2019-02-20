@@ -48,5 +48,6 @@ for_postSxfPropagateCommandLineProbe << "EMTEAPOT::rfCavity rf;\n\n";
 
 for_postSxfPropagateCommandLineProbe << "int turns=atoi(argv[1]);\n\n";
 for_postSxfPropagateCommandLineProbe << "bunch[1].getPosition().set( atof(argv[2]), atof(argv[3]), atof(argv[4]), atof(argv[5]), atof(argv[6]), atof(argv[7]) );\n";
+for_postSxfPropagateCommandLineProbe << "outputFileName=(char*)argv[8];\n";
 
 for_postSxfPropagateCommandLineProbe << "for(int i=0;i<turns;i++){\n";

@@ -3,6 +3,10 @@
 
 #include<fstream>
 
+  extern const char* outputFileName;
+//extern char outputFileName[20];
+//char[20] outputFileName;
+
  extern std::ofstream for_postSxfPropagate;
 
  extern std::ofstream for_postSxfPropagateCommandLineProbe;

@@ -1,13 +1,13 @@
 <apdf>
-  <propagator id="EMTEAPOT" accelerator="ring">
+  <propagator id="ETEAPOT" accelerator="ring">
      <create>
-       <link algorithm="EMTEAPOT::marker" types="Marker"/>
-       <link algorithm="EMTEAPOT::drift" types="Drift|Default"/>
-       <link algorithm="EMTEAPOT::embend" types="Sbend"/>
-       <link algorithm="EMTEAPOT::quad" types="Quadrupole"/>
-       <link algorithm="EMTEAPOT::sext" types="Sextupole"/>
-       <link algorithm="EMTEAPOT::oct" types="Octupole"/>
-       <link algorithm="EMTEAPOT::rfCavity" types="RfCavity"/>
+       <link algorithm="ETEAPOT::marker" types="Marker"/>
+       <link algorithm="ETEAPOT::drift" types="Drift|Default"/>
+       <link algorithm="ETEAPOT::embend" types="Sbend"/>
+       <link algorithm="ETEAPOT::quad" types="Quadrupole"/>
+       <link algorithm="ETEAPOT::sext" types="Sextupole"/>
+       <link algorithm="ETEAPOT::oct" types="Octupole"/>
+       <link algorithm="ETEAPOT::rfCavity" types="RfCavity"/>
      </create>
   </propagator>
 </apdf>

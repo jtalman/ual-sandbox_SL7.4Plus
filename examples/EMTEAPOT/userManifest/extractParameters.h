@@ -9,7 +9,10 @@
  std::string twissFile = "./out/cpp/";
  twissFile += mysxfbase;
  twissFile += ".twiss";
- std::string apdfFile = "./apdf/eteapot.apdf";
+
+  std::string apdfFile = "./apdf/emteapot.apdf";
+//std::string apdfFile = "./apdf/eteapot.apdf";
+
  std::string orbitFile = "./out/cpp/";
  orbitFile += mysxfbase;
  orbitFile += ".orbit";

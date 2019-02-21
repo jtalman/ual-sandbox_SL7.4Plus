@@ -23,7 +23,10 @@ void traverseSplitBendExactly(int ip){
  std::cerr << "########################## EscrDJ  " << EscrDJ  << " ##########################\n";
  std::cerr << "########################## EscrDK  " << EscrDK  << " ##########################\n";
 
-  p[0]             += get_dr();
+double dr = get_dr();
+if( isnormal(dr) ) p[0] += dr;
+//p[0]             += get_dr();
+
   p[1]             += get_dpxBypDc();   //   "Del_dpdz" in ETEAPOT_MltTurn::DipoleAlgorithm.icc +210
 //p[1]              = pxOutp/pDc;
 //p[2]              = yOutp;

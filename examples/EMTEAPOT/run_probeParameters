@@ -37,6 +37,20 @@ ls -l postSxfPropagateCommandLineProbe
 ./postSxfPropagateCommandLineProbe 1  0     0     0    0     0     +1e-6 ./out/StndrdPrtcl9
 ./postSxfPropagateCommandLineProbe 1  0     0     0    0     0     -1e-6 ./out/StndrdPrtcl10
 
+./postSxfPropagateCommandLineProbe 1 +1e-6 +1e-6  0     0     0     0    ./out/StndrdPrtcl11
+./postSxfPropagateCommandLineProbe 1  0     0    +1e-6 +1e-6  0     0    ./out/StndrdPrtcl12
+
+./postSxfPropagateCommandLineProbe 1 +1e-6  0     0     0     0    +1e-6 ./out/StndrdPrtcl13
+./postSxfPropagateCommandLineProbe 1 0     +1e-6  0     0     0    +1e-6 ./out/StndrdPrtcl14
+./postSxfPropagateCommandLineProbe 1 0      0    +1e-6  0     0    +1e-6 ./out/StndrdPrtcl15
+./postSxfPropagateCommandLineProbe 1 0      0     0    +1e-6  0    +1e-6 ./out/StndrdPrtcl16
+
+./postSxfPropagateCommandLineProbe 1 +1e-6  0    +1e-6  0     0     0    ./out/StndrdPrtcl17
+./postSxfPropagateCommandLineProbe 1 +1e-6  0     0    +1e-6  0     0    ./out/StndrdPrtcl18
+
+./postSxfPropagateCommandLineProbe 1  0    +1e-6 +1e-6  0     0     0    ./out/StndrdPrtcl19
+./postSxfPropagateCommandLineProbe 1  0    +1e-6  0    +1e-6  0     0    ./out/StndrdPrtcl20
+
 gnuplot -persist
 #set terminal epslatex color dashed standalone size 8.5cm,7cm
  set title 'One turn: x versus s for 1 micron initial delta in x'

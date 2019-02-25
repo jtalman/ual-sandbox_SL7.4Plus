@@ -28,26 +28,33 @@ for_postSxfPropagateCommandLineProbe << "#include \"userManifest/probeDataForTwi
 
 for_postSxfPropagateCommandLineProbe << "int main(int argc,char * argv[])\{\n";
 
-for_postSxfPropagateCommandLineProbe << "#include \"parameters\"\n";
-for_postSxfPropagateCommandLineProbe << "sDT=0;\n";
-for_postSxfPropagateCommandLineProbe << "tofDT=0;\n";
+for_postSxfPropagateCommandLineProbe << " #include \"parameters\"\n";
+for_postSxfPropagateCommandLineProbe << " sDT=0;\n";
+for_postSxfPropagateCommandLineProbe << " tofDT=0;\n";
 
-//for_postSxfPropagateCommandLineProbe << "UAL::Probe& probe;\n";
-for_postSxfPropagateCommandLineProbe << "PAC::Bunch bunch(2);\n";
-for_postSxfPropagateCommandLineProbe << "bunch[0].getPosition().set(      0,       0,      0,      0,      0,      0 );\n";
+for_postSxfPropagateCommandLineProbe << " double trtrout[6][21];\n";
+for_postSxfPropagateCommandLineProbe << " for(int i=0;i<6;i++){\n";
+for_postSxfPropagateCommandLineProbe << "  for(int j=0;j<21;j++){\n";
+for_postSxfPropagateCommandLineProbe << "   trtrout[i][j]=0;\n";
+for_postSxfPropagateCommandLineProbe << "  }\n";
+for_postSxfPropagateCommandLineProbe << " }\n";
+
+//for_postSxfPropagateCommandLineProbe << " UAL::Probe& probe;\n";
+for_postSxfPropagateCommandLineProbe << " PAC::Bunch bunch(2);\n";
+for_postSxfPropagateCommandLineProbe << " /* design particle - usually ignored */ bunch[0].getPosition().set(      0,       0,      0,      0,      0,      0 );\n";
 //for_postSxfPropagateCommandLineProbe << "bunch[1].getPosition().set( +x1typ,       0,      0,      0,      0,      0 );\n";
 //for_postSxfPropagateCommandLineProbe << "bunch[1].getPosition().set( +x1typ,       0,      0, +y2typ,      0,      0 );\n";
 for_postSxfPropagateCommandLineProbe << "                     \n";
-for_postSxfPropagateCommandLineProbe << "EMTEAPOT::marker marker;\n";
-for_postSxfPropagateCommandLineProbe << "EMTEAPOT::drift implicitDrift;\n";
-for_postSxfPropagateCommandLineProbe << "EMTEAPOT::quad quad;\n";
-for_postSxfPropagateCommandLineProbe << "EMTEAPOT::embend bend;\n";
-for_postSxfPropagateCommandLineProbe << "EMTEAPOT::sext sext;\n";
-for_postSxfPropagateCommandLineProbe << "EMTEAPOT::oct oct;\n";
-for_postSxfPropagateCommandLineProbe << "EMTEAPOT::rfCavity rf;\n\n";
+for_postSxfPropagateCommandLineProbe << " EMTEAPOT::marker marker;\n";
+for_postSxfPropagateCommandLineProbe << " EMTEAPOT::drift implicitDrift;\n";
+for_postSxfPropagateCommandLineProbe << " EMTEAPOT::quad quad;\n";
+for_postSxfPropagateCommandLineProbe << " EMTEAPOT::embend bend;\n";
+for_postSxfPropagateCommandLineProbe << " EMTEAPOT::sext sext;\n";
+for_postSxfPropagateCommandLineProbe << " EMTEAPOT::oct oct;\n";
+for_postSxfPropagateCommandLineProbe << " EMTEAPOT::rfCavity rf;\n\n";
 
-for_postSxfPropagateCommandLineProbe << "int turns=atoi(argv[1]);\n\n";
-for_postSxfPropagateCommandLineProbe << "bunch[1].getPosition().set( atof(argv[2]), atof(argv[3]), atof(argv[4]), atof(argv[5]), atof(argv[6]), atof(argv[7]) );\n";
-for_postSxfPropagateCommandLineProbe << "outputFileName=(char*)argv[8];\n";
+for_postSxfPropagateCommandLineProbe << " int turns=atoi(argv[1]);\n\n";
+for_postSxfPropagateCommandLineProbe << " bunch[1].getPosition().set( atof(argv[2]), atof(argv[3]), atof(argv[4]), atof(argv[5]), atof(argv[6]), atof(argv[7]) );\n";
+for_postSxfPropagateCommandLineProbe << " outputFileName=(char*)argv[8];\n";
 
-for_postSxfPropagateCommandLineProbe << "for(int i=0;i<turns;i++){\n";
+for_postSxfPropagateCommandLineProbe << " for(int i=0;i<turns;i++){\n";

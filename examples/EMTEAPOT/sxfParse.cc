@@ -168,13 +168,13 @@ double LD       = rD*pcD;      //    L0;
    ple_L=ple.getLength();
    actualPosition=(int)(10000.*(ple_P + ple_L/2.))/10000.;
 
-   if(ple_gt==""){ple_gt="Drift";for_postSxfPropagateCommandLineProbe << "implicitDrift.driftPropagate(bunch, " << ple_L << ");\n";}
+   if(ple_gt==""){ple_gt="Drift";for_postSxfPropagateCommandLineProbe << "  implicitDrift.driftPropagate(bunch, " << ple_L << ");\n";}
 // if(ple_gt==""){ple_gt="Drift";for_postSxfPropagateCommandLineProbe << "implicitDrift.propagateWithArguments(bunch, " << ple_L << ");\n";}
 
-   if(ple_gt=="Marker"){for_postSxfPropagateCommandLineProbe << "/* " << ple.getDesignName() << " " << actualPosition << " */" << " marker.propagate(bunch);\n";}
+   if(ple_gt=="Marker"){for_postSxfPropagateCommandLineProbe << "  /* " << ple.getDesignName() << " " << actualPosition << " */" << " marker.propagate(bunch);\n";}
 
 // if(ple_gt=="Quadrupole"){for_postSxfPropagateCommandLineProbe << "/* " << ple.getDesignName() << " " << actualPosition << " */" << " quad.propagate(bunch);\n";}
-   if(ple_gt=="Quadrupole"){for_postSxfPropagateCommandLineProbe << "/* " << ple.getDesignName() << " " << actualPosition << " */";
+   if(ple_gt=="Quadrupole"){for_postSxfPropagateCommandLineProbe << "  /* " << ple.getDesignName() << " " << actualPosition << " */";
     if(attributes){
      for(PacElemAttributes::iterator it = attributes->begin(); it != attributes->end(); it++){
       switch((*it).key()){
@@ -228,12 +228,12 @@ std::cerr << "QUAD PAC_MULTIPOLE data[7] " << data[7] << "\n";
       }   
      }   
     }
-   for_postSxfPropagateCommandLineProbe << " quad.quadPropagate(bunch, " << lngth << ", " << klE0 << ", " << klE1 << ", " << klM0 << ", " << klM1 << ");\n";
+   for_postSxfPropagateCommandLineProbe << "  quad.quadPropagate(bunch, " << lngth << ", " << klE0 << ", " << klE1 << ", " << klM0 << ", " << klM1 << ");\n";
 // for_postSxfPropagateCommandLineProbe << " quad.propagateWith_1Plus5_Arguments(bunch, " << lngth << ", " << klE0 << ", " << klE1 << ", " << klM0 << ", " << klM1 << ");\n";
 // for_postSxfPropagateCommandLineProbe << " quad.propagateWithArguments(bunch, " << lngth << ", " << klE0 << ", " << klE1 << ", " << klM0 << ", " << klM1 << ");\n";
    }
 
-   if(ple_gt=="Sbend"){for_postSxfPropagateCommandLineProbe << "/* " << ple.getDesignName() << " " << actualPosition << " */";
+   if(ple_gt=="Sbend"){for_postSxfPropagateCommandLineProbe << "  /* " << ple.getDesignName() << " " << actualPosition << " */";
     if(attributes){
      for(PacElemAttributes::iterator it = attributes->begin(); it != attributes->end(); it++){
       switch((*it).key()){
@@ -288,18 +288,18 @@ std::cerr << "QUAD PAC_MULTIPOLE data[7] " << data[7] << "\n";
       }   
      }   
     }
-   for_postSxfPropagateCommandLineProbe << " bend.bendPropagate(bunch, " << lngth<< ", " << klE0 << ", " << klE1 << ", " << klM0 << ", " << klM1 << ");\n";
+   for_postSxfPropagateCommandLineProbe << "  bend.bendPropagate(bunch, " << lngth<< ", " << klE0 << ", " << klE1 << ", " << klM0 << ", " << klM1 << ");\n";
   }
  }
 
- for_postSxfPropagateCommandLineProbe << " std::cerr << \"\\n\";";
- for_postSxfPropagateCommandLineProbe << " std::cerr << \"sDT = \" << sDT << \"\\n\";" << "\n";
- for_postSxfPropagateCommandLineProbe << " std::cerr << \"tofDT = \" << tofDT << \"\\n\";" << "\n";
- for_postSxfPropagateCommandLineProbe << " std::cerr << \"\\n\";";
- for_postSxfPropagateCommandLineProbe << " std::cerr << \"turns = \" << turns << \"\\n\";" << "\n";
- for_postSxfPropagateCommandLineProbe << " std::cerr << \"sDT/turns = \" << sDT/(double)turns << \"\\n\";" << "\n";
- for_postSxfPropagateCommandLineProbe << " std::cerr << \"turns/tofDT = \" << (double)turns/tofDT << \"\\n\";" << "\n";
- for_postSxfPropagateCommandLineProbe << "}\n";
+ for_postSxfPropagateCommandLineProbe << "  std::cerr << \"\\n\";";
+ for_postSxfPropagateCommandLineProbe << "  std::cerr << \"sDT = \" << sDT << \"\\n\";" << "\n";
+ for_postSxfPropagateCommandLineProbe << "  std::cerr << \"tofDT = \" << tofDT << \"\\n\";" << "\n";
+ for_postSxfPropagateCommandLineProbe << "  std::cerr << \"\\n\";";
+ for_postSxfPropagateCommandLineProbe << "  std::cerr << \"turns = \" << turns << \"\\n\";" << "\n";
+ for_postSxfPropagateCommandLineProbe << "  std::cerr << \"sDT/turns = \" << sDT/(double)turns << \"\\n\";" << "\n";
+ for_postSxfPropagateCommandLineProbe << "  std::cerr << \"turns/tofDT = \" << (double)turns/tofDT << \"\\n\";" << "\n";
+ for_postSxfPropagateCommandLineProbe << " }\n";
  for_postSxfPropagateCommandLineProbe << "}\n";
  for_postSxfPropagateCommandLineProbe.close();
 

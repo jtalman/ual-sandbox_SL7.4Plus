@@ -3,6 +3,8 @@ for_postSxfPropagateCommandLineProbe.open ("postSxfPropagateCommandLineProbe.cc"
 
 for_postSxfPropagateCommandLineProbe << "#include <stdio.h>\n";
 for_postSxfPropagateCommandLineProbe << "#include <stdlib.h>\n\n";
+for_postSxfPropagateCommandLineProbe << "#include <iostream>\n";
+for_postSxfPropagateCommandLineProbe << "#include <iomanip>\n";
 for_postSxfPropagateCommandLineProbe << "#include <cmath>\n\n";
 
 for_postSxfPropagateCommandLineProbe << "#include \"EMTEAPOT/Integrator/marker.cc\"\n";
@@ -26,18 +28,22 @@ for_postSxfPropagateCommandLineProbe << "#include \"EMTEAPOT/Integrator/genMetho
 for_postSxfPropagateCommandLineProbe << "#include \"userManifest/probeDataForTwiss\"\n\n";
 //for_postSxfPropagateCommandLineProbe << "#include \"parameters\"\n\n";
 
+//for_postSxfPropagateCommandLineProbe << "#include \"getStndrdPrtclIndex\"\n\n";
+
 for_postSxfPropagateCommandLineProbe << "int main(int argc,char * argv[])\{\n";
 
 for_postSxfPropagateCommandLineProbe << " #include \"parameters\"\n";
 for_postSxfPropagateCommandLineProbe << " sDT=0;\n";
 for_postSxfPropagateCommandLineProbe << " tofDT=0;\n";
 
+/*
 for_postSxfPropagateCommandLineProbe << " double trtrout[6][21];\n";
 for_postSxfPropagateCommandLineProbe << " for(int i=0;i<6;i++){\n";
 for_postSxfPropagateCommandLineProbe << "  for(int j=0;j<21;j++){\n";
 for_postSxfPropagateCommandLineProbe << "   trtrout[i][j]=0;\n";
 for_postSxfPropagateCommandLineProbe << "  }\n";
 for_postSxfPropagateCommandLineProbe << " }\n";
+*/
 
 //for_postSxfPropagateCommandLineProbe << " UAL::Probe& probe;\n";
 for_postSxfPropagateCommandLineProbe << " PAC::Bunch bunch(2);\n";

@@ -1,0 +1,59 @@
+double rx[3][3],ry[3][3];
+for(int i=0;i<3;i++){
+ for(int j=0;j<3;j++){
+       rx[i][j]=0;
+       ry[i][j]=0;
+ }
+}
+
+     rx[1][1]=(trtrout[1][1]-trtrout[1][2]);
+std::cout << "TDJ-rx-DIFF" << "1 " << rx[1][1] << "\n";
+     rx[1][1]=(trtrout[1][1]-trtrout[1][2])/2/x1typ;
+std::cout << "TDJ-rx-RSLT" << "1 " << rx[1][1] << "\n";
+
+// C     ---  get transfer matrices using tracking output
+rx[1][1] = (trtrout[1][1] - trtrout[1][ 2])/(2.*x1typ);
+rx[2][1] = (trtrout[2][1] - trtrout[2][ 2])/(2.*x1typ);
+rx[1][2] = (trtrout[1][3] - trtrout[1][ 4])/(2.*x2typ);
+rx[2][2] = (trtrout[2][3] - trtrout[2][ 4])/(2.*x2typ);
+ry[1][1] = (trtrout[3][5] - trtrout[3][ 6])/(2.*y1typ);
+ry[2][1] = (trtrout[4][5] - trtrout[4][ 6])/(2.*y1typ);
+ry[1][2] = (trtrout[3][7] - trtrout[3][ 8])/(2.*y2typ);
+ry[2][2] = (trtrout[4][7] - trtrout[4][ 8])/(2.*y2typ);
+
+// C     ---  now get delta ones
+/*
+rx[1][3] = (trtrout[1][9] - trtrout[1][10])/(2.*deltyp);
+rx[2][3] = (trtrout[2][9] - trtrout[2][10])/(2.*deltyp);
+
+ry[1][3] = (trtrout[3][9] - trtrout[3][10])/(2.*deltyp);
+ry[2][3] = (trtrout[4][9] - trtrout[4][10])/(2.*deltyp);
+*/
+
+double r[5][5];
+for(int i=0;i<5;i++){
+ for(int j=0;j<5;j++){
+       r[i][j]=0;
+ }
+}
+
+// C     --   coupled ones
+r[1][3] = (trtrout[1][5] - trtrout[1][6])/(2.*y1typ);
+r[2][3] = (trtrout[2][5] - trtrout[2][6])/(2.*y1typ);
+r[1][4] = (trtrout[1][7] - trtrout[1][8])/(2.*y2typ);
+r[2][4] = (trtrout[2][7] - trtrout[2][8])/(2.*y2typ);
+r[3][1] = (trtrout[3][1] - trtrout[3][2])/(2.*x1typ);
+r[4][1] = (trtrout[4][1] - trtrout[4][2])/(2.*x1typ);
+r[3][2] = (trtrout[3][3] - trtrout[3][4])/(2.*x2typ);
+r[4][2] = (trtrout[4][3] - trtrout[4][4])/(2.*x2typ);
+
+for(int i=1;i<3;i++){
+ for(int j=1;j<3;j++){
+  r[i  ][j  ]=rx[i][j];
+  r[i+2][j+2]=ry[i][j];
+ }
+}
+r[1][5]=rx[1][3];
+r[2][5]=rx[2][3];
+r[3][5]=ry[1][3];
+r[4][5]=ry[2][3];

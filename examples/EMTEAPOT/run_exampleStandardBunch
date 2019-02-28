@@ -1,0 +1,96 @@
+ls -l postSxfPropagateCommandLineProbe.cc
+: \rm postSxfPropagateCommandLineProbe.cc
+  \rm postSxfPropagateCommandLineProbe.cc
+
+\cp Makefile_sxfParse Makefile
+\cp userManifest/userBunch1 userManifest/userBunch
+\cp userManifest/designBeamValues_sxfCheck userManifest/designBeamValues.hh
+
+\cp parameters-E_BM_Z-doublePrecision parameters
+
+make clean
+make
+
+: ./sxfParse ./sxf/EM_BM_Z.sxf
+  ./sxfParse ./sxf/EM_BM_Z.sxf
+
+make postSxfPropagateCommandLineProbe
+ls -l postSxfPropagateCommandLineProbe.cc
+ls -l postSxfPropagateCommandLineProbe
+
+\rm out/*
+
+:                                     4     5     6     7     8     9
+:                                     x     x'    y     y'    dt    dE
+./postSxfPropagateCommandLineProbe 1 +1e-6  0     0     0     0     0    ./out/StndrdPrtcl1
+./postSxfPropagateCommandLineProbe 1 -1e-6  0     0     0     0     0    ./out/StndrdPrtcl2
+
+./postSxfPropagateCommandLineProbe 1  0    +1e-6  0     0     0     0    ./out/StndrdPrtcl3
+./postSxfPropagateCommandLineProbe 1  0    -1e-6  0     0     0     0    ./out/StndrdPrtcl4
+
+./postSxfPropagateCommandLineProbe 1  0     0    +1e-6  0     0     0    ./out/StndrdPrtcl5
+./postSxfPropagateCommandLineProbe 1  0     0    -1e-6  0     0     0    ./out/StndrdPrtcl6
+
+./postSxfPropagateCommandLineProbe 1  0     0     0    +1e-6  0     0    ./out/StndrdPrtcl7
+./postSxfPropagateCommandLineProbe 1  0     0     0    -1e-6  0     0    ./out/StndrdPrtcl8
+
+: ./postSxfPropagateCommandLineProbe 1  0     0     0    0     +1e-6  0    ./out/StndrdPrtcl9
+: ./postSxfPropagateCommandLineProbe 1  0     0     0    0     -1e-6  0    ./out/StndrdPrtcl10
+
+./postSxfPropagateCommandLineProbe 1  0     0     0    0     0     +1e-6 ./out/StndrdPrtcl9
+./postSxfPropagateCommandLineProbe 1  0     0     0    0     0     -1e-6 ./out/StndrdPrtcl10
+
+./postSxfPropagateCommandLineProbe 1 +1e-6 +1e-6  0     0     0     0    ./out/StndrdPrtcl11
+./postSxfPropagateCommandLineProbe 1  0     0    +1e-6 +1e-6  0     0    ./out/StndrdPrtcl12
+
+./postSxfPropagateCommandLineProbe 1 +1e-6  0     0     0     0    +1e-6 ./out/StndrdPrtcl13
+./postSxfPropagateCommandLineProbe 1 0     +1e-6  0     0     0    +1e-6 ./out/StndrdPrtcl14
+./postSxfPropagateCommandLineProbe 1 0      0    +1e-6  0     0    +1e-6 ./out/StndrdPrtcl15
+./postSxfPropagateCommandLineProbe 1 0      0     0    +1e-6  0    +1e-6 ./out/StndrdPrtcl16
+
+./postSxfPropagateCommandLineProbe 1 +1e-6  0    +1e-6  0     0     0    ./out/StndrdPrtcl17
+./postSxfPropagateCommandLineProbe 1 +1e-6  0     0    +1e-6  0     0    ./out/StndrdPrtcl18
+
+./postSxfPropagateCommandLineProbe 1  0    +1e-6 +1e-6  0     0     0    ./out/StndrdPrtcl19
+./postSxfPropagateCommandLineProbe 1  0    +1e-6  0    +1e-6  0     0    ./out/StndrdPrtcl20
+
+: ./tunesPlus
+
+: gnuplot -persist
+: set terminal epslatex color dashed standalone size 8.5cm,7cm
+: set title 'One turn: x versus s for 1 micron initial delta in x'
+: set xlabel 's [m]'
+: set xlabel 'Split Bend'
+: set ylabel 'x as a Function of Split Bend [m]'
+: p 'out/StndrdPrtcl1' u (331./160.*$2):4 w l, 'out/StndrdPrtcl2' u (331./160.*$2):4 w l
+
+: set title "One turn: x' versus s for 1 micron initial delta in x'"
+: set xlabel "s [m]"
+: set ylabel "x' as a Function of Split Bend [m]"
+: p 'out/StndrdPrtcl3' u (331./160.*$2):5 w l, 'out/StndrdPrtcl4' u (331./160.*$2):5 w l
+
+: set title "One turn: y versus s for 1 micron initial delta in y"
+: set xlabel "s [m]"
+: set ylabel "y as a Function of Split Bend [m]"
+: p 'out/StndrdPrtcl5' u (331./160.*$2):6 w l, 'out/StndrdPrtcl6' u (331./160.*$2):6 w l
+
+: set title "One turn: y' versus s for 1 micron initial delta in y'"
+: set xlabel "s [m]"
+: set ylabel "y' as a Function of Split Bend [m]"
+: p 'out/StndrdPrtcl7' u (331./160.*$2):7 w l, 'out/StndrdPrtcl8' u (331./160.*$2):7 w l
+
+: set title "One turn: dt versus s for 1 micron initial delta in dt"
+: set xlabel "s [m]"
+: set ylabel "dt as a Function of Split Bend [m]"
+: set yrange [-1.5e-6:+1.5e-6]
+: p 'out/StndrdPrtcl9' u (331./160.*$2):8 w l, 'out/StndrdPrtcl10' u (331./160.*$2):8 w l
+
+: set title "One turn: dE versus s for 1 micron initial delta in dE"
+: set xlabel "s [m]"
+: set ylabel "dE as a Function of Split Bend [m]"
+: set yrange [-1.5e-6:+1.5e-6]
+: p 'out/StndrdPrtcl9' u (331./160.*$2):8 w l, 'out/StndrdPrtcl10' u (331./160.*$2):8 w l
+
+: q
+
+./tunesPlus

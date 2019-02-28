@@ -300,6 +300,25 @@ std::cerr << "QUAD PAC_MULTIPOLE data[7] " << data[7] << "\n";
  for_postSxfPropagateCommandLineProbe << "  std::cerr << \"sDT/turns = \" << sDT/(double)turns << \"\\n\";" << "\n";
  for_postSxfPropagateCommandLineProbe << "  std::cerr << \"turns/tofDT = \" << (double)turns/tofDT << \"\\n\";" << "\n";
  for_postSxfPropagateCommandLineProbe << " }\n";
+// for_postSxfPropagateCommandLineProbe << " int i = getStndrdPartclIndex(outputFileName);\n";
+// for_postSxfPropagateCommandLineProbe << " std::cerr << \"index \" << i << \"\\n\";" << "\n";
+// for_postSxfPropagateCommandLineProbe << " trtrout[i][ 1]=bunch[ 1].getPosition().getX();\n";
+
+//for_postSxfPropagateCommandLineProbe << "  std::cerr << fstream forTwiss << \"\\n\";";
+  for_postSxfPropagateCommandLineProbe << " fstream forTwiss;" << "\n";
+  for_postSxfPropagateCommandLineProbe << " forTwiss.open(\"./out/forTwiss\", fstream::out | fstream::app);" << "\n";
+  for_postSxfPropagateCommandLineProbe << " forTwiss.precision(15);" << "\n";
+  for_postSxfPropagateCommandLineProbe << " forTwiss << std::scientific;" << "\n";
+  for_postSxfPropagateCommandLineProbe << " forTwiss << std::showpos;" << "\n";
+//for_postSxfPropagateCommandLineProbe << " forTwiss << bunch[1].getPosition().getX() << ";
+  for_postSxfPropagateCommandLineProbe << " forTwiss << bunch[1].getPosition().getX()";
+  for_postSxfPropagateCommandLineProbe << " << \" \" << bunch[1].getPosition().getPX()";
+  for_postSxfPropagateCommandLineProbe << " << \" \" << bunch[1].getPosition().getY()";
+  for_postSxfPropagateCommandLineProbe << " << \" \" << bunch[1].getPosition().getPY()";
+  for_postSxfPropagateCommandLineProbe << " << \" \" << bunch[1].getPosition().getCT()";
+  for_postSxfPropagateCommandLineProbe << " << \" \" << bunch[1].getPosition().getDE() << \"\\n\";" << "\n";
+  for_postSxfPropagateCommandLineProbe << " forTwiss.close();" << "\n";
+
  for_postSxfPropagateCommandLineProbe << "}\n";
  for_postSxfPropagateCommandLineProbe.close();
 

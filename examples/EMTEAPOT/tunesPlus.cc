@@ -1,0 +1,116 @@
+#include <stdlib.h>                       // for exit
+#include <math.h>                         // for sqrt, acos
+#include <iostream>
+#include <iomanip>
+#include <fstream>
+using namespace std;
+
+int main(int argc,char * argv[]){
+
+ if(argc!=1){
+  std::cout << "usage: ./tunesPlus\n";
+  std::cout << "argv[0] is this executable         - ./tunesPlus           \n";
+  exit(0);
+ }
+
+ double trtrout[6][21];
+ for(int i=0;i<6;i++){
+  for(int j=0;j<21;j++){
+   trtrout[i][j]=0;
+  }
+ }
+
+ double x1typ = +1e-06;
+ double x2typ = +1e-06;
+ double y1typ = +1e-06;
+ double y2typ = +1e-06;
+
+//ifstream inFile;
+  ifstream inFile("./out/forTwiss");
+    
+//inFile.open("./out/forTwiss");
+ if (!inFile) {
+  cout << "Unable to open file";
+  exit(1);
+ }
+
+ int spi=1;
+ while(inFile >> trtrout[1][spi] >> trtrout[2][spi] >> trtrout[3][spi] >> trtrout[4][spi] >> trtrout[5][spi] >> trtrout[6][spi]){
+//std::cerr << trtrout[spi][ 1] << " " << trtrout[spi][ 2] << " " << trtrout[spi][ 3] << " " << trtrout[spi][ 4] << " " << trtrout[spi][ 5] << " " << trtrout[spi][ 6] <<"\n";
+  spi++;
+ }
+/*
+ while(inFile >> trtrout[spi][ 1] >> trtrout[spi][ 2] >> trtrout[spi][ 3] >> trtrout[spi][ 4] >> trtrout[spi][ 5] >> trtrout[spi][ 6]){
+  std::cerr << trtrout[spi][ 1] << " " << trtrout[spi][ 2] << " " << trtrout[spi][ 3] << " " << trtrout[spi][ 4] << " " << trtrout[spi][ 5] << " " << trtrout[spi][ 6] <<"\n";
+  spi++;
+ }
+*/
+
+#include"rs"
+
+ double a0x=     (double)0;
+ double b0x=     (double)0;
+ double mu_xTent=(double)0;
+ double a0y=     (double)0;
+ double b0y=     (double)0;
+ double mu_yTent=(double)0;
+ #define PI 3.141592653589793
+ double MX11=rx[1][1];double MX12=rx[1][2];
+ double MX21=rx[2][1];double MX22=rx[2][2];
+ double MXtr=MX11+MX22;
+ double cosMuX=MXtr/2;
+ if( (1-MXtr*MXtr/4)<0 ){std::cerr << "X: Trying to take square root of a negative number!\n";exit(1);}
+ double betaX=abs(MX12)/sqrt(1-MXtr*MXtr/4);
+ double sinMuX=MX12/betaX;
+ double alphaX=(MX11-MX22)/2/sinMuX;
+ std::cerr << "JDT: betaX  " << betaX  << "\n";
+ std::cerr << "JDT: cosMuX " << cosMuX << "\n";
+ std::cerr << "JDT: sinMuX " << sinMuX << "\n";
+ std::cerr << "JDT: alphaX " << alphaX << "\n";
+ double MuX_PR=acos(cosMuX);
+ double MuX;
+                                               // half integer tune ambiguity resolution
+                                               // NOT full integer tune ambiguity
+ if     (cosMuX>=0 && sinMuX>=0){MuX=MuX_PR;}       
+ else if(cosMuX<=0 && sinMuX>=0){MuX=MuX_PR;}
+ else if(cosMuX<=0 && sinMuX<=0){MuX=2*PI-MuX_PR;}
+ else if(cosMuX>=0 && sinMuX<=0){MuX=2*PI-MuX_PR;}
+
+ a0x=alphaX;
+ b0x=betaX;
+ mu_xTent=MuX;
+
+ std::cerr << "JDT:    MuX " <<    MuX << "\n";
+ double QX=MuX/2/PI;
+ std::cerr << "JDT:    QX  " <<    QX  << "\n";
+ std::cerr <<                             "\n";
+
+ double MY11=ry[1][1];double MY12=ry[1][2];
+ double MY21=ry[2][1];double MY22=ry[2][2];
+ double MYtr=MY11+MY22;
+ double cosMuY=MYtr/2;
+ if( (1-MYtr*MYtr/4)<0 ){std::cerr << "Y: Trying to take square root of a negative number!\n";exit(1);}
+ double betaY=abs(MY12)/sqrt(1-MYtr*MYtr/4);
+ double sinMuY=MY12/betaY;;
+ double alphaY=(MY11-MY22)/2/sinMuY;
+ std::cerr << "JDT: betaY  " << betaY  << "\n";
+ std::cerr << "JDT: cosMuY " << cosMuY << "\n";
+ std::cerr << "JDT: sinMuY " << sinMuY << "\n";
+ std::cerr << "JDT: alphaY " << alphaY << "\n";
+ double MuY_PR=acos(cosMuY);
+ double MuY;
+ if     (cosMuY>=0 && sinMuY>=0){MuY=MuY_PR;}
+ else if(cosMuY<=0 && sinMuY>=0){MuY=MuY_PR;}
+ else if(cosMuY<=0 && sinMuY<=0){MuY=2*PI-MuY_PR;}
+ else if(cosMuY>=0 && sinMuY<=0){MuY=2*PI-MuY_PR;}
+ a0y=alphaY;
+ b0y=betaY;
+ mu_yTent=MuY;
+
+ std::cerr << "JDT:    MuY " <<    MuY << "\n";
+ double QY=MuY/2/PI;
+ std::cerr << "JDT:    QY  " <<    QY  << "\n";
+ std::cerr <<                             "\n";
+
+ return (int)0;
+}

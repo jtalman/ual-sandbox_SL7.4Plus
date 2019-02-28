@@ -35,10 +35,13 @@ LIBS += 					 -lm
 SRC_DIR  = .
 OBJ_DIR  = ./lib/$(UAL_ARCH)/obj
 
-compile: ./sxfParse
+compile: ./sxfParse ./tunesPlus
 
 clean:
-	rm -f $(OBJ_DIR)/sxfParse.o ./sxfParse ./postSxfPropagateCommandLineProbe
+	rm -f $(OBJ_DIR)/*
+	rm -f ./sxfParse
+	rm -f ./postSxfPropagateCommandLineProbe ./postSxfPropagateCommandLineProbe.cc
+	rm -f ./tunesPlus
 	rm -rf m_m echo.sxf initialSpin out/*
 
 ./sxfParse: $(OBJ_DIR)/sxfParse.o
@@ -47,5 +50,8 @@ clean:
 ./postSxfPropagateCommandLineProbe: $(OBJ_DIR)/postSxfPropagateCommandLineProbe.o
 	$(CC) -o $@  $(CCFLAGS) $(INC) $(OBJ_DIR)/postSxfPropagateCommandLineProbe.o $(OBJS) $(LIBS)
 
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.cc
+./tunesPlus:
+	$(CC) tunesPlus.cc -o $@  $(CCFLAGS)
+
+$(OBJ_DIR)/%.o : $(SRC_DIR)/%.cc
 	$(CC) $(CCFLAGS) $(INC) -c $< -o $@

@@ -1,7 +1,10 @@
+#include <stdio.h>
 #include <stdlib.h>                       // for exit
+#include <string.h>
 #include <math.h>                         // for sqrt, acos
+#include <errno.h>
 #include <iostream>
-#include <iomanip>
+//#include <iomanip>
 #include <fstream>
 using namespace std;
 
@@ -13,8 +16,8 @@ int main(int argc,char * argv[]){
   exit(0);
  }
 
- double trtrout[6][21];
- for(int i=0;i<6;i++){
+ double trtrout[7][21];
+ for(int i=0;i<7;i++){
   for(int j=0;j<21;j++){
    trtrout[i][j]=0;
   }
@@ -25,18 +28,24 @@ int main(int argc,char * argv[]){
  double y1typ = +1e-06;
  double y2typ = +1e-06;
 
-//ifstream inFile;
-  ifstream inFile("./out/forTwiss");
-    
-//inFile.open("./out/forTwiss");
+ifstream inFile;
+//ifstream inFile("./out/forTwiss");
+//cout << "inFile " << inFile << "\n";    
+
+  inFile.open("./out/forTwiss");
+//inFile.open("/home/ualusrPERL/ual-sandbox_SL7.4Plus/examples/EMTEAPOT/out/forTwiss");
+//inFile.open("/home/ualusrPERL/ual-sandbox_SL7.4Plus/examples/EMTEAPOT/out/forTwiss",ifstream::in);
+ cout << "inFile " << inFile << "\n";
  if (!inFile) {
-  cout << "Unable to open file";
+   cout << "Unable to open file " << strerror(errno) << "\n";
   exit(1);
  }
 
  int spi=1;
  while(inFile >> trtrout[1][spi] >> trtrout[2][spi] >> trtrout[3][spi] >> trtrout[4][spi] >> trtrout[5][spi] >> trtrout[6][spi]){
-//std::cerr << trtrout[spi][ 1] << " " << trtrout[spi][ 2] << " " << trtrout[spi][ 3] << " " << trtrout[spi][ 4] << " " << trtrout[spi][ 5] << " " << trtrout[spi][ 6] <<"\n";
+// while(!EOF){
+//inFile >> trtrout[1][spi] >> trtrout[2][spi] >> trtrout[3][spi] >> trtrout[4][spi] >> trtrout[5][spi] >> trtrout[6][spi];
+std::cerr << trtrout[1][spi] << " " << trtrout[2][spi] << " " << trtrout[3][spi] << " " << trtrout[4][spi] << " " << trtrout[5][spi] << " " << trtrout[6][spi] <<"\n";
   spi++;
  }
 /*
@@ -45,6 +54,8 @@ int main(int argc,char * argv[]){
   spi++;
  }
 */
+
+inFile.close();
 
 #include"rs"
 

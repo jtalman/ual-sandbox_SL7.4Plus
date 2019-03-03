@@ -292,7 +292,8 @@ std::cerr << "QUAD PAC_MULTIPOLE data[7] " << data[7] << "\n";
   }
  }
 
- for_postSxfPropagateCommandLineProbe << "  std::cerr << \"\\n\";";
+ for_postSxfPropagateCommandLineProbe << "  std::cerr << \"\\n\";" << "\n";
+ for_postSxfPropagateCommandLineProbe << "  std::cerr << \"bendsDT = \" << bendsDT << \"\\n\";" << "\n";
  for_postSxfPropagateCommandLineProbe << "  std::cerr << \"sDT = \" << sDT << \"\\n\";" << "\n";
  for_postSxfPropagateCommandLineProbe << "  std::cerr << \"tofDT = \" << tofDT << \"\\n\";" << "\n";
  for_postSxfPropagateCommandLineProbe << "  std::cerr << \"\\n\";";

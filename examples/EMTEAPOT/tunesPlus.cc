@@ -123,5 +123,7 @@ inFile.close();
  std::cerr << "JDT:    QY  " <<    QY  << "\n";
  std::cerr <<                             "\n";
 
+ std::cerr << "./betaOf_s +1.0 0.0 31.9793 0.0 77.1718 206 >! betaFunctions" << "\n";
+
  return (int)0;
 }

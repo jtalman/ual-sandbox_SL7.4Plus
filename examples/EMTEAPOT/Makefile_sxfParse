@@ -35,13 +35,14 @@ LIBS += 					 -lm
 SRC_DIR  = .
 OBJ_DIR  = ./lib/$(UAL_ARCH)/obj
 
-compile: ./sxfParse ./tunesPlus
+compile: ./sxfParse ./tunesPlus ./betaOf_s
 
 clean:
 	rm -f $(OBJ_DIR)/*
 	rm -f ./sxfParse
 	rm -f ./postSxfPropagateCommandLineProbe ./postSxfPropagateCommandLineProbe.cc
 	rm -f ./tunesPlus
+	rm -f ./betaOf_s
 	rm -rf m_m echo.sxf initialSpin out/*
 
 ./sxfParse: $(OBJ_DIR)/sxfParse.o
@@ -52,6 +53,9 @@ clean:
 
 ./tunesPlus:
 	$(CC) tunesPlus.cc -o $@  $(CCFLAGS)
+
+./betaOf_s:
+	$(CC) betaOf_s.cc -o $@  $(CCFLAGS) -I$(UAL)/codes/PAC/src -I$(UAL)/codes/UAL/src $(UAL)/codes/PAC/lib/linux/libPac.so
 
 $(OBJ_DIR)/%.o : $(SRC_DIR)/%.cc
 	$(CC) $(CCFLAGS) $(INC) -c $< -o $@

@@ -15,7 +15,8 @@ using namespace std;
 int main(int argc, char* argv[]){
 
  if( argc != 7 ){
-  cerr << "Usage: ./betaOf_s +1.0 0.0 31.9793 0.0 77.1718 206 > ! betaFunctions\n";
+//cerr << "Usage: ./betaOf_s +1.0 0.0 31.9793 0.0 77.1718 206 > ! betaFunctions\n";
+  cerr << "Usage: ./betaOf_s +1.0 0.0 31.9793 0.0 77.1718 160 > ! betaFunctions\n";
   exit(1);
  }
 
@@ -52,6 +53,61 @@ int main(int argc, char* argv[]){
 #include "sip9"
 #include "sip10"
 */
+
+ int ipx,split_bnd,z;
+ double sp1,sp2,sp3;
+ fstream SP1;
+         SP1.open("./out/StndrdPrtcl1",fstream::in);
+ for(i=0;i<sElems ;i++){
+  SP1 >> ip >> split_bnd >> z >> p1[i][0] >> p1[i][1] >> p1[i][2] >> p1[i][3] >> p1[i][4] >> p1[i][5] >> sp1 >> sp2 >> sp3;
+//std::cerr     <<                    p1[i][0] << p1[i][1] << p1[i][2] << p1[i][3] << p1[i][4] << p1[i][5] << "\n";
+//SP1 >> name[i] >> s[i] >> p1[i][0] >> p1[i][1] >> p1[i][2] >> p1[i][3] >> p1[i][4] >> p1[i][5] >> dummy[i] >    > alp;
+ }
+ fstream SP2;
+         SP2.open("./out/StndrdPrtcl2",fstream::in);
+ for(i=0;i<sElems ;i++){
+  SP2 >> ip >> split_bnd >> z >> p2[i][0] >> p2[i][1] >> p2[i][2] >> p2[i][3] >> p2[i][4] >> p2[i][5] >> sp1 >> sp2 >> sp3;
+ }
+ fstream SP3;
+         SP3.open("./out/StndrdPrtcl3",fstream::in);
+ for(i=0;i<sElems ;i++){
+  SP3 >> ip >> split_bnd >> z >> p3[i][0] >> p3[i][1] >> p3[i][2] >> p3[i][3] >> p3[i][4] >> p3[i][5] >> sp1 >> sp2 >> sp3;
+ }
+ fstream SP4;
+         SP4.open("./out/StndrdPrtcl4",fstream::in);
+ for(i=0;i<sElems ;i++){
+  SP4 >> ip >> split_bnd >> z >> p4[i][0] >> p4[i][1] >> p4[i][2] >> p4[i][3] >> p4[i][4] >> p4[i][5] >> sp1 >> sp2 >> sp3;
+ }
+ fstream SP5;
+         SP5.open("./out/StndrdPrtcl5",fstream::in);
+ for(i=0;i<sElems ;i++){
+  SP5 >> ip >> split_bnd >> z >> p5[i][0] >> p5[i][1] >> p5[i][2] >> p5[i][3] >> p5[i][4] >> p5[i][5] >> sp1 >> sp2 >> sp3;
+ }
+ fstream SP6;
+         SP6.open("./out/StndrdPrtcl6",fstream::in);
+ for(i=0;i<sElems ;i++){
+  SP6 >> ip >> split_bnd >> z >> p6[i][0] >> p6[i][1] >> p6[i][2] >> p6[i][3] >> p6[i][4] >> p6[i][5] >> sp1 >> sp2 >> sp3;
+ }
+ fstream SP7;
+         SP7.open("./out/StndrdPrtcl7",fstream::in);
+ for(i=0;i<sElems ;i++){
+  SP7 >> ip >> split_bnd >> z >> p7[i][0] >> p7[i][1] >> p7[i][2] >> p7[i][3] >> p7[i][4] >> p7[i][5] >> sp1 >> sp2 >> sp3;
+ }
+ fstream SP8;
+         SP8.open("./out/StndrdPrtcl8",fstream::in);
+ for(i=0;i<sElems ;i++){
+  SP8 >> ip >> split_bnd >> z >> p8[i][0] >> p8[i][1] >> p8[i][2] >> p8[i][3] >> p8[i][4] >> p8[i][5] >> sp1 >> sp2 >> sp3;
+ }
+ fstream SP9;
+         SP9.open("./out/StndrdPrtcl9",fstream::in);
+ for(i=0;i<sElems ;i++){
+  SP9 >> ip >> split_bnd >> z >> p9[i][0] >> p9[i][1] >> p9[i][2] >> p9[i][3] >> p9[i][4] >> p9[i][5] >> sp1 >> sp2 >> sp3;
+ }
+ fstream SP10;
+         SP10.open("./out/StndrdPrtcl10",fstream::in);
+ for(i=0;i<sElems ;i++){
+  SP10 >> ip >> split_bnd >> z >> p10[i][0] >> p10[i][1] >> p10[i][2] >> p10[i][3] >> p10[i][4] >> p10[i][5] >> sp1 >> sp2 >> sp3;
+ }
 
  double PI=3.141592654;
 
@@ -166,7 +222,7 @@ int main(int argc, char* argv[]){
   } 
   betaY_OfSLAST = betaY_OfS;
 
-  cout <<                                              betaX_OfSLAST << " " << betaY_OfSLAST << " " << psiX_OfSLAST << " " <<  psiY_OfSLAST << "\n";
+  cout << i << " " <<                                  betaX_OfSLAST << " " << betaY_OfSLAST << " " << psiX_OfSLAST << " " <<  psiY_OfSLAST << "\n";
 //cout << setw(12) << name[i] << " " << s[i] << " " << betaX_OfSLAST << " " << betaY_OfSLAST << " " << psiX_OfSLAST << " " <<  psiY_OfSLAST << "\n";
  }
  return 0;

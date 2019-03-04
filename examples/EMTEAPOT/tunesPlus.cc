@@ -6,13 +6,18 @@
 #include <iostream>
 //#include <iomanip>
 #include <fstream>
+
+#include "EMTEAPOT/Integrator/genMethods/designExtern"
+#include "EMTEAPOT/Integrator/genMethods/designDef"
+
 using namespace std;
 
 int main(int argc,char * argv[]){
 
- if(argc!=1){
-  std::cout << "usage: ./tunesPlus\n";
-  std::cout << "argv[0] is this executable         - ./tunesPlus           \n";
+ if(argc!=2){
+  std::cout << "usage: ./tunesPlus 160\n";
+  std::cout << "argv[0] is this executable - ./tunesPlus \n";
+  std::cout << "argv[1] is number of split bends - 160 \n";
   exit(0);
  }
 
@@ -123,7 +128,11 @@ inFile.close();
  std::cerr << "JDT:    QY  " <<    QY  << "\n";
  std::cerr <<                             "\n";
 
- std::cerr << "./betaOf_s +1.0 0.0 31.9793 0.0 77.1718 206 >! betaFunctions" << "\n";
+//      cerr << "Usage: ./betaOf_s +1.0 0.0 31.9793 0.0 77.1718 206 > ! betaFunctions\n";
+// std::cerr <<        "./betaOf_s +1.0 0.0 31.9793 0.0 77.1718 " << bendsDT << ">! betaFunctions" << "\n";
+// std::cerr <<        "./betaOf_s +1.0 0.0 31.9793 0.0 77.1718 " << argv[1] << ">! betaFunctions" << "\n";
+// std::cerr <<        "./betaOf_s +1.0 " << argv[2] << " " << argv[3] << " " << argv[4] << " " << argv[1] << ">! betaFunctions" << "\n";
+ std::cerr <<        "./betaOf_s +1.0 " << a0x << " " << b0x << " " << a0y << " " << b0y << " " << argv[1] << " >! betaFunctions" << "\n";
 
  return (int)0;
 }

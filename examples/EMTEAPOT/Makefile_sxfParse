@@ -43,6 +43,7 @@ clean:
 	rm -f ./postSxfPropagateCommandLineProbe ./postSxfPropagateCommandLineProbe.cc
 	rm -f ./tunesPlus
 	rm -f ./betaOf_s
+	rm -f ./betaFunctions
 	rm -rf m_m echo.sxf initialSpin out/*
 
 ./sxfParse: $(OBJ_DIR)/sxfParse.o
@@ -52,7 +53,7 @@ clean:
 	$(CC) -o $@  $(CCFLAGS) $(INC) $(OBJ_DIR)/postSxfPropagateCommandLineProbe.o $(OBJS) $(LIBS)
 
 ./tunesPlus:
-	$(CC) tunesPlus.cc -o $@  $(CCFLAGS)
+	$(CC) tunesPlus.cc -o $@  $(CCFLAGS) -I$(UAL)/codes/EMTEAPOT/src
 
 ./betaOf_s:
 	$(CC) betaOf_s.cc -o $@  $(CCFLAGS) -I$(UAL)/codes/PAC/src -I$(UAL)/codes/UAL/src $(UAL)/codes/PAC/lib/linux/libPac.so

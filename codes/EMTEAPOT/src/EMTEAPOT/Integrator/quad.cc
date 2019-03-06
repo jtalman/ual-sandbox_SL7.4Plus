@@ -38,6 +38,8 @@ namespace EMTEAPOT {
 
 #include "EMTEAPOT/Integrator/quadMethods/my_cos"
 
+#include "EMTEAPOT/Integrator/quadMethods/perQuadOutput.method"
+
     /** Element length */
     // double m_l;
 

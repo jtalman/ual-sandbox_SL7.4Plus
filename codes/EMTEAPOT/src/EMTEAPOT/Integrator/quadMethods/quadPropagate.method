@@ -25,6 +25,7 @@ std::cerr << "\nJDT2018 - enter File " << __FILE__ << " line " << __LINE__ << "\
   q=qe;
   #include"quadSpinEvolve"
   passQuadDrift( m_l/2., tofD/2. );
+  perQuadOutput(ip);
  }                                                              // end electric
 
 /*

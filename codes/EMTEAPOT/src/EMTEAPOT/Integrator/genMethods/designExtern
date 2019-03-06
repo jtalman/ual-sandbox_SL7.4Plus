@@ -3,6 +3,11 @@
 
 #include<fstream>
 
+  extern double mrkssDT;
+  extern double quadsDT;
+  extern double bendsDT;
+  extern double printDT;
+  extern std::fstream JDTout;
   extern const char* outputFileName;
 //extern char outputFileName[20];
 //char[20] outputFileName;
@@ -40,7 +45,7 @@
 
  extern double sDT;
 
- extern double bendsDT;
+//extern double bendsDT;
 
 //____________________________________________________________________________________________________
 

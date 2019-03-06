@@ -4,6 +4,11 @@
 //#include<iostream>
 #include<fstream>
 
+  double mrkssDT = 0;
+  double quadsDT = 0;
+  double bendsDT = 0;
+  double printDT = 0;
+  std::fstream JDTout;
   const char* outputFileName;
 //char     outputFileName[20];
 //char[20] outputFileName;
@@ -42,7 +47,7 @@
 
  double sDT = 0;
 
- double bendsDT = 0;
+//double bendsDT = 0;
 
 //____________________________________________________________________________________________________
 

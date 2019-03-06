@@ -67,4 +67,4 @@ Matrix3 R_in_INV;
 Matrix3 R_out;
 Vector3 sIn;
 
-fstream JDTout;
+//fstream JDTout;

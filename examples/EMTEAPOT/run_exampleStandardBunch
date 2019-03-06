@@ -93,4 +93,5 @@ ls -l postSxfPropagateCommandLineProbe
 
 : q
 
-./tunesPlus 160
+./tunesPlus
+: ./tunesPlus 160

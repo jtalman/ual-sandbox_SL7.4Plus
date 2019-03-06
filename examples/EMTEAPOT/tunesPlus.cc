@@ -14,12 +14,19 @@ using namespace std;
 
 int main(int argc,char * argv[]){
 
+ if(argc!=1){
+  std::cout << "usage: ./tunesPlus 160\n";
+  std::cout << "argv[0] is this executable - ./tunesPlus \n";
+  exit(0);
+ }
+/*
  if(argc!=2){
   std::cout << "usage: ./tunesPlus 160\n";
   std::cout << "argv[0] is this executable - ./tunesPlus \n";
   std::cout << "argv[1] is number of split bends - 160 \n";
   exit(0);
  }
+*/
 
  double trtrout[7][21];
  for(int i=0;i<7;i++){
@@ -132,7 +139,10 @@ inFile.close();
 // std::cerr <<        "./betaOf_s +1.0 0.0 31.9793 0.0 77.1718 " << bendsDT << ">! betaFunctions" << "\n";
 // std::cerr <<        "./betaOf_s +1.0 0.0 31.9793 0.0 77.1718 " << argv[1] << ">! betaFunctions" << "\n";
 // std::cerr <<        "./betaOf_s +1.0 " << argv[2] << " " << argv[3] << " " << argv[4] << " " << argv[1] << ">! betaFunctions" << "\n";
- std::cerr <<        "./betaOf_s +1.0 " << a0x << " " << b0x << " " << a0y << " " << b0y << " " << argv[1] << " >! betaFunctions" << "\n";
+//
+  std::cerr <<        "./betaOf_s +1.0 " << a0x << " " << b0x << " " << a0y << " " << b0y <<               " >! betaFunctions" << "\n";
+//std::cerr <<        "./betaOf_s +1.0 " << a0x << " " << b0x << " " << a0y << " " << b0y << " " << spi << " >! betaFunctions" << "\n";
+//std::cerr <<        "./betaOf_s +1.0 " << a0x << " " << b0x << " " << a0y << " " << b0y << " " << argv[1] << " >! betaFunctions" << "\n";
 
  return (int)0;
 }

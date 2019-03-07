@@ -1,0 +1,25 @@
+ls -l postSxfPropagateCommandLineProbe.cc
+: \rm postSxfPropagateCommandLineProbe.cc
+  \rm postSxfPropagateCommandLineProbe.cc
+
+: \cp ../ETEAPOT1/EDMLatest/sxf/EM_BM_Z.sxf sxf
+
+\cp Makefile_sxfParse Makefile
+\cp userManifest/userBunch1 userManifest/userBunch
+\cp userManifest/designBeamValues_sxfCheck userManifest/designBeamValues.hh
+
+\cp parameters-E_BM_Z-doublePrecision parameters
+
+make clean
+make
+
+: ./sxfParse ./sxf/EM_BM_Z.sxf
+
+: ./sxfParse ./sxf/EM_BM_Z.sxf
+: ./sxfParse ./sxf/EM_BM_Z.sxf 0
+: ./sxfParse ./sxf/EM_BM_Z_sl4.sxf 0
+
+: ./sxfParse ./sxf/EM_BM_M1.0.sxf
+  ./sxfParse ./sxf/EM_BM_P1.0.sxf 1
+
+ls -l postSxfPropagateCommandLineProbe.cc

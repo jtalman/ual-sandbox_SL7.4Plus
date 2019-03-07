@@ -41,11 +41,14 @@ int main(int argc,char * argv[]){
  int startTime, endTime, totalTime;
 
 //if(argc!=10){
-if(argc!=2){
-  std::cout << "usage: ./sxfParse ./sxf/current2.sxf\n";
+//if(argc!=2){
+  if(argc!=3){
+  std::cout << "usage: ./sxfParse ./sxf/EM_BM_Z_sl4.sxf 0\n";
+//std::cout << "usage: ./sxfParse ./sxf/current2.sxf\n";
 //std::cout << "usage: ./sxfCheck ./sxf/measured.sxf 1.0504653e+06 1 0 1 0.0 1 45 9\n";
- std::cout << "argv[0] is this executable         - ./sxfParse                                 \n";
- std::cout << "argv[1] is the input sxf file      - ./sxf/current2.sxf                         \n";
+ std::cout << "argv[0] is this executable         - ./sxfParse                \n";
+ std::cout << "argv[1] is the input sxf file      - ./sxf/EM_BM_Z_sl4.sxf     \n";
+ std::cout << "argv[2] is the scalar of Z (0)     - 0                         \n";
 /*
  std::cout << "argv[2] is the design frequency, fD, 1.0504653e+06                              \n";
  std::cout << "argv[3] is the nominal electrode m - 1                                          \n";
@@ -293,6 +296,7 @@ std::cerr << "QUAD PAC_MULTIPOLE data[7] " << data[7] << "\n";
  }
 
  for_postSxfPropagateCommandLineProbe << "  std::cerr << \"\\n\";" << "\n";
+ for_postSxfPropagateCommandLineProbe << "  std::cerr << \"quadsDT = \" << quadsDT << \"\\n\";" << "\n";
  for_postSxfPropagateCommandLineProbe << "  std::cerr << \"bendsDT = \" << bendsDT << \"\\n\";" << "\n";
  for_postSxfPropagateCommandLineProbe << "  std::cerr << \"sDT = \" << sDT << \"\\n\";" << "\n";
  for_postSxfPropagateCommandLineProbe << "  std::cerr << \"tofDT = \" << tofDT << \"\\n\";" << "\n";
@@ -323,6 +327,7 @@ std::cerr << "QUAD PAC_MULTIPOLE data[7] " << data[7] << "\n";
  for_postSxfPropagateCommandLineProbe << "}\n";
  for_postSxfPropagateCommandLineProbe.close();
 
+/*
  double t; // time variable
 
  turns=1;   //   atoi( argv[5] );
@@ -378,6 +383,7 @@ std::cerr << "QUAD PAC_MULTIPOLE data[7] " << data[7] << "\n";
  std::cerr << "++===================================================================================++\n";
  std::cerr << "\n";
 #endif
+*/
 
  return 0;
 }

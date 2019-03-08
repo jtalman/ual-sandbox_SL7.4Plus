@@ -1,0 +1,15 @@
+\rm postSxfPropagateCommandLineProbe
+make postSxfPropagateCommandLineProbe
+ls -l postSxfPropagateCommandLineProbe.cc
+ls -l postSxfPropagateCommandLineProbe
+
+\rm out/*
+
+:                                              4          5        6     7     8     9
+:                                     turns    x          x'       y     y'    dt    dE
+  ./postSxfPropagateCommandLineProbe    1    +x1typ     0        0     0     0     0    ./out/StndrdPrtcl1
+  ./postSxfPropagateCommandLineProbe    1    -x1typ     0        0     0     0     0    ./out/StndrdPrtcl2
+
+gnuplot -persist
+  l 'gnuplot/SP_1_2_x.gnu'
+  q

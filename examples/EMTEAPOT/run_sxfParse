@@ -13,13 +13,11 @@ ls -l postSxfPropagateCommandLineProbe.cc
 make clean
 make
 
-: ./sxfParse ./sxf/EM_BM_Z.sxf
-
-: ./sxfParse ./sxf/EM_BM_Z.sxf
 : ./sxfParse ./sxf/EM_BM_Z.sxf 0
 : ./sxfParse ./sxf/EM_BM_Z_sl4.sxf 0
 
-: ./sxfParse ./sxf/EM_BM_M1.0.sxf
-  ./sxfParse ./sxf/EM_BM_P1.0.sxf 1
+  ./sxfParse ./sxf/EM_BM_M1.0.sxf -1
+
+: ./sxfParse ./sxf/EM_BM_P1.0.sxf 1
 
 ls -l postSxfPropagateCommandLineProbe.cc

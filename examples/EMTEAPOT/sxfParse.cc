@@ -62,6 +62,7 @@ int main(int argc,char * argv[]){
  exit(0);
 }
 
+/*
 ofstream m_m;
 m_m.open ("m_m");
 m_m << "1";   //   argv[2];
@@ -76,6 +77,7 @@ std::cerr << "EMTEAPOT::embend::m_m " << EMTEAPOT::embend::m_m << "\n";
               EMTEAPOT::embend::dZFF=1;   //   atof( argv[6] );
 std::cerr << "EMTEAPOT::embend::dZFF " << EMTEAPOT::embend::dZFF << "\n";
 std::cerr << "EMTEAPOT::embend::m_m " << EMTEAPOT::embend::m_m << "\n";
+*/
 
 #include"for_postSxfPropagateCommandLineProbe"
 
@@ -291,7 +293,7 @@ std::cerr << "QUAD PAC_MULTIPOLE data[7] " << data[7] << "\n";
       }   
      }   
     }
-   for_postSxfPropagateCommandLineProbe << "  bend.bendPropagate(bunch, " << lngth<< ", " << klE0 << ", " << klE1 << ", " << klM0 << ", " << klM1 << ");\n";
+   for_postSxfPropagateCommandLineProbe << "  bend.bendPropagate_m(bunch, " << lngth<< ", " << klE0 << ", " << klE1 << ", " << klM0 << ", " << klM1 << ", " << argv[2] << ");\n";
   }
  }
 

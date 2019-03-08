@@ -41,6 +41,7 @@ inline ETEAPOT::MltData& getMltData();
 #include "EMTEAPOT/Integrator/embendMethods/propagateWith_1Plus5_Arguments.method"
 
 #include "EMTEAPOT/Integrator/embendMethods/bendPropagate.method"
+#include "EMTEAPOT/Integrator/embendMethods/bendPropagate_m.method"
 
 #include "EMTEAPOT/Integrator/embendMethods/entryFF.method"
 #include "EMTEAPOT/Integrator/embendMethods/refractIn.method"

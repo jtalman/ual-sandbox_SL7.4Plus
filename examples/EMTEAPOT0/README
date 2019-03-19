@@ -1,0 +1,16 @@
+This assumes a fresh "clone" of this code:
+      git clone git://github.com/jtalman/ual-sandbox_SL7.4Plus
+      cd $UAL
+      make clean
+      make
+
+This file is in
+      $UAL/examples/EMTEAPOT0
+
+A good way to initiate/start proceedings from here is the basic
+      make clean
+      make
+
+This should pop up plots of some standard particles and overview the major files involved.
+
+Specific input probes, and bunches of them, can now/then be templated.

@@ -35,7 +35,7 @@ LIBS += 					 -lm
 compile: ./sxf2propagator
 
 clean:
-	@rm -f ./sxf2propagator /sxf2propagator.o
+	@rm -f ./sxf2propagator ./sxf2propagator.o
 	@rm -f ./working.sxf
 	@rm -f ./working.apdf
 	@rm -rf echo.sxf

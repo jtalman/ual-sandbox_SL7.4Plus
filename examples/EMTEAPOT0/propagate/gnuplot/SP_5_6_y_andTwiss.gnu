@@ -5,7 +5,7 @@ set termopt enhanced
 set lmargin 20
 set rmargin 5
 set format y "%+g"
-set title "One turn: y versus element for 1 micron initial delta in x"
+set title "One turn: y versus element for 1 micron initial delta in y"
 set key font ",10"
 set xlabel "element"
 set ylabel "y(element)"

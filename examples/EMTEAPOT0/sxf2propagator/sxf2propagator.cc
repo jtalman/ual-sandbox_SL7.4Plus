@@ -227,19 +227,9 @@ int main(int argc,char * argv[]){
  for_postSxfPropagator << "  std::cerr << \"turns/tofDT = \" << (double)turns/tofDT << \"\\n\";" << "\n";
  for_postSxfPropagator << " }\n";
 
- for_postSxfPropagator << " fstream forTwiss;" << "\n";
- for_postSxfPropagator << " forTwiss.open(\"./out/forTwiss\", fstream::out | fstream::app);" << "\n";
- for_postSxfPropagator << " forTwiss.precision(15);" << "\n";
- for_postSxfPropagator << " forTwiss << std::scientific;" << "\n";
- for_postSxfPropagator << " forTwiss << std::showpos;" << "\n";
- for_postSxfPropagator << " forTwiss << bunch[1].getPosition().getX()";
- for_postSxfPropagator << " << \" \" << bunch[1].getPosition().getPX()";
- for_postSxfPropagator << " << \" \" << bunch[1].getPosition().getY()";
- for_postSxfPropagator << " << \" \" << bunch[1].getPosition().getPY()";
- for_postSxfPropagator << " << \" \" << bunch[1].getPosition().getCT()";
- for_postSxfPropagator << " << \" \" << bunch[1].getPosition().getDE() << \"\\n\";" << "\n";
- for_postSxfPropagator << " forTwiss.close();" << "\n";
-
+  for_postSxfPropagator << " twissImplications( outputFileName, bendsDT*2-1, sDT, argv[2], argv[3], argv[4], argv[5], argv[6], argv[7], bunch[1].getPosition() );" << "\n";
+//for_postSxfPropagator << " twissImplications( outputFileName, sDT, argv[2], argv[3], argv[4], argv[5], argv[6], argv[7], bunch[1].getPosition() );" << "\n";
+//for_postSxfPropagator << " twissImplications( outputFileName, argv[2], argv[3], argv[4], argv[5], argv[6], argv[7], bunch[1].getPosition() );" << "\n";
  for_postSxfPropagator << "}\n";
  for_postSxfPropagator.close();
 

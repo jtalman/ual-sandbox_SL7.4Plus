@@ -1,0 +1,63 @@
+//void twissImplications( std::string oFN, char*xI, char*xpI, char*yI, char*ypI, char*tI, char*eI, PAC::Bunch*bunch ){
+//void twissImplications( std::string oFN, double sDT, char*xI, char*xpI, char*yI, char*ypI, char*tI, char*eI, PAC::Position position ){
+  void twissImplications( std::string oFN, int element, double sDT, char*xI, char*xpI, char*yI, char*ypI, char*tI, char*eI, PAC::Position position ){
+ int match=0;
+ if( !oFN.compare( "./out/StndrdPrtcl1" ) ){
+  std::cout << "./out/SndrdPrtcl1 " << xI << "\n";
+  match=1;
+ }
+
+ if( !oFN.compare( "./out/StndrdPrtcl2" ) ){
+  std::cout << "./out/SndrdPrtcl2 " << xI << "\n";
+  match=2;
+ }
+
+ if( !oFN.compare( "./out/StndrdPrtcl3" ) ){
+  std::cout << "./out/SndrdPrtcl3 " << xpI << "\n";
+  match=3;
+ }
+
+ if( !oFN.compare( "./out/StndrdPrtcl4" ) ){
+  std::cout << "./out/SndrdPrtcl4 " << xpI << "\n";
+  match=4;
+ }
+
+ if( !oFN.compare( "./out/StndrdPrtcl5" ) ){
+  std::cout << "./out/SndrdPrtcl5 " << yI << "\n";
+  match=5;
+ }
+
+ if( !oFN.compare( "./out/StndrdPrtcl6" ) ){
+  std::cout << "./out/SndrdPrtcl6 " << yI << "\n";
+  match=6;
+ }
+
+ if( !oFN.compare( "./out/StndrdPrtcl7" ) ){
+  std::cout << "./out/SndrdPrtcl7 " << ypI << "\n";
+  match=7;
+ }
+
+ if( !oFN.compare( "./out/StndrdPrtcl8" ) ){
+  std::cout << "./out/SndrdPrtcl8 " << ypI << "\n";
+  match=8;
+ }
+
+ if( match!=0 ){
+  fstream forTwiss;
+  forTwiss.open("./out/forTwiss", fstream::out | fstream::app);
+  forTwiss.precision(15);
+  forTwiss << std::scientific;
+  forTwiss << std::showpos;
+  forTwiss << match            << " ";
+  forTwiss << element          << " ";
+  forTwiss << sDT              << " ";
+  forTwiss << position.getX()  << " "
+           << position.getPX() << " "
+           << position.getY()  << " "
+           << position.getPY() << " "
+           << position.getCT() << " "
+           << position.getDE() << "\n\n";
+  forTwiss.close();
+ }
+
+}

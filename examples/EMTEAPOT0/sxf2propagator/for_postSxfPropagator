@@ -29,6 +29,7 @@ for_postSxfPropagator << "#include \"EMTEAPOT/Integrator/genMethods/bunchParticl
 //for_postSxfPropagator << "#include \"parameters\"\n\n";
 
 //for_postSxfPropagator << "#include \"getStndrdPrtclIndex\"\n\n";
+  for_postSxfPropagator << "#include \"twissImplications\"\n\n";
 
 for_postSxfPropagator << "int main(int argc,char * argv[])\{\n";
 

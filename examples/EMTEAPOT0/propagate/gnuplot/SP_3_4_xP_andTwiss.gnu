@@ -1,5 +1,5 @@
 #set print "-"
-set encoding utf8 
+#set encoding utf8 
 #set terminal x11 enhanced font "terminal-16" 1
 #set terminal x11 enhanced font "arial,15" 1
  set terminal x11 enhanced 2

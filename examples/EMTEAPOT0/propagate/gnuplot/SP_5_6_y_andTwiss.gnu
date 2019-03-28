@@ -1,4 +1,4 @@
-set encoding utf8 
+#set encoding utf8 
 set terminal x11 enhanced 3
 
 set termopt enhanced

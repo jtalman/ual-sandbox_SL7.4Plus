@@ -17,7 +17,7 @@ set termopt enhanced
 #set format y "+%4.1t e+2.0"
  set format y "%+g"
 set title "One turn: x' versus element for 1 micron initial delta in x'"
-set key font ",10"
+#set key font ",10"
 set xlabel "element"
 set ylabel "x'(element)"
 

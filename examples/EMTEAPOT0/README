@@ -1,5 +1,6 @@
 This assumes a fresh "clone" of this code:
       git clone git://github.com/jtalman/ual-sandbox_SL7.4Plus
+      cd ual-sandbox_SL7.4Plus
       setenv UAL `pwd`
       cd $UAL
       source setup-linux-ual
@@ -18,3 +19,9 @@ This should pop up plots of some standard particles: the "Standard Bunch". An ov
 The standard bunch strengths are all hard coded at +1.0e-06.
 
 Specific input probes, and bunches of them, can now/then be templated.
+
+Three directories are used
+      ./sxf2propagator
+      ./propagate
+      ./postProcess
+(see root Makefile).

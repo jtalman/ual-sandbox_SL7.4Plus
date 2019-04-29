@@ -13,13 +13,26 @@
 ./postSxfPropagator 1   0      +1.0e-06   0        0        0        0      ./out/StndrdPrtcl3
 ./postSxfPropagator 1   0      -1.0e-06   0        0        0        0      ./out/StndrdPrtcl4
 
-./postSxfPropagator 1   0        0      +1.0e-06   0        0        0      ./out/StndrdPrtcl5
-./postSxfPropagator 1   0        0      -1.0e-06   0        0        0      ./out/StndrdPrtcl6
+: ./postSxfPropagator 1   0        0      +1.0e-06   0        0        0      ./out/StndrdPrtcl5
+: ./postSxfPropagator 1   0        0      -1.0e-06   0        0        0      ./out/StndrdPrtcl6
 
-./postSxfPropagator 1   0        0        0      +1.0e-06   0        0      ./out/StndrdPrtcl7
-./postSxfPropagator 1   0        0        0      -1.0e-06   0        0      ./out/StndrdPrtcl8
+: ./postSxfPropagator 1   0        0        0      +1.0e-06   0        0      ./out/StndrdPrtcl7
+: ./postSxfPropagator 1   0        0        0      -1.0e-06   0        0      ./out/StndrdPrtcl8
+
+: /home/talman/gnuplot/INSTALL-5.2.6/bin/gnuplot -e "load 'gnuplot/SP_1_2_x_andTwiss.gnu'"
+: /home/talman/gnuplot/INSTALL-5.2.6/bin/gnuplot -e "load 'gnuplot/SP_3_4_xP_andTwiss.gnu'"
+: /home/talman/gnuplot/INSTALL-5.2.6/bin/gnuplot -e "load 'gnuplot/SP_5_6_y_andTwiss.gnu'"
+: /home/talman/gnuplot/INSTALL-5.2.6/bin/gnuplot -e "load 'gnuplot/SP_7_8_yP_andTwiss.gnu'"
+
+: /home/talman/gnuplot/INSTALL-5.2.6/bin/gnuplot -persist -e "load 'gnuplot/SP_1_2_x_andTwiss.gnu'"
+: /home/talman/gnuplot/INSTALL-5.2.6/bin/gnuplot -persist -e "load 'gnuplot/SP_3_4_xP_andTwiss.gnu'"
+: /home/talman/gnuplot/INSTALL-5.2.6/bin/gnuplot -persist -e "load 'gnuplot/SP_5_6_y_andTwiss.gnu'"
+: /home/talman/gnuplot/INSTALL-5.2.6/bin/gnuplot -persist -e "load 'gnuplot/SP_7_8_yP_andTwiss.gnu'"
 
 gnuplot -persist -e "load 'gnuplot/SP_1_2_x_andTwiss.gnu'"
+gnuplot -persist -e "load 'gnuplot/SP_1_2_xP_andTwiss.gnu'"
+gnuplot -persist -e "load 'gnuplot/SP_3_4_x_andTwiss.gnu'"
 gnuplot -persist -e "load 'gnuplot/SP_3_4_xP_andTwiss.gnu'"
-gnuplot -persist -e "load 'gnuplot/SP_5_6_y_andTwiss.gnu'"
-gnuplot -persist -e "load 'gnuplot/SP_7_8_yP_andTwiss.gnu'"
+
+: gnuplot -persist -e "load 'gnuplot/SP_5_6_y_andTwiss.gnu'"
+: gnuplot -persist -e "load 'gnuplot/SP_7_8_yP_andTwiss.gnu'"

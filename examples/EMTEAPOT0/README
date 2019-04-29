@@ -2,7 +2,6 @@ This assumes a fresh "clone" of this code:
       git clone git://github.com/jtalman/ual-sandbox_SL7.4Plus
       cd ual-sandbox_SL7.4Plus
       setenv UAL `pwd`
-      cd $UAL
       source setup-linux-ual
       make clean
       make

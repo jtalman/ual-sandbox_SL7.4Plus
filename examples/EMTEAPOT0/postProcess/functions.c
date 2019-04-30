@@ -1,21 +1,37 @@
-FILE* fp;
-
+FILE*fp;
 char LINE[256];
-int sFFULL[12];
-int eFFULL[12];
+int lines=0;
 
-int parsedLINE=0;
-double allSP1x[1000];
+double  SP1x[1000],SP1xP[1000];
+double  SP3x[1000],SP3xP[1000];
 
-char printDTFULL[5];
-char  parsedSP1x[22];
-char parsedSP1xP[22];
+double SPx[1000];
+int strtFldSPx[12];
+int enddFldSPx[12];
+
+double SPxP[1000];
+int strtFldSPxP[12];
+int enddFldSPxP[12];
+
+char  parsedSPx[22];
+char parsedSPxP[22];
+
+double SPy[1000];
+int strtFldSPy[12];
+int enddFldSPy[12];
+
+double SPyP[1000];
+int strtFldSPyP[12];
+int enddFldSPyP[12];
+
+char  parsedSPy[22];
+char parsedSPyP[22];
 
 void nullNums(){
  int i=0;
  for(i=0;i<22;i++){
-  parsedSP1x[i] ='\0';
-  parsedSP1xP[i]='\0';
+  parsedSPx[i] ='\0';
+  parsedSPxP[i]='\0';
  }
 }
 
@@ -26,103 +42,110 @@ void nullLine(){
  }
 }
 
-void parseLine(){
- int i=0,j=0,k=0,c=0; 
- int line=0;
- do{
-  c=LINE[i++];
- }while(c == ' ');
- sFFULL[j++]=i-1;
- do{
-  c=LINE[i++];
- }while(c != ' ');
- eFFULL[j-1]=i-2;
+                             // "outer loop", processSP, based on "\n", has index lines
+void parseLine(){            // this method parses the current line
+ int i=0;                    // i is character index in line
+ int j=0;                    // j is field index in line
+ int k=0;                    // k is character index in field of interest
+ int c=0; 
 
- do{
+ do{                         // ONE
   c=LINE[i++];
  }while(c == ' ');
- sFFULL[j++]=i-1;
+ strtFldSPx[j++]=i-1;
  do{
   c=LINE[i++];
  }while(c != ' ');
- eFFULL[j-1]=i-2;
+ enddFldSPx[j-1]=i-2;
 
- do{
+ do{                         // TWO
   c=LINE[i++];
  }while(c == ' ');
- sFFULL[j++]=i-1;
+ strtFldSPx[j++]=i-1;
  do{
   c=LINE[i++];
  }while(c != ' ');
- eFFULL[j-1]=i-2;
+ enddFldSPx[j-1]=i-2;
 
- do{
+ do{                         // THREE
   c=LINE[i++];
  }while(c == ' ');
- sFFULL[j++]=i-1;
- if(c=='-')parsedSP1x[k++]=c;
- else{parsedSP1x[k++]='+';parsedSP1x[k++]=c;}
+ strtFldSPx[j++]=i-1;
  do{
   c=LINE[i++];
-  parsedSP1x[k++]=c;
  }while(c != ' ');
- eFFULL[j-1]=i-2;
-// printf("\n");
-// printf("(atof) parsedSP1x: %+21.14e\n",atof(parsedSP1x));
- allSP1x[parsedLINE++]=atof(parsedSP1x);
-// printf("(chars)parsedSP1x: ");
-// for(k=0;k<22;k++)printf("%c",parsedSP1x[k]);
+ enddFldSPx[j-1]=i-2;
+
+ k=0;                        // redundant
+ do{                         // FOUR - x
+  c=LINE[i++];
+ }while(c == ' ');
+ strtFldSPx[j++]=i-1;
+ if(c=='-'){parsedSPx[k++]=c;}//printf("c==- %c\n",c);}
+ else{parsedSPx[k++]='+';parsedSPx[k++]=c;}//printf("c!=- %c\n",c);}
+ do{
+  c=LINE[i++];
+  parsedSPx[k++]=c;
+ }while(c != ' ');
+ enddFldSPx[j-1]=i-2;
+ SPx[lines]=atof(parsedSPx);//printf("SPx[lines] %+e\n",SPx[lines]);
  nullNums();
 
- do{
+ k=0;
+ do{                         // FIVE - xP
   c=LINE[i++];
  }while(c == ' ');
- sFFULL[j++]=i-1;
+ strtFldSPxP[j++]=i-1;
+ if(c=='-')parsedSPxP[k++]=c;
+ else{parsedSPxP[k++]='+';parsedSPxP[k++]=c;}
  do{
   c=LINE[i++];
+  parsedSPxP[k++]=c;
  }while(c != ' ');
- eFFULL[j-1]=i-2;
+ enddFldSPxP[j-1]=i-2;
+ SPxP[lines]=atof(parsedSPxP);
+ nullNums();
 
- do{
+ do{                         // SIX - y
   c=LINE[i++];
  }while(c == ' ');
- sFFULL[j++]=i-1;
+ strtFldSPx[j++]=i-1;
  do{
   c=LINE[i++];
  }while(c != ' ');
- eFFULL[j-1]=i-2;
+ enddFldSPx[j-1]=i-2;
 
- do{
+ do{                         // SEVEN - yP
   c=LINE[i++];
  }while(c == ' ');
- sFFULL[j++]=i-1;
+ strtFldSPx[j++]=i-1;
  do{
   c=LINE[i++];
  }while(c != ' ');
- eFFULL[j-1]=i-2;
+ enddFldSPx[j-1]=i-2;
 
- do{
+ do{                         // EIGHT - t
   c=LINE[i++];
  }while(c == ' ');
- sFFULL[j++]=i-1;
+ strtFldSPx[j++]=i-1;
  do{
   c=LINE[i++];
  }while(c != ' ');
- eFFULL[j-1]=i-2;
+ enddFldSPx[j-1]=i-2;
 
- do{
+ do{                         // NINE - e
   c=LINE[i++];
  }while(c == ' ');
- sFFULL[j++]=i-1;
+ strtFldSPx[j++]=i-1;
  do{
   c=LINE[i++];
  }while(c != ' ');
- eFFULL[j-1]=i-2;
+ enddFldSPx[j-1]=i-2;
 }
 
 int getNumLines(char*SP){
  fp=fopen (SP,"r");
- int ch=0,lines=0;
+ int ch=0;
  do{
   ch = getc(fp);
   if (ch == '\n'){
@@ -133,19 +156,21 @@ int getNumLines(char*SP){
  return lines;
 }
 
-int fillSP1x(char*SP){
- int ch=0,i=0,lines=0;
+//int processSP(char*SP){
+  int processSP(int sp){
+ char*SP;
+ int ch=0,i=0;
+ if(sp==1)SP="../propagate/out/StndrdPrtcl1";
+ if(sp==3)SP="../propagate/out/StndrdPrtcl3";
  fp=fopen (SP,"r");
 
-// printf("enter double fillSP1()\n");
-
+ lines=0;
  do{
   ch = getc(fp);
   if (ch == '\n'){
-   allSP1x[lines++]=atof(parsedSP1x);
    LINE[i++]=ch;
-// lines++;
    parseLine();
+   lines++;
    nullLine();
    i=0;
   }
@@ -154,5 +179,8 @@ int fillSP1x(char*SP){
   }
  }while (ch != EOF);
  fclose(fp);
+
+ if(sp==1){for(i=0;i<lines;i++){SP1x[i]=SPx[i];SP1xP[i]=SPxP[i];}};
+ if(sp==3){for(i=0;i<lines;i++){SP3x[i]=SPx[i];SP3xP[i]=SPxP[i];}};
  return lines;
 }

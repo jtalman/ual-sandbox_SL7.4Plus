@@ -12,7 +12,7 @@ clean:
 
 #./betas: ./betas.o ./getSP.o
 ./betas: ./betas.o
-	@$(CC) -o $@  $(CCFLAGS) ./betas.o
+	@$(CC) -o $@  $(CCFLAGS) ./betas.o -lm
 #	$(CC) -o $@  $(CCFLAGS) $(INC) ./betas.o
 	@echo "..."
 	@echo "      post processing"

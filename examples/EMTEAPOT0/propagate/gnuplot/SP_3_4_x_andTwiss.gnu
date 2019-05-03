@@ -17,12 +17,12 @@ x2typ = 1.0e-06;
 
 stats './out/forTwiss' every :::2::2 using 4 nooutput
 R12P = STATS_min/x2typ
-R12PT = sprintf( "R_{12} = %+e = b_0 x sin( mu_0 )", R12P )
+R12PT = sprintf( "b_0 x sin( mu_0 ) = R_{12} (ca %+3.1e)", R12P )
 set label R12PT at +5,-4.6e-05 tc rgb "red"
 
 stats './out/forTwiss' every :::3::3 using 4 nooutput
 R12M = STATS_min/-x2typ
-R12MT = sprintf( "R_{12} = %+e = b_0 x sin( mu_0 )", R12M )
+R12MT = sprintf( "b_0 x sin( mu_0 ) = R_{12} (ca %+3.1e)", R12M )
 set label R12MT at +5,+4.6e-05 tc rgb "blue"
 
 p "out/StndrdPrtcl3" u 2:4 lt rgb "red"  w l,\

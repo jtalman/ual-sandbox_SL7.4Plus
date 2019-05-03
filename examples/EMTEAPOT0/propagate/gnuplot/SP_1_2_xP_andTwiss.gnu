@@ -18,12 +18,12 @@ x1typ = 1.0e-06;
 
 stats './out/forTwiss' every :::0::0 using 5 nooutput
 R21P = STATS_min/x1typ
-R21PT = sprintf( "R_{21} = %+e = -(1+a_0^2)/b_0 x sin( mu_0 )", R21P )
+R21PT = sprintf( "-(1+a_0^2)/b_0 x sin( mu_0 ) = R_{21} (ca %+3.1e)", R21P )
 set label R21PT at +5,+3.25e-08 tc rgb "red"
 
 stats './out/forTwiss' every :::1::1 using 5 nooutput
 R21M = STATS_min/-x1typ
-R21MT = sprintf( "R_{21} = %+e = -(1+a_0^2)/b_0 x sin( mu_0 )", R21M )
+R21MT = sprintf( "-(1+a_0^2)/b_0 x sin( mu_0 ) = R_{21} (ca %+3.1e)", R21M )
 set label R21MT at +5,-3.25e-08 tc rgb "blue"
 
 p "out/StndrdPrtcl1" u 2:5 lt rgb "red"  w l,\

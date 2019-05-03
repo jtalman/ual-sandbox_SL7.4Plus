@@ -17,12 +17,12 @@ x2typ = 1.0e-06;
 
 stats './out/forTwiss' every :::2::2 using 5 nooutput
 R22P = STATS_min/x2typ
-R22PT = sprintf( "R_{22} = %+e = cos( mu_0 ) - a_0 sin( mu_0 )", R22P )
+R22PT = sprintf( "cos( mu_0 ) - a_0 sin( mu_0 ) = R_{22} (ca %+3.1e)", R22P )
 set label R22PT at +5,+1.25e-06 tc rgb "red"
 
 stats './out/forTwiss' every :::3::3 using 5 nooutput
 R22M = STATS_min/-x2typ
-R22MT = sprintf( "R_{22} = %+e = cos( mu_0 ) - a_0 sin( mu_0 )", R22M )
+R22MT = sprintf( "cos( mu_0 ) - a_0 sin( mu_0 ) = R_{22} (ca %+3.1e)", R22M )
 set label R22MT at +5,-1.25e-06 tc rgb "blue"
 
 p "out/StndrdPrtcl3" u 2:5 lt rgb "red"  w l,\

@@ -3,7 +3,9 @@ char LINE[256];
 int lines=0;
 
 double  SP1x[1000],SP1xP[1000];
+double  SP2x[1000],SP2xP[1000];
 double  SP3x[1000],SP3xP[1000];
+double  SP4x[1000],SP4xP[1000];
 
 double SPx[1000];
 int strtFldSPx[12];
@@ -161,7 +163,9 @@ int getNumLines(char*SP){
  char*SP;
  int ch=0,i=0;
  if(sp==1)SP="../propagate/out/StndrdPrtcl1";
+ if(sp==2)SP="../propagate/out/StndrdPrtcl2";
  if(sp==3)SP="../propagate/out/StndrdPrtcl3";
+ if(sp==4)SP="../propagate/out/StndrdPrtcl4";
  fp=fopen (SP,"r");
 
  lines=0;
@@ -181,6 +185,8 @@ int getNumLines(char*SP){
  fclose(fp);
 
  if(sp==1){for(i=0;i<lines;i++){SP1x[i]=SPx[i];SP1xP[i]=SPxP[i];}};
+ if(sp==2){for(i=0;i<lines;i++){SP2x[i]=SPx[i];SP2xP[i]=SPxP[i];}};
  if(sp==3){for(i=0;i<lines;i++){SP3x[i]=SPx[i];SP3xP[i]=SPxP[i];}};
+ if(sp==4){for(i=0;i<lines;i++){SP4x[i]=SPx[i];SP4xP[i]=SPxP[i];}};
  return lines;
 }

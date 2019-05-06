@@ -190,3 +190,39 @@ int getNumLines(char*SP){
  if(sp==4){for(i=0;i<lines;i++){SP4x[i]=SPx[i];SP4xP[i]=SPxP[i];}};
  return lines;
 }
+
+//void printArray(double arr[3][3]){
+char printArray(double arr[3][3]){
+ int i,j;
+ for(i=1;i<3;i++){
+  for(j=1;j<3;j++){
+   printf("      %+.17e ",arr[i][j]);
+  }
+  printf("\n");
+ }
+ return ' ';
+}
+
+double traceArray(double arr[3][3]){
+ int i=0;
+ double t=0;
+ for(i=1;i<3;i++){
+  t=t+arr[i][i];
+ }
+ return t;
+}
+ 
+
+double determinantArray(double arr[3][3]){
+ double det=0;
+ return arr[1][1]*arr[2][2]-arr[1][2]*arr[2][1];
+}
+
+void scaleArray(double arr[3][3],double f){
+ int i,j;
+ for(i=1;i<3;i++){
+  for(j=1;j<3;j++){
+   arr[i][j]=f*arr[i][j];;
+  }
+ }
+}

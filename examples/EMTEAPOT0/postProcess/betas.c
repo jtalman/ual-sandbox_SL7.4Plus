@@ -8,77 +8,78 @@ int main (int argc, char*argv[])
 {
  double x1typ=1.e-06;
 
- double R11,R21,R12,R22;
- double S11,S21,S12,S22;
- double Rtr=0;
+ double trace=0;
  int numSP;// = processSP(1);
- double cosMu=0,dsc=0,alpha0=0,beta0=0;
+ double cosMu0=0,dsc=0,alpha0=0,beta0=0,gamma0=0;
  double det=0;
- double sinMu=0;
- double Mu=0,Mu_PR=0,Q=0;
- double alpha0_alternateSq=0;
+
+ double AbsSinMu0=0;
+ double    sinMu0=0;
+
+ double Mu0=0,Mu0_PMtw=0,Q=0;
+ double alpha0_alternate=0,alpha0_alternateSq=0;
+ double Mtw[3][3];
+ double zero=0,one=1,two=2,fac=1;
+
+ printf("\n*************************** CHECKING Implied Angle mu **************************\n\n");
 
  numSP = processSP(1);
- R11=SP1x[numSP-1]/x1typ;
- R21=SP1xP[numSP-1]/x1typ;
- printf("SP1 lines %d:  SP1x[numSP1-1]/x1typ  (R11) %+e\n",numSP,R11);
- printf("SP1 lines %d: SP1xP[numSP1-1]/x1typ  (R21) %+e\n",numSP,R21);
-
  numSP = processSP(2);
- S11=SP2x[numSP-1]/-x1typ;
- S21=SP2xP[numSP-1]/-x1typ;
- printf("SP2 lines %d:  SP2x[numSP2-1]/-x1typ (S11) %+e\n",numSP,S11);
- printf("SP2 lines %d: SP2xP[numSP2-1]/-x1typ (S21) %+e\n",numSP,S21);
-
  numSP = processSP(3);
- R12=SP3x[numSP-1]/x1typ;
- R22=SP3xP[numSP-1]/x1typ;
- printf("SP3 lines %d:  SP3x[numSP3-1]/x1typ  (R12) %+e\n",numSP,R12);
- printf("SP3 lines %d: SP3xP[numSP3-1]/x1typ  (R22) %+e\n",numSP,R22);
-
  numSP = processSP(4);
- S12=SP4x[numSP-1]/-x1typ;
- S22=SP4xP[numSP-1]/-x1typ;
- printf("SP4 lines %d:  SP4x[numSP4-1]/-x1typ (S12) %+e\n",numSP,S12);
- printf("SP4 lines %d: SP4xP[numSP4-1]/-x1typ (S22) %+e\n",numSP,S22);
 
- R11=(R11+S11)/2.;
- R21=(R21+S21)/2.;
- R12=(R12+S12)/2.;
- R22=(R22+S22)/2.;
+ Mtw[1][1]=(SP1x[numSP-1]-SP2x[numSP-1])/two/x1typ;//printf("Mtw[1][1]%e",Mtw[1][1]);
+ Mtw[2][1]=(SP1xP[numSP-1]-SP2xP[numSP-1])/two/x1typ;//printf("Mtw[2][1]%e",Mtw[2][1]);
 
- Rtr=R11+R22;
- det=R11*R22-R12*R21;
- printf("\ntrace %+e\n",Rtr);
- printf("determinant %+.17g\n\n",det);
- if(Rtr<-2.||Rtr>2.){printf("invalid implied angle mu!");exit(1);}
+ Mtw[1][2]=(SP3x[numSP-1]-SP4x[numSP-1])/two/x1typ;//printf("Mtw[1][2]%e",Mtw[1][2]);
+ Mtw[2][2]=(SP3xP[numSP-1]-SP4xP[numSP-1])/two/x1typ;//printf("Mtw[2][2]%e",Mtw[2][2]);
+ printf("printArray \n");printArray(Mtw);
+ trace=traceArray(Mtw);
+ printf("traceArray\n      %+.17e\n",trace);
+ det=determinantArray(Mtw);
+ printf("determinantArray\n      %+.17e\n",det);
 
- cosMu=Rtr/2.;
- sinMu=sqrt(1.-cosMu*cosMu);
- beta0=R12/sinMu; 
- alpha0=(R11-R22)/2./sinMu;
+ if(trace<-2.||trace>2.){printf("invalid implied angle mu!\n");exit(1);}
+ else{printf("*************************** VALID Implied Angle mu **************************\n");}
+ printf("*************************** PROCEEDING ... **************************\n");
 
- printf("cosMuX %+e\n",cosMu);
- printf("sinMuX %+e\n\n",sinMu);
+ printf("scaling matrix\n");
+ fac=sqrt(one/det);
+ scaleArray(Mtw,fac);
+ trace=traceArray(Mtw);
+ printf("new trace\n      %+.17e\n",trace);
+ det=determinantArray(Mtw);
+ printf("new determinant\n      %+.17e\n\n",det);
 
- printf("alphaX %+e\n",alpha0);
- printf("betaX %+e\n\n",beta0);
+ cosMu0=trace/two;
+ AbsSinMu0=sqrt(one-cosMu0*cosMu0);
+ if(Mtw[1][2]<zero)sinMu0=-AbsSinMu0;
+ else{sinMu0=+AbsSinMu0;}
+ printf("cosMu0X    %+.17e\n",cosMu0);
+ printf("AbsSinMu0X %+.17e\n",AbsSinMu0);
+ printf("   sinMu0X %+.17e\n\n",   sinMu0);
 
- alpha0_alternateSq=-R21*beta0/sinMu-1.;
- printf("alphaX_alternate (from R21) %+e\n",sqrt(alpha0_alternateSq));
- printf("\n");
+ beta0=Mtw[1][2]/AbsSinMu0; 
+ printf("beta0X     %+.17e\n\n",beta0);
 
- Mu_PR=acos(cosMu);
+ alpha0=(Mtw[1][1]-Mtw[2][2])/two/AbsSinMu0;
+ gamma0=(one+alpha0*alpha0)/beta0;
+ alpha0_alternate=sqrt(gamma0*beta0-one);
+ printf("alpha0X (from diagonal)                   %+.17e\n",alpha0);
+ printf("alpha0X_alternate (from Mtw21 ie gamma0X) %+.17e\n\n",alpha0_alternate);
+ printf("gamma0X %+.17e\n\n",gamma0);
+
+ Mu0_PMtw=acos(cosMu0);
                                                // half integer tune ambiguity resolution
                                                // NOT full integer tune ambiguity
- if     (cosMu>=0 && sinMu>=0){Mu=Mu_PR;}       
- else if(cosMu<=0 && sinMu>=0){Mu=Mu_PR;}
- else if(cosMu<=0 && sinMu<=0){Mu=2.*PI-Mu_PR;}
- else if(cosMu>=0 && sinMu<=0){Mu=2.*PI-Mu_PR;}
+ if     (cosMu0>=0 && AbsSinMu0>=0){Mu0=Mu0_PMtw;}       
+ else if(cosMu0<=0 && AbsSinMu0>=0){Mu0=Mu0_PMtw;}
+ else if(cosMu0<=0 && AbsSinMu0<=0){Mu0=two*PI-Mu0_PMtw;}
+ else if(cosMu0>=0 && AbsSinMu0<=0){Mu0=two*PI-Mu0_PMtw;}
 
- Q=Mu/2./PI;
- printf("MuX %+e\n",Mu);
- printf("QX %+e\n",Q);
+ Q=Mu0/two/PI;
+ printf("Mu0X            %+.17e\n",Mu0);
+ printf("QX (fractional) %+.17e\n",Q);
  printf("\n");
 
  return 0;

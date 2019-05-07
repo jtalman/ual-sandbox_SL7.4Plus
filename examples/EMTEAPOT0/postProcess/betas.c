@@ -16,10 +16,15 @@ int main (int argc, char*argv[])
  double AbsSinMu0=0;
  double    sinMu0=0;
 
- double Mu0=0,Mu0_PMtw=0,Q=0;
+ double Mu0=0,Mu0_PMtw0=0,Q=0;
  double alpha0_alternate=0,alpha0_alternateSq=0;
- double Mtw[3][3];
+ double Mtw0[3][3]={0,0,0,0,0,0,0,0,0};
  double zero=0,one=1,two=2,fac=1;
+
+//double**Mtw0INV={ {0,0,0}, {0,0,0}, {0,0,0}};
+  double  Mtw0INV[3][3]={ {0,0,0}, {0,0,0}, {0,0,0}};
+  double  PLR[3][3]={ {0,0,0}, {0,0,0}, {0,0,0}};
+  double  PRL[3][3]={ {0,0,0}, {0,0,0}, {0,0,0}};
 
  printf("\n*************************** CHECKING Implied Angle mu **************************\n\n");
 
@@ -28,15 +33,15 @@ int main (int argc, char*argv[])
  numSP = processSP(3);
  numSP = processSP(4);
 
- Mtw[1][1]=(SP1x[numSP-1]-SP2x[numSP-1])/two/x1typ;//printf("Mtw[1][1]%e",Mtw[1][1]);
- Mtw[2][1]=(SP1xP[numSP-1]-SP2xP[numSP-1])/two/x1typ;//printf("Mtw[2][1]%e",Mtw[2][1]);
+ Mtw0[1][1]=(SP1x[numSP-1]-SP2x[numSP-1])/two/x1typ;//printf("Mtw0[1][1]%e",Mtw0[1][1]);
+ Mtw0[2][1]=(SP1xP[numSP-1]-SP2xP[numSP-1])/two/x1typ;//printf("Mtw0[2][1]%e",Mtw0[2][1]);
 
- Mtw[1][2]=(SP3x[numSP-1]-SP4x[numSP-1])/two/x1typ;//printf("Mtw[1][2]%e",Mtw[1][2]);
- Mtw[2][2]=(SP3xP[numSP-1]-SP4xP[numSP-1])/two/x1typ;//printf("Mtw[2][2]%e",Mtw[2][2]);
- printf("printArray \n");printArray(Mtw);
- trace=traceArray(Mtw);
+ Mtw0[1][2]=(SP3x[numSP-1]-SP4x[numSP-1])/two/x1typ;//printf("Mtw0[1][2]%e",Mtw0[1][2]);
+ Mtw0[2][2]=(SP3xP[numSP-1]-SP4xP[numSP-1])/two/x1typ;//printf("Mtw0[2][2]%e",Mtw0[2][2]);
+ printf("printArray \n");printArray(Mtw0);
+ trace=traceArray(Mtw0);
  printf("traceArray\n      %+.17e\n",trace);
- det=determinantArray(Mtw);
+ det=determinantArray(Mtw0);
  printf("determinantArray\n      %+.17e\n",det);
 
  if(trace<-2.||trace>2.){printf("invalid implied angle mu!\n");exit(1);}
@@ -45,42 +50,53 @@ int main (int argc, char*argv[])
 
  printf("scaling matrix\n");
  fac=sqrt(one/det);
- scaleArray(Mtw,fac);
- trace=traceArray(Mtw);
+ scaleArray(Mtw0,fac);
+ trace=traceArray(Mtw0);
  printf("new trace\n      %+.17e\n",trace);
- det=determinantArray(Mtw);
+ det=determinantArray(Mtw0);
  printf("new determinant\n      %+.17e\n\n",det);
 
  cosMu0=trace/two;
  AbsSinMu0=sqrt(one-cosMu0*cosMu0);
- if(Mtw[1][2]<zero)sinMu0=-AbsSinMu0;
+ if(Mtw0[1][2]<zero)sinMu0=-AbsSinMu0;
  else{sinMu0=+AbsSinMu0;}
  printf("cosMu0X    %+.17e\n",cosMu0);
  printf("AbsSinMu0X %+.17e\n",AbsSinMu0);
  printf("   sinMu0X %+.17e\n\n",   sinMu0);
 
- beta0=Mtw[1][2]/AbsSinMu0; 
+ beta0=Mtw0[1][2]/AbsSinMu0; 
  printf("beta0X     %+.17e\n\n",beta0);
 
- alpha0=(Mtw[1][1]-Mtw[2][2])/two/AbsSinMu0;
+ alpha0=(Mtw0[1][1]-Mtw0[2][2])/two/AbsSinMu0;
  gamma0=(one+alpha0*alpha0)/beta0;
  alpha0_alternate=sqrt(gamma0*beta0-one);
  printf("alpha0X (from diagonal)                   %+.17e\n",alpha0);
- printf("alpha0X_alternate (from Mtw21 ie gamma0X) %+.17e\n\n",alpha0_alternate);
+ printf("alpha0X_alternate (from Mtw021 ie gamma0X) %+.17e\n\n",alpha0_alternate);
  printf("gamma0X %+.17e\n\n",gamma0);
 
- Mu0_PMtw=acos(cosMu0);
+ Mu0_PMtw0=acos(cosMu0);
                                                // half integer tune ambiguity resolution
                                                // NOT full integer tune ambiguity
- if     (cosMu0>=0 && AbsSinMu0>=0){Mu0=Mu0_PMtw;}       
- else if(cosMu0<=0 && AbsSinMu0>=0){Mu0=Mu0_PMtw;}
- else if(cosMu0<=0 && AbsSinMu0<=0){Mu0=two*PI-Mu0_PMtw;}
- else if(cosMu0>=0 && AbsSinMu0<=0){Mu0=two*PI-Mu0_PMtw;}
+ if     (cosMu0>=0 && AbsSinMu0>=0){Mu0=Mu0_PMtw0;}       
+ else if(cosMu0<=0 && AbsSinMu0>=0){Mu0=Mu0_PMtw0;}
+ else if(cosMu0<=0 && AbsSinMu0<=0){Mu0=two*PI-Mu0_PMtw0;}
+ else if(cosMu0>=0 && AbsSinMu0<=0){Mu0=two*PI-Mu0_PMtw0;}
 
  Q=Mu0/two/PI;
  printf("Mu0X            %+.17e\n",Mu0);
  printf("QX (fractional) %+.17e\n",Q);
  printf("\n");
+
+// Mtw0INV=inverseArray(Mtw0);
+// inverseArray(Mtw0,&Mtw0INV);
+ inverseArray(Mtw0,Mtw0INV);
+ printf("printArray \n");printArray(Mtw0INV);
+
+ multiplyArrays(Mtw0,Mtw0INV,PLR);
+ printf("printArray \n");printArray(PLR);
+
+ multiplyArrays(Mtw0INV,Mtw0,PRL);
+ printf("printArray \n");printArray(PRL);
 
  return 0;
 }

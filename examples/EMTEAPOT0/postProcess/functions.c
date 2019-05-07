@@ -226,3 +226,36 @@ void scaleArray(double arr[3][3],double f){
   }
  }
 }
+
+//void inverseArray(double**input,double**output){
+  void inverseArray(double input[3][3],double output[3][3]){
+ double det=determinantArray(input);
+ printf("inverseArray: det %+.17e\n",det);
+ output[1][1]=+input[2][2]/det;
+ output[2][2]=+input[1][1]/det;
+ output[1][2]=-input[1][2]/det;
+ output[2][1]=-input[2][1]/det;
+}
+
+void multiplyArrays(double left[3][3],double right[3][3],double product[3][3]){
+
+ product[1][1]=left[1][1]*right[1][1]+left[1][2]*right[2][1];
+ product[1][2]=left[1][1]*right[1][2]+left[1][2]*right[2][2];
+
+ product[2][1]=left[2][1]*right[1][1]+left[2][2]*right[2][1];
+ product[2][2]=left[2][1]*right[1][2]+left[2][2]*right[2][2];
+
+}
+
+/*
+double** inverseArray(double arr[3][3]){
+ double**inv={ {0,0,0}, {0,0,0}, {0,0,0}};
+ double det=determinantArray(arr);
+ printf("inverseArray: det %+.17e\n",det);
+ inv[1][1]=+arr[2][2]/det;
+ inv[2][2]=+arr[1][1]/det;
+ inv[1][2]=-arr[2][1]/det;
+ inv[2][1]=-arr[1][2]/det;
+ return inv;
+}
+*/

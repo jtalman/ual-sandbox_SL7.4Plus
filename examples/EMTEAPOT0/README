@@ -13,14 +13,24 @@ A good way to initiate/start proceedings from here is the basic
       make clean
       make
 
-This should pop up plots of some standard particles: the "Standard Bunch". An overview of the major files involved is then straightforward.
+This should pop up plots of some standard particles: the "X Standard Bunch". The One Turn (From Origin) Twiss Functions are also displayed. This display is intended to fit well on a single terminal screen so that it can be easily "spot checked".
 
-The standard bunch strengths are all hard coded at +1.0e-06.
+If everything looks OK, one can cd into directory ./postProcess and follow it's README file for more extensive analysis.
 
-Specific input probes, and bunches of them, can now/then be templated.
+Perhaps most importantly, a line like
+      ###################### NUMBER OF ELEMENTS TAKEN AS: 160 ######################
+at the very end "governs" the subsequent (./postProcess) runs. For example (in ./postProcess) command
+      ./trnsfrMtrx_X 160 1
+would be appropriate to examine the X transfer matrix at index 1.
 
-Three directories are used
+Including ./postProcess, three directories are used
       ./sxf2propagator
       ./propagate
       ./postProcess
-(see root Makefile).
+(see root Makefile). The first two are expected to be pretty static.
+
+An overview of the major files involved is then straightforward, with those in ./postProcess likely of most interest.
+
+The standard bunch strengths are all hard coded at +1.0e-06. This a TBD!
+
+Specific input probes, and bunches of them, are hopefully templatable, however.

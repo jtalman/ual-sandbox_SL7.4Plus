@@ -1,0 +1,14 @@
+A line like
+      ###################### NUMBER OF ELEMENTS TAKEN AS: 160 ######################
+should have been seen at the end of the directory
+      $UAL/examples/EMTEAPOT0
+process:
+      make clean
+      make
+
+The user should be in this directory
+      ./postProcess
+
+Now command
+      ./trnsfrMtrx_X 160 1
+is be appropriate to examine the X transfer matrix at index 1.

@@ -230,7 +230,7 @@ void scaleArray(double arr[3][3],double f){
 //void inverseArray(double**input,double**output){
   void inverseArray(double input[3][3],double output[3][3]){
  double det=determinantArray(input);
- printf("inverseArray: det %+.17e\n",det);
+// printf("inverseArray: det %+.17e\n",det);
  output[1][1]=+input[2][2]/det;
  output[2][2]=+input[1][1]/det;
  output[1][2]=-input[1][2]/det;

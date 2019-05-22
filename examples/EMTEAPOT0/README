@@ -33,4 +33,12 @@ An overview of the major files involved is then straightforward, with those in .
 
 The standard bunch strengths are all hard coded at +1.0e-06. This a TBD!
 
+Another probable TBD is the number of processed lattice elements. This currently the simply split bends, and is 160. Lines like
+      ###################### NUMBER OF ELEMENTS TAKEN AS:
+
+                                        160                   <<<<<<<<<<----------
+
+      ###################### NUMBER OF ELEMENTS
+should be seen.
+
 Specific input probes, and bunches of them, are hopefully templatable, however.

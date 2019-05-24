@@ -247,6 +247,15 @@ void multiplyArrays(double left[3][3],double right[3][3],double product[3][3]){
 
 }
 
+void copyArray(double LHS[3][3],double RHS[3][3]){
+ int i=0,j=0;
+ for(i=0;i<3;i++){
+  for(j=0;j<3;j++){
+   LHS[i][j]=RHS[i][j];
+  }
+ }
+}
+
 /*
 double** inverseArray(double arr[3][3]){
  double**inv={ {0,0,0}, {0,0,0}, {0,0,0}};

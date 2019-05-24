@@ -24,6 +24,9 @@ double MXtw_i [3][3]={1,0,0,0,0,0,0,0,0};double traceMXtw_i,determinantMXtw_i;  
 double MX_0iMXtw_0 [3][3]={1,0,0,0,0,0,0,0,0};double traceMX_0iMXtw_0,determinantMX_0iMXtw_0;
 double MXtw_0MX_0iInv [3][3]={1,0,0,0,0,0,0,0,0};double traceMXtw_0MX_0iInv,determinantMXtw_0MX_0iInv;
 
+double MX_0iMXtw_0MX_0iInv1 [3][3]={1,0,0,0,0,0,0,0,0};double traceMX_0iMXtw_0MX_0iInv1,determinantMX_0iMXtw_0MX_0iInv1;
+double MX_0iMXtw_0MX_0iInv2 [3][3]={1,0,0,0,0,0,0,0,0};double traceMX_0iMXtw_0MX_0iInv2,determinantMX_0iMXtw_0MX_0iInv2;
+
 int main (int argc, char*argv[]){
  int numSP;
  int i;
@@ -125,7 +128,7 @@ int main (int argc, char*argv[]){
  determinantMX_0iInv=determinantArray(MX_0iInv);
  printf("determinantMX_0iInv    %+.17e\n",determinantMX_0iInv);
 
- multiplyArrays(MX_0i,MXtw_0,MX_0iMXtw_0);
+ multiplyArrays(MX_0i,MXtw_0,MX_0iMXtw_0);                      // left * middle of (11)
  printf("\n");
  printf("Eq. (11): X left product, (MX_0i)(MXtw_0)\n");
   printf("                         %+.2e ",MX_0iMXtw_0[1][1]);
@@ -139,7 +142,7 @@ int main (int argc, char*argv[]){
  determinantMX_0iMXtw_0=determinantArray(MX_0iMXtw_0);
  printf("determinantMX_0iMXtw_0 %+.17e\n",determinantMX_0iMXtw_0);
 
- multiplyArrays(MXtw_0,MX_0iInv,MXtw_0MX_0iInv);
+ multiplyArrays(MXtw_0,MX_0iInv,MXtw_0MX_0iInv);                // middle * right of (11)
  printf("\n");
  printf("Eq. (11): X right product, (MXtw_0)(MX_0iInv)\n");
   printf("                         %+.2e ",MXtw_0MX_0iInv[1][1]);
@@ -152,6 +155,34 @@ int main (int argc, char*argv[]){
  printf("traceMXtw_0MX_0iInv       %+.17e\n",traceMXtw_0MX_0iInv);
  determinantMXtw_0MX_0iInv=determinantArray(MXtw_0MX_0iInv);
  printf("determinantMXtw_0MX_0iInv %+.17e\n",determinantMXtw_0MX_0iInv);
+
+ multiplyArrays(MX_0iMXtw_0,MX_0iInv,MX_0iMXtw_0MX_0iInv1);          // (left * middle) * right of (11)
+ printf("\n");
+ printf("Eq. (11): X total product, (MX_0iMXtw_0)(MX_0iInv)\n");
+  printf("                         %+.2e ",MX_0iMXtw_0MX_0iInv1[1][1]);
+  printf("                         %+.2e ",MX_0iMXtw_0MX_0iInv1[1][2]);
+  printf("\n");
+  printf("                         %+.2e ",MX_0iMXtw_0MX_0iInv1[2][1]);
+  printf("                         %+.2e ",MX_0iMXtw_0MX_0iInv1[2][2]);
+  printf("\n");
+ traceMX_0iMXtw_0MX_0iInv1=traceArray(MX_0iMXtw_0MX_0iInv1);
+ printf("traceMX_0iMXtw_0MX_0iInv1       %+.17e\n",traceMX_0iMXtw_0MX_0iInv1);
+ determinantMX_0iMXtw_0MX_0iInv1=determinantArray(MX_0iMXtw_0MX_0iInv1);
+ printf("determinantMX_0iMXtw_0MX_0iInv1 %+.17e\n",determinantMX_0iMXtw_0MX_0iInv1);
+
+ multiplyArrays(MX_0i,MXtw_0MX_0iInv,MX_0iMXtw_0MX_0iInv2);          // left * (middle * right) of (11)
+ printf("\n");
+ printf("Eq. (11): X total product, (MX_0i)(MXtw_0MX_0iInv)\n");
+  printf("                         %+.2e ",MX_0iMXtw_0MX_0iInv2[1][1]);
+  printf("                         %+.2e ",MX_0iMXtw_0MX_0iInv2[1][2]);
+  printf("\n");
+  printf("                         %+.2e ",MX_0iMXtw_0MX_0iInv2[2][1]);
+  printf("                         %+.2e ",MX_0iMXtw_0MX_0iInv2[2][2]);
+  printf("\n");
+ traceMX_0iMXtw_0MX_0iInv2=traceArray(MX_0iMXtw_0MX_0iInv2);
+ printf("traceMX_0iMXtw_0MX_0iInv2       %+.17e\n",traceMX_0iMXtw_0MX_0iInv2);
+ determinantMX_0iMXtw_0MX_0iInv2=determinantArray(MX_0iMXtw_0MX_0iInv2);
+ printf("determinantMX_0iMXtw_0MX_0iInv2 %+.17e\n",determinantMX_0iMXtw_0MX_0iInv2);
 
  return 0;
 }

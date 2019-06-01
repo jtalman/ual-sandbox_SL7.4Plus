@@ -61,6 +61,7 @@ int main (int argc, char*argv[]){
  printf("trace                   %+.17e\n",trace);
  det=determinantArray(Mtw0);
  printf("determinant             %+.17e\n",det);
+ printf("one - determinant       %+.17e\n",one-det);
 
  printf("\n*************************** ONE TURN FROM ORIGIN TWISS FUNCTIONS X **************************\n");
  printf("***************************** CHECKING Implied Angle mu *************************************\n");
@@ -73,6 +74,7 @@ int main (int argc, char*argv[]){
  else{printf("****************************** VALID Implied Angle mu ***************************************\n");}
  printf("*************************** PROCEEDING ... **************************************************\n");
 
+/*
  printf("scaling matrix\n");
  fac=sqrt(one/det);
  scaleArray(Mtw0,fac);
@@ -80,6 +82,7 @@ int main (int argc, char*argv[]){
  printf("new trace               %+.17e\n",trace);
  det=determinantArray(Mtw0);
  printf("new determinant         %+.17e\n\n",det);
+*/
 
  cosMu0=trace/two;
  AbsSinMu0=sqrt(one-cosMu0*cosMu0);
@@ -125,6 +128,6 @@ int main (int argc, char*argv[]){
  printf("###################### NUMBER OF ELEMENTS TAKEN AS:\n\n");
  printf("                                  %d                   <<<<<<<<<<----------\n\n",numSP);
  printf("###################### NUMBER OF ELEMENTS\n\n");
- printf("This is to be used as input for executables in directory ./postProcess\n");
+ printf("This is to be used as input for executables in directory ./postProcess\n\n\n");
  return 0;
 }

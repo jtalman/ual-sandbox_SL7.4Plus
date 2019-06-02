@@ -2,6 +2,7 @@
 #include<stdlib.h>
 #include<math.h>
 #include"functions.c"
+
 #define PI 3.141592653589793
 
 double SP1x_N0,SP1xP_N0;                // one turn from origin simulated propagated values
@@ -28,6 +29,7 @@ double lm_r_MX_0iMXtw_0MX_0iInv [3][3]={1,0,0,0,0,0,0,0,0};double tracelm_r_MX_0
 double l_mr_MX_0iMXtw_0MX_0iInv [3][3]={1,0,0,0,0,0,0,0,0};double tracel_mr_MX_0iMXtw_0MX_0iInv,determinantl_mr_MX_0iMXtw_0MX_0iInv;
 
 int main (int argc, char*argv[]){
+ FILE * pFile = fopen ("./out/cosMuX","w");
  int numSP;
  int i;
  double x1typ=1.e-06;
@@ -84,10 +86,12 @@ int main (int argc, char*argv[]){
    printf("                         %+.2e ",l_mr_MX_0iMXtw_0MX_0iInv[2][2]);
    printf("\n");
   tracel_mr_MX_0iMXtw_0MX_0iInv=traceArray(l_mr_MX_0iMXtw_0MX_0iInv);
-  printf("tracel_mr_MX_0iMXtw_0MX_0iInv       %+.17e\n",tracel_mr_MX_0iMXtw_0MX_0iInv);
+  printf("tracel_mr_MX_0iMXtw_0MX_0iInv/two   %+.17e\n",tracel_mr_MX_0iMXtw_0MX_0iInv/two);
+  fprintf (pFile, "%d %+.15e\n",i,tracel_mr_MX_0iMXtw_0MX_0iInv/two);
   determinantl_mr_MX_0iMXtw_0MX_0iInv=determinantArray(l_mr_MX_0iMXtw_0MX_0iInv);
   printf("determinantl_mr_MX_0iMXtw_0MX_0iInv %+.17e\n",determinantl_mr_MX_0iMXtw_0MX_0iInv);
  }
+ fclose (pFile);
 
  return 0;
 }

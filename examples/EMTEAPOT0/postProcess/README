@@ -12,3 +12,15 @@ The user should be in this directory
 Now command
       ./trnsfrMtrx_X 160 1
 is be appropriate to examine the X transfer matrix at index 1.
+
+Command
+      ./trnsfrMtrx_X 160 160
+is be appropriate to examine the X transfer matrix at index 160. Of course it should match the earlier result.
+
+Command
+      ./trnsfrMtrices_X 160 160
+outputs
+      ./out/cosMuX
+It can be examined with
+      gnuplot
+            gnuplot > l './gnuplot/cosMuX.gnu'

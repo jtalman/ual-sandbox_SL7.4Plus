@@ -24,8 +24,8 @@ double MXtw_i [3][3]={1,0,0,0,0,0,0,0,0};double traceMXtw_i,determinantMXtw_i;  
 double MX_0iMXtw_0 [3][3]={1,0,0,0,0,0,0,0,0};double traceMX_0iMXtw_0,determinantMX_0iMXtw_0;
 double MXtw_0MX_0iInv [3][3]={1,0,0,0,0,0,0,0,0};double traceMXtw_0MX_0iInv,determinantMXtw_0MX_0iInv;
 
-double MX_0iMXtw_0MX_0iInv1 [3][3]={1,0,0,0,0,0,0,0,0};double traceMX_0iMXtw_0MX_0iInv1,determinantMX_0iMXtw_0MX_0iInv1;
-double MX_0iMXtw_0MX_0iInv2 [3][3]={1,0,0,0,0,0,0,0,0};double traceMX_0iMXtw_0MX_0iInv2,determinantMX_0iMXtw_0MX_0iInv2;
+double lm_r_MX_0iMXtw_0MX_0iInv [3][3]={1,0,0,0,0,0,0,0,0};double tracelm_r_MX_0iMXtw_0MX_0iInv,determinantlm_r_MX_0iMXtw_0MX_0iInv;
+double l_mr_MX_0iMXtw_0MX_0iInv [3][3]={1,0,0,0,0,0,0,0,0};double tracel_mr_MX_0iMXtw_0MX_0iInv,determinantl_mr_MX_0iMXtw_0MX_0iInv;
 
 int main (int argc, char*argv[]){
  int numSP;
@@ -156,33 +156,33 @@ int main (int argc, char*argv[]){
  determinantMXtw_0MX_0iInv=determinantArray(MXtw_0MX_0iInv);
  printf("determinantMXtw_0MX_0iInv %+.17e\n",determinantMXtw_0MX_0iInv);
 
- multiplyArrays(MX_0iMXtw_0,MX_0iInv,MX_0iMXtw_0MX_0iInv1);          // (left * middle) * right of (11)
+ multiplyArrays(MX_0iMXtw_0,MX_0iInv,lm_r_MX_0iMXtw_0MX_0iInv);          // (left * middle) * right of (11)
  printf("\n");
  printf("Eq. (11): X total product, (MX_0iMXtw_0)(MX_0iInv)\n");
-  printf("                         %+.2e ",MX_0iMXtw_0MX_0iInv1[1][1]);
-  printf("                         %+.2e ",MX_0iMXtw_0MX_0iInv1[1][2]);
+  printf("                         %+.2e ",lm_r_MX_0iMXtw_0MX_0iInv[1][1]);
+  printf("                         %+.2e ",lm_r_MX_0iMXtw_0MX_0iInv[1][2]);
   printf("\n");
-  printf("                         %+.2e ",MX_0iMXtw_0MX_0iInv1[2][1]);
-  printf("                         %+.2e ",MX_0iMXtw_0MX_0iInv1[2][2]);
+  printf("                         %+.2e ",lm_r_MX_0iMXtw_0MX_0iInv[2][1]);
+  printf("                         %+.2e ",lm_r_MX_0iMXtw_0MX_0iInv[2][2]);
   printf("\n");
- traceMX_0iMXtw_0MX_0iInv1=traceArray(MX_0iMXtw_0MX_0iInv1);
- printf("traceMX_0iMXtw_0MX_0iInv1       %+.17e\n",traceMX_0iMXtw_0MX_0iInv1);
- determinantMX_0iMXtw_0MX_0iInv1=determinantArray(MX_0iMXtw_0MX_0iInv1);
- printf("determinantMX_0iMXtw_0MX_0iInv1 %+.17e\n",determinantMX_0iMXtw_0MX_0iInv1);
+ tracelm_r_MX_0iMXtw_0MX_0iInv=traceArray(lm_r_MX_0iMXtw_0MX_0iInv);
+ printf("tracelm_r_MX_0iMXtw_0MX_0iInv       %+.17e\n",tracelm_r_MX_0iMXtw_0MX_0iInv);
+ determinantlm_r_MX_0iMXtw_0MX_0iInv=determinantArray(lm_r_MX_0iMXtw_0MX_0iInv);
+ printf("determinantlm_r_MX_0iMXtw_0MX_0iInv %+.17e\n",determinantlm_r_MX_0iMXtw_0MX_0iInv);
 
- multiplyArrays(MX_0i,MXtw_0MX_0iInv,MX_0iMXtw_0MX_0iInv2);          // left * (middle * right) of (11)
+ multiplyArrays(MX_0i,MXtw_0MX_0iInv,l_mr_MX_0iMXtw_0MX_0iInv);          // left * (middle * right) of (11)
  printf("\n");
  printf("Eq. (11): X total product, (MX_0i)(MXtw_0MX_0iInv)\n");
-  printf("                         %+.2e ",MX_0iMXtw_0MX_0iInv2[1][1]);
-  printf("                         %+.2e ",MX_0iMXtw_0MX_0iInv2[1][2]);
+  printf("                         %+.2e ",l_mr_MX_0iMXtw_0MX_0iInv[1][1]);
+  printf("                         %+.2e ",l_mr_MX_0iMXtw_0MX_0iInv[1][2]);
   printf("\n");
-  printf("                         %+.2e ",MX_0iMXtw_0MX_0iInv2[2][1]);
-  printf("                         %+.2e ",MX_0iMXtw_0MX_0iInv2[2][2]);
+  printf("                         %+.2e ",l_mr_MX_0iMXtw_0MX_0iInv[2][1]);
+  printf("                         %+.2e ",l_mr_MX_0iMXtw_0MX_0iInv[2][2]);
   printf("\n");
- traceMX_0iMXtw_0MX_0iInv2=traceArray(MX_0iMXtw_0MX_0iInv2);
- printf("traceMX_0iMXtw_0MX_0iInv2       %+.17e\n",traceMX_0iMXtw_0MX_0iInv2);
- determinantMX_0iMXtw_0MX_0iInv2=determinantArray(MX_0iMXtw_0MX_0iInv2);
- printf("determinantMX_0iMXtw_0MX_0iInv2 %+.17e\n",determinantMX_0iMXtw_0MX_0iInv2);
+ tracel_mr_MX_0iMXtw_0MX_0iInv=traceArray(l_mr_MX_0iMXtw_0MX_0iInv);
+ printf("tracel_mr_MX_0iMXtw_0MX_0iInv       %+.17e\n",tracel_mr_MX_0iMXtw_0MX_0iInv);
+ determinantl_mr_MX_0iMXtw_0MX_0iInv=determinantArray(l_mr_MX_0iMXtw_0MX_0iInv);
+ printf("determinantl_mr_MX_0iMXtw_0MX_0iInv %+.17e\n",determinantl_mr_MX_0iMXtw_0MX_0iInv);
 
  return 0;
 }

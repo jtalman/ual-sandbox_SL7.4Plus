@@ -4,10 +4,10 @@ CCFLAGS  = -O0 -g3
 
 #INC  += -I. -I./src
 
-compile: ./1TurnFromOriginTwissFnctns_X ./trnsfrMtrx_X
+compile: ./1TurnFromOriginTwissFnctns_X ./trnsfrMtrx_X ./trnsfrMtrices_X
 
 clean:
-	@rm -f 1TurnFromOriginTwissFnctns_X 1TurnFromOriginTwissFnctns_X.o trnsfrMtrx_X trnsfrMtrx_X.o
+	@rm -f 1TurnFromOriginTwissFnctns_X 1TurnFromOriginTwissFnctns_X.o trnsfrMtrx_X trnsfrMtrx_X.o trnsfrMtrices_X trnsfrMtrices_X.o
 
 ./1TurnFromOriginTwissFnctns_X: ./1TurnFromOriginTwissFnctns_X.o
 	@$(CC) -o $@  $(CCFLAGS) ./1TurnFromOriginTwissFnctns_X.o -lm
@@ -30,3 +30,9 @@ clean:
 
 ./trnsfrMtrx_X.o:
 	@$(CC) $(CCFLAGS) $(INC) -c ./trnsfrMtrx_X.c -o $@
+
+./trnsfrMtrices_X: ./trnsfrMtrices_X.o
+	@$(CC) -o $@  $(CCFLAGS) ./trnsfrMtrices_X.o -lm
+
+./trnsfrMtrices_X.o:
+	@$(CC) $(CCFLAGS) $(INC) -c ./trnsfrMtrices_X.c -o $@

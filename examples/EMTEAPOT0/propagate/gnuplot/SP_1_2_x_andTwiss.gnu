@@ -8,7 +8,8 @@ set title "One turn: x versus element for 1 micron initial delta in x"
 set xlabel "element"
 set ylabel "x(element)"
 
-set xrange [0:180]
+  set xrange [0:250]
+# set xrange [0:180]
 set yrange [-1.5e-06:+1.5e-06]
 
 #set label "+x1typ =" at -35,+1.0e-06

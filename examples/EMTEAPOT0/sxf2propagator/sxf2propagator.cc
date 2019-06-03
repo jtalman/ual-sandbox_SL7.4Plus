@@ -41,9 +41,9 @@ int main(int argc,char * argv[]){
  int startTime, endTime, totalTime;
 
  if(argc!=3){
-  std::cout << "usage: ./sxf2propagator ./sxf/EM_BM_Z_sl4.sxf 0\n";
+  std::cout << "usage: ./sxf2propagator ./sxf/EM_BM_Z.sxf 0\n";
   std::cout << "argv[0] is this executable         - ./sxf2propagator                \n";
-  std::cout << "argv[1] is the input sxf file      - ./sxf/EM_BM_Z_sl4.sxf     \n";
+  std::cout << "argv[1] is the input sxf file      - ./sxf/EM_BM_Z.sxf     \n";
   std::cout << "argv[2] is the scalar of Z (0)     - 0                         \n";
   exit(0);
  }
@@ -227,7 +227,8 @@ int main(int argc,char * argv[]){
  for_postSxfPropagator << "  std::cerr << \"turns/tofDT = \" << (double)turns/tofDT << \"\\n\";" << "\n";
  for_postSxfPropagator << " }\n";
 
-  for_postSxfPropagator << " twissImplications( outputFileName, bendsDT*2-1, sDT, argv[2], argv[3], argv[4], argv[5], argv[6], argv[7], bunch[1].getPosition() );" << "\n";
+  for_postSxfPropagator << " twissImplications( outputFileName, printDT-1, sDT, argv[2], argv[3], argv[4], argv[5], argv[6], argv[7], bunch[1].getPosition() );" << "\n";
+//for_postSxfPropagator << " twissImplications( outputFileName, bendsDT*2-1, sDT, argv[2], argv[3], argv[4], argv[5], argv[6], argv[7], bunch[1].getPosition() );" << "\n";
 //for_postSxfPropagator << " twissImplications( outputFileName, sDT, argv[2], argv[3], argv[4], argv[5], argv[6], argv[7], bunch[1].getPosition() );" << "\n";
 //for_postSxfPropagator << " twissImplications( outputFileName, argv[2], argv[3], argv[4], argv[5], argv[6], argv[7], bunch[1].getPosition() );" << "\n";
  for_postSxfPropagator << "}\n";

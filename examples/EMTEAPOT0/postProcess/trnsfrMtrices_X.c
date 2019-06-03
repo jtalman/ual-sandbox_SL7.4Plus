@@ -47,7 +47,6 @@ int main (int argc, char*argv[]){
  double zero=0,one=1,two=2,fac=1;
 
  numSP=atoi(argv[1]);
- i=atoi(argv[2]);
 
  printf("Processing X Transfer Matrix at index %d\n",i);
 

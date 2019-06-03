@@ -5,7 +5,7 @@ void perQuadOutput(int ip){
  JDTout.open (outputFileName, fstream::out | fstream::app);
 
  JDTout.precision(15);
-//JDTout << setw(3) << ip << " " << setw(3) << printDT << " " << setw(17) << 0 << " " << setw(17) << p[0] <<     " " << setw(17) << p[1] << " " << setw(17) << p[2] << " " << setw(17) << p[3] << " " << setw(17) << p[4] << " " << setw(17) << p[5] << " " << setw(17) << __SPIN__[ip][0] << " " << setw(17) << __SPIN__[ip][1] << "     " << setw(17) << __SPIN__[ip][2] << "\n";
+JDTout << setw(3) << ip << " " << setw(3) << printDT << " " << setw(17) << 0 << " " << setw(17) << p[0] <<     " " << setw(17) << p[1] << " " << setw(17) << p[2] << " " << setw(17) << p[3] << " " << setw(17) << p[4] << " " << setw(17) << p[5] << " " << setw(17) << __SPIN__[ip][0] << " " << setw(17) << __SPIN__[ip][1] << "     " << setw(17) << __SPIN__[ip][2] << "\n";
  JDTout.close();
-//printDT++;
+printDT++;
 }

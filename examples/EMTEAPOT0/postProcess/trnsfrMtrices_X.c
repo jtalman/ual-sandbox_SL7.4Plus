@@ -29,18 +29,19 @@ double lm_r_MX_0iMXtw_0MX_0iInv [3][3]={1,0,0,0,0,0,0,0,0};double tracelm_r_MX_0
 double l_mr_MX_0iMXtw_0MX_0iInv [3][3]={1,0,0,0,0,0,0,0,0};double tracel_mr_MX_0iMXtw_0MX_0iInv,determinantl_mr_MX_0iMXtw_0MX_0iInv;
 
 int main (int argc, char*argv[]){
- FILE * pFile = fopen ("./out/cosMuX","w");
+ FILE*cosMu_iXFile =fopen("./out/cosMu_iX","w");
+ FILE*beta_iXFile  =fopen("./out/beta_iX", "w");
  int numSP;
  int i;
  double x1typ=1.e-06;
 
  double trace=0;
  int numSP1=0,numSP2=0,numSP3=0,numSP4=0;
- double cosMu0=0,dsc=0,alpha0=0,beta0=0,gamma0=0;
+ double cosMu_i=0,dsc=0,alpha0=0,beta_i=0,gamma0=0;
  double det=0;
 
- double AbsSinMu0=0;
- double    sinMu0=0;
+ double AbsSinMu_i=0;
+ double    sinMu_i=0;
 
  double Mu0=0,Mu0_PMtw0=0,Q=0;
  double alpha0_alternate=0,alpha0_alternateSq=0;
@@ -78,19 +79,32 @@ int main (int argc, char*argv[]){
 
   printf("\n");
   printf("Eq. (11): X total product, (MX_0i)(MXtw_0MX_0iInv)\n");
-   printf("                         %+.2e ",l_mr_MX_0iMXtw_0MX_0iInv[1][1]);
-   printf("                         %+.2e ",l_mr_MX_0iMXtw_0MX_0iInv[1][2]);
-   printf("\n");
-   printf("                         %+.2e ",l_mr_MX_0iMXtw_0MX_0iInv[2][1]);
-   printf("                         %+.2e ",l_mr_MX_0iMXtw_0MX_0iInv[2][2]);
-   printf("\n");
+  printf("                         %+.2e ",l_mr_MX_0iMXtw_0MX_0iInv[1][1]);
+  printf("                         %+.2e ",l_mr_MX_0iMXtw_0MX_0iInv[1][2]);
+  printf("\n");
+  printf("                         %+.2e ",l_mr_MX_0iMXtw_0MX_0iInv[2][1]);
+  printf("                         %+.2e ",l_mr_MX_0iMXtw_0MX_0iInv[2][2]);
+  printf("\n");
+
   tracel_mr_MX_0iMXtw_0MX_0iInv=traceArray(l_mr_MX_0iMXtw_0MX_0iInv);
-  printf("tracel_mr_MX_0iMXtw_0MX_0iInv/two   %+.17e\n",tracel_mr_MX_0iMXtw_0MX_0iInv/two);
-  fprintf (pFile, "%d %+.15e\n",i,tracel_mr_MX_0iMXtw_0MX_0iInv/two);
   determinantl_mr_MX_0iMXtw_0MX_0iInv=determinantArray(l_mr_MX_0iMXtw_0MX_0iInv);
+  printf("tracel_mr_MX_0iMXtw_0MX_0iInv/two   %+.17e\n",tracel_mr_MX_0iMXtw_0MX_0iInv/two);
   printf("determinantl_mr_MX_0iMXtw_0MX_0iInv %+.17e\n",determinantl_mr_MX_0iMXtw_0MX_0iInv);
+  fprintf (cosMu_iXFile, "%d %+.15e\n",i,tracel_mr_MX_0iMXtw_0MX_0iInv/two);
+
+  cosMu_i=tracel_mr_MX_0iMXtw_0MX_0iInv/two;
+  AbsSinMu_i=sqrt(one-cosMu_i*cosMu_i);
+  if(l_mr_MX_0iMXtw_0MX_0iInv[1][2]<zero)sinMu_i=-AbsSinMu_i;
+  else{sinMu_i=+AbsSinMu_i;}
+  beta_i=l_mr_MX_0iMXtw_0MX_0iInv[1][2]/AbsSinMu_i; 
+  printf("cosMu_iX                %+.17e\n",cosMu_i);
+  printf("AbsSinMu_iX             %+.17e\n",AbsSinMu_i);
+  printf("   sinMu_iX             %+.17e\n\n",   sinMu_i);
+  printf("beta_iX                 %+.17e\n\n",beta_i);
+  fprintf(beta_iXFile, "%d %+.15e\n",i,beta_i);
  }
- fclose (pFile);
+ fclose(cosMu_iXFile);
+ fclose (beta_iXFile);
 
  return 0;
 }

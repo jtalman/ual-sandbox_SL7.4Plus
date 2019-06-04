@@ -20,7 +20,7 @@ is be appropriate to examine the X transfer matrix at index 240. Of course it sh
 Command
       ./trnsfrMtrices_X 240
 outputs
-      ./out/cosMuX
+      ./out/beta_iX
 It can be examined with
       gnuplot
-            gnuplot > l './gnuplot/cosMuX.gnu'
+            gnuplot > l './gnuplot/beta_iX.gnu'

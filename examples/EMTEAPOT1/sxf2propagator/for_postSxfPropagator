@@ -1,0 +1,67 @@
+ofstream for_postSxfPropagator;
+for_postSxfPropagator.open ("postSxfPropagator.cc");
+
+for_postSxfPropagator << "#include <stdio.h>\n";
+for_postSxfPropagator << "#include <stdlib.h>\n\n";
+for_postSxfPropagator << "#include <iostream>\n";
+for_postSxfPropagator << "#include <iomanip>\n";
+for_postSxfPropagator << "#include <cmath>\n\n";
+
+for_postSxfPropagator << "#include \"EMTEAPOT/Integrator/marker.cc\"\n";
+for_postSxfPropagator << "#include \"EMTEAPOT/Integrator/drift.cc\"\n";
+
+for_postSxfPropagator << "#include \"EMTEAPOT/Integrator/quad.cc\"\n";
+//for_postSxfPropagator << "static double EMTEAPOT::quad::q;\n";
+
+for_postSxfPropagator << "#include \"EMTEAPOT/Integrator/embend.cc\"\n";
+for_postSxfPropagator << "#include \"EMTEAPOT/Integrator/sext.cc\"\n";
+for_postSxfPropagator << "#include \"EMTEAPOT/Integrator/oct.cc\"\n";
+for_postSxfPropagator << "#include \"EMTEAPOT/Integrator/rfCavity.cc\"\n";
+
+//for_postSxfPropagator << "#include \"EMTEAPOT/Integrator/genMethods/spinExtern\"\n";
+for_postSxfPropagator << "#include \"EMTEAPOT/Integrator/genMethods/spinDef\"\n";
+//for_postSxfPropagator << "#include \"EMTEAPOT/Integrator/genMethods/designExtern\"\n";
+for_postSxfPropagator << "#include \"EMTEAPOT/Integrator/genMethods/designDef\"\n";
+//for_postSxfPropagator << "#include \"EMTEAPOT/Integrator/genMethods/bunchParticleExtern\"\n";
+for_postSxfPropagator << "#include \"EMTEAPOT/Integrator/genMethods/bunchParticleDef\"\n";
+
+//for_postSxfPropagator << "#include \"userManifest/probeDataForTwiss\"\n\n";
+//for_postSxfPropagator << "#include \"parameters\"\n\n";
+
+//for_postSxfPropagator << "#include \"getStndrdPrtclIndex\"\n\n";
+  for_postSxfPropagator << "#include \"twissImplications\"\n\n";
+
+for_postSxfPropagator << "int main(int argc,char * argv[])\{\n";
+
+for_postSxfPropagator << " #include \"parameters\"\n";
+for_postSxfPropagator << " sDT=0;\n";
+for_postSxfPropagator << " tofDT=0;\n";
+
+/*
+for_postSxfPropagator << " double trtrout[6][21];\n";
+for_postSxfPropagator << " for(int i=0;i<6;i++){\n";
+for_postSxfPropagator << "  for(int j=0;j<21;j++){\n";
+for_postSxfPropagator << "   trtrout[i][j]=0;\n";
+for_postSxfPropagator << "  }\n";
+for_postSxfPropagator << " }\n";
+*/
+
+//for_postSxfPropagator << " UAL::Probe& probe;\n";
+for_postSxfPropagator << " PAC::Bunch bunch(2);\n";
+for_postSxfPropagator << " /* design particle - usually ignored */ bunch[0].getPosition().set(      0,       0,      0,      0,      0,      0 );\n";
+//for_postSxfPropagator << "bunch[1].getPosition().set( +x1typ,       0,      0,      0,      0,      0 );\n";
+//for_postSxfPropagator << "bunch[1].getPosition().set( +x1typ,       0,      0, +y2typ,      0,      0 );\n";
+for_postSxfPropagator << "                     \n";
+for_postSxfPropagator << " EMTEAPOT::marker marker;\n";
+for_postSxfPropagator << " EMTEAPOT::drift implicitDrift;\n";
+for_postSxfPropagator << " EMTEAPOT::quad quad;\n";
+for_postSxfPropagator << " EMTEAPOT::embend bend;\n";
+for_postSxfPropagator << " EMTEAPOT::sext sext;\n";
+for_postSxfPropagator << " EMTEAPOT::oct oct;\n";
+for_postSxfPropagator << " EMTEAPOT::rfCavity rf;\n\n";
+
+for_postSxfPropagator << " int turns=atoi(argv[1]);\n\n";
+for_postSxfPropagator << " bunch[1].getPosition().set( atof(argv[2]), atof(argv[3]), atof(argv[4]), atof(argv[5]), atof(argv[6]), atof(argv[7]) );\n";
+for_postSxfPropagator << " outputFileName=(char*)argv[8];\n";
+
+for_postSxfPropagator << " for(int i=0;i<turns;i++){\n";

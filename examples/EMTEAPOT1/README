@@ -1,0 +1,50 @@
+This assumes a fresh "clone" of this code:
+      git clone git://github.com/jtalman/ual-sandbox_SL7.4Plus
+      cd ual-sandbox_SL7.4Plus
+      setenv UAL `pwd`
+      source setup-linux-ual
+      make clean
+      make
+
+This file is in
+      $UAL/examples/EMTEAPOT0
+
+A good way to initiate/start proceedings from here is the basic
+      make clean
+      make
+
+This should pop up plots of some standard particles: the "X Standard Bunch". The One Turn (From Origin) Twiss Functions are also displayed. This display is intended to fit well on a single terminal screen so that it can be easily "spot checked".
+
+If everything looks OK, one can cd into directory ./postProcess and follow it's README file for more extensive analysis.
+
+Perhaps most importantly, a line like
+      ###################### NUMBER OF ELEMENTS TAKEN AS: 240 ######################
+at the very end "governs" the subsequent (./postProcess) runs. For example (in ./postProcess) command
+      ./trnsfrMtrx_X 240 1
+would be appropriate to examine the X transfer matrix at index 1.
+
+Including ./postProcess, three directories are used
+      ./sxf2propagator
+      ./propagate
+      ./postProcess
+(see root Makefile). The first two are expected to be pretty static.
+
+An overview of the major files involved is then straightforward, with those in ./postProcess likely of most interest.
+
+The standard bunch strengths are all hard coded at +1.0e-06. This a TBD!
+
+Another probable TBD is the number of processed lattice elements. This is currently the quads and simply split bends, and is 240. Lines like
+      ###################### NUMBER OF ELEMENTS TAKEN AS:
+
+                                        240                   <<<<<<<<<<----------
+
+      ###################### NUMBER OF ELEMENTS
+should be seen.
+
+In directory
+      ./postProcess
+make clean, make works. A command like
+      ./trnsfrMtrx_X 240 150
+gives one turn X transfer matrices. 150 <= 240.
+
+Specific input probes, and bunches of them, are hopefully templatable, however.

@@ -1,7 +1,8 @@
 #include<stdio.h>
 #include<stdlib.h>
+#include<string.h>
 #include<math.h>
-#include"functions.c"
+#include"functions.h"
 #define PI 3.141592653589793
 
 double SP1x_N0,SP1xP_N0;                // one turn from origin simulated propagated values
@@ -43,6 +44,9 @@ int main (int argc, char*argv[]){
  double Mu0=0,Mu0_PMtw0=0,Q=0;
  double alpha0_alternate=0,alpha0_alternateSq=0;
  double zero=0,one=1,two=2,fac=1;
+
+ setABS();
+ printABS();
 
  numSP=atoi(argv[1]);
  i=atoi(argv[2]);

@@ -2,8 +2,20 @@
 #include<stdlib.h>
 #include<string.h>
 #include<math.h>
-#include"functions.h"
 #define PI 3.141592653589793
+
+/*
+char*rootDir         = "/home/talman/Desktop/ual-sandbox_SL7.4Plus/examples/EMTEAPOT1/";
+char*ABScosMu_iX     = "/home/talman/Desktop/ual-sandbox_SL7.4Plus/examples/EMTEAPOT1/postProcess/out/cosMu_iX";
+char*ABSbeta_iX      = "/home/talman/Desktop/ual-sandbox_SL7.4Plus/examples/EMTEAPOT1/postProcess/out/cosMu_iX";
+char*ABSStndrdPrtcl1 = "/home/talman/Desktop/ual-sandbox_SL7.4Plus/examples/EMTEAPOT1/propagate/out/StndrdPrtcl1";
+char*ABSStndrdPrtcl2 = "/home/talman/Desktop/ual-sandbox_SL7.4Plus/examples/EMTEAPOT1/propagate/out/StndrdPrtcl2";
+char*ABSStndrdPrtcl3 = "/home/talman/Desktop/ual-sandbox_SL7.4Plus/examples/EMTEAPOT1/propagate/out/StndrdPrtcl3";
+char*ABSStndrdPrtcl4 = "/home/talman/Desktop/ual-sandbox_SL7.4Plus/examples/EMTEAPOT1/propagate/out/StndrdPrtcl4";
+*/
+#include"directories.h"
+
+#include"functions.h"
 
 double SP1x_N0,SP1xP_N0;                // one turn from origin simulated propagated values
 double SP2x_N0,SP2xP_N0;
@@ -45,7 +57,10 @@ int main (int argc, char*argv[]){
  double alpha0_alternate=0,alpha0_alternateSq=0;
  double zero=0,one=1,two=2,fac=1;
 
+/*
  setABS();
+ printABS();
+*/
  printABS();
 
  numSP=atoi(argv[1]);

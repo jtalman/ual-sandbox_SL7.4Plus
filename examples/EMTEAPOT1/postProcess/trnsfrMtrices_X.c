@@ -1,7 +1,11 @@
 #include<stdio.h>
 #include<stdlib.h>
+#include<string.h>
 #include<math.h>
-#include"functions.c"
+
+#include"directories.h"
+#include"functions.h"
+//#include"functions.c"
 
 #define PI 3.141592653589793
 
@@ -29,8 +33,12 @@ double lm_r_MX_0iMXtw_0MX_0iInv [3][3]={1,0,0,0,0,0,0,0,0};double tracelm_r_MX_0
 double l_mr_MX_0iMXtw_0MX_0iInv [3][3]={1,0,0,0,0,0,0,0,0};double tracel_mr_MX_0iMXtw_0MX_0iInv,determinantl_mr_MX_0iMXtw_0MX_0iInv;
 
 int main (int argc, char*argv[]){
+/*
  FILE*cosMu_iXFile =fopen("./out/cosMu_iX","w");
  FILE*beta_iXFile  =fopen("./out/beta_iX", "w");
+*/
+ FILE*cosMu_iXFile =fopen(ABScosMu_iX,"w");
+ FILE*beta_iXFile  =fopen(ABSbeta_iX, "w");
  int numSP;
  int i;
  double x1typ=1.e-06;
@@ -48,6 +56,7 @@ int main (int argc, char*argv[]){
  double zero=0,one=1,two=2,fac=1;
 
  numSP=atoi(argv[1]);
+ printABS();
 
  printf("Processing X Transfer Matrix at index %d\n",i);
 

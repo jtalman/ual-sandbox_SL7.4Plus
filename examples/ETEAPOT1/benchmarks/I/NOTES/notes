@@ -1,0 +1,35 @@
+This is intended to be a functionally equivalent port of (Google Codes) UAL::745. The source is/was one of Richard Talman's laptops.
+
+The usage is straightforward: "near scripts" runExample_Figure_3, ... can be be copied and executed (via pasting).
+
+These reproduce closely, if not exactly, Figures 2, 3, 4 in
+      https://github.com/jtalman/ual-sandbox_SL7.4Plus/blob/master/examples/ETEAPOT/statusAndRegression/E_benchmark.pdf
+File
+     https://github.com/jtalman/ual-sandbox_SL7.4Plus/blob/master/examples/ETEAPOT/statusAndRegression/benchmark.pdf
+is also relevant. These documents are here.
+
+Files
+      Makefile
+and
+      tracker.cc
+are most central. Their "diff" files are here.
+
+I should probably "reconcile" files
+      algorithm.hh
+      algorithm.icc
+      DipoleTracker.cc
+      DipoleTracker.hh
+with the "GIT top of the tree" or something along those lines. Their "diff" files are here.
+
+I should also probably reconcile files
+      designBeamValues.hh
+      extractParameters.h
+      getDesignBeam.h
+      getTimeAlternate.inline
+      probeDataForTwiss
+      reference.inline
+      setBeamAttributes.hh
+      simulatedProbeValues
+      verboseBlock.h
+
+I have a notion that UAL::745 is "pre RF" (forward). Really just transverse. "lateral/out, and up".

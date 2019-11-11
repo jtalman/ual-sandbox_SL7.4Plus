@@ -1,0 +1,1 @@
+g++ -g -O -fpic -Wall -Wno-deprecated -I$UAL/codes/ETEAPOT/src -I$UAL/codes/PAC/src -I$UAL/codes/UAL/include -I$UAL/codes/ZLIB/src -I$UAL/ext/UI/src -I$UAL/codes/TEAPOT/src -I$UAL/ext/SXF/src -I$UAL/codes/SIMBAD/src -I$UAL/tools/sxf/src -I$UAL/tools/include -I$UAL/ext/ADXF/src -I$UAL/codes/PAC/include/ -c DipoleTracker.cc -o DipoleTracker.o

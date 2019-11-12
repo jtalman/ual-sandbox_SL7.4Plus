@@ -335,10 +335,10 @@ std::cerr << "nonDrifts      " << nonDrifts      << "\n";
  double MuX;
                                                // half integer tune ambiguity resolution
                                                // NOT full integer tune ambiguity
- if     (cosMuX>=0 && sinMuX>=0){MuX=MuX_PR;}       
- else if(cosMuX<=0 && sinMuX>=0){MuX=MuX_PR;}
- else if(cosMuX<=0 && sinMuX<=0){MuX=2.*PI-MuX_PR;}
- else if(cosMuX>=0 && sinMuX<=0){MuX=2.*PI-MuX_PR;}
+ if     (cosMuX>=0. && sinMuX>=0.){MuX=MuX_PR;}       
+ else if(cosMuX<=0. && sinMuX>=0.){MuX=MuX_PR;}
+ else if(cosMuX<=0. && sinMuX<=0.){MuX=2.*PI-MuX_PR;}
+ else if(cosMuX>=0. && sinMuX<=0.){MuX=2.*PI-MuX_PR;}
 
  a0x=alphaX;
  b0x=betaX;
@@ -354,7 +354,7 @@ std::cerr << "nonDrifts      " << nonDrifts      << "\n";
  double MYtr=MY11+MY22;
  double cosMuY=MYtr/2.;
  if( (1.-MYtr*MYtr/4.)<0. ){std::cerr << "Y: Trying to take square root of a negative number!\n";exit(1);}
- double betaY=abs(MY12)/sqrt(1.-MYtr*MYtr/a.4);
+ double betaY=abs(MY12)/sqrt(1.-MYtr*MYtr/4.);
  double sinMuY=MY12/betaY;;
  double alphaY=(MY11-MY22)/2./sinMuY;
  std::cerr << "JDT: betaY  " << betaY  << "\n";
@@ -363,10 +363,10 @@ std::cerr << "nonDrifts      " << nonDrifts      << "\n";
  std::cerr << "JDT: alphaY " << alphaY << "\n";
  double MuY_PR=acos(cosMuY);
  double MuY;
- if     (cosMuY>=0 && sinMuY>=0){MuY=MuY_PR;}
- else if(cosMuY<=0 && sinMuY>=0){MuY=MuY_PR;}
- else if(cosMuY<=0 && sinMuY<=0){MuY=2.*PI-MuY_PR;}
- else if(cosMuY>=0 && sinMuY<=0){MuY=2.*PI-MuY_PR;}
+ if     (cosMuY>=0. && sinMuY>=0.){MuY=MuY_PR;}
+ else if(cosMuY<=0. && sinMuY>=0.){MuY=MuY_PR;}
+ else if(cosMuY<=0. && sinMuY<=0.){MuY=2.*PI-MuY_PR;}
+ else if(cosMuY>=0. && sinMuY<=0.){MuY=2.*PI-MuY_PR;}
  a0y=alphaY;
  b0y=betaY;
  mu_yTent=MuY;

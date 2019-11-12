@@ -15,7 +15,7 @@ make clean
 \cp $UAL/examples/ETEAPOT/data/eteapotMARKER.apdf data/eteapot.apdf
 \cp $UAL/examples/ETEAPOT/data/E_BM_M1.0_sl4.sxf data
 \cp $UAL/examples/ETEAPOT/userBunch data
-\cp $UAL/examples/ETEAPOT/determineTwiss.cc .
+: \cp $UAL/examples/ETEAPOT/determineTwiss.cc .
 
 \cp $UAL/examples/ETEAPOT/sip* .
 \cp $UAL/examples/ETEAPOT/probeDataForTwiss .

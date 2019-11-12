@@ -50,4 +50,4 @@ all: determineTwiss transferMatrices
 	$(CC) -o $@  $(CCFLAGS) $(INC) $(OBJ_DIR)/transferMatrices.o $(OBJS) $(LIBS)
 
 clean :
-	rm -f out/TWISS/StndrdPrtcl* transferMatrices transferMatrices.cc determineTwiss determineTwiss.cc initialSpin m_m OUT echo.sxf betaFunctions try.log *.hh *.h printProbeValues simulatedProbeValues trtrin trtrout lib/linux/obj/determineTwiss.o lib/linux/obj/transferMatrices.o data/* sip* out/TWISS/* out/VERIF/* probeDataForTwiss out/cpp/*
+	rm -f out/TWISS/StndrdPrtcl* transferMatrices transferMatrices.cc determineTwiss initialSpin m_m OUT echo.sxf betaFunctions try.log *.hh *.h printProbeValues simulatedProbeValues trtrin trtrout lib/linux/obj/determineTwiss.o lib/linux/obj/transferMatrices.o data/* sip* out/TWISS/* out/VERIF/* probeDataForTwiss out/cpp/*
